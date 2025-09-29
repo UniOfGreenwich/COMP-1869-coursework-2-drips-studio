@@ -1,5 +1,19 @@
 {
   "dependencies": {
+    "com.shadercrew.the-toon-shader.3d": {
+      "version": "file:com.shadercrew.the-toon-shader.3d",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {
+        "com.shadercrew.the-toon-shader.core": "1.3.0"
+      }
+    },
+    "com.shadercrew.the-toon-shader.core": {
+      "version": "file:com.shadercrew.the-toon-shader.core",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {}
+    },
     "com.unity.adaptiveperformance": {
       "version": "5.1.5",
       "depth": 1,
