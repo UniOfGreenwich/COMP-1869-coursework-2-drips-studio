@@ -12,6 +12,7 @@ EditorBuildSettings:
     path: Assets/Scenes/IC Scene.unity
     guid: e12653f9fd97d284abc5896e7ae5884a
   m_configObjects:
+    com.unity.adaptiveperformance.google.android.provider_settings: {fileID: 11400000, guid: cf00fd8870e575242b5aa1e9e57311d3, type: 2}
     com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: 09d3dec3028f480438a39014294ac268, type: 2}
     com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000, guid: e9575cf81b02d91408fb348beda494f4, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
