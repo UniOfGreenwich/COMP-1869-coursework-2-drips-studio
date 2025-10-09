@@ -29,6 +29,13 @@ public class OrderUI : MonoBehaviour
         UpdateUI();
     }
 
+    // Ishan added this to integrate for Hi-Fi prototype
+    public void OnGenerateAndTakeOrder()
+    {
+        OnGenerateOrder();
+        OnTakeOrder();
+    }
+
     void UpdateUI()
     {
         if (orderManager.currentOrder != null)
