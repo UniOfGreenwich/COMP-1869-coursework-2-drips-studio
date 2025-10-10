@@ -7,6 +7,11 @@ public class OrderUI : MonoBehaviour
     public OrderManager orderManager;
     public TMP_Text orderText;
 
+    // Ishan Added to integrate for Prototype
+    [SerializeField] private GameObject generateTakeOrderButton;
+    [SerializeField] private GameObject makeOrderButton;
+    [SerializeField] private GameObject serveOrderButton;
+
     public void OnGenerateOrder()
     {
         orderManager.GenerateOrder();
@@ -34,6 +39,13 @@ public class OrderUI : MonoBehaviour
     {
         OnGenerateOrder();
         OnTakeOrder();
+    }
+
+    public void TurnOffButtons()
+    {
+        serveOrderButton.gameObject.SetActive(false);
+        makeOrderButton.gameObject.SetActive(false);
+        generateTakeOrderButton.gameObject.SetActive(false);
     }
 
     void UpdateUI()
