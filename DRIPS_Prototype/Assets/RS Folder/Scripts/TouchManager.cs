@@ -14,6 +14,11 @@ public class TouchManager : MonoBehaviour
     private Vector3 position;                         // Target world position where player should move
     private bool moving;                              // Flag to check if the player is currently moving
 
+    [SerializeField] private bool isUIActive = false; // Check if UI is Active
+    [SerializeField] private GameObject takeOrder;    // Take Order Button 
+    [SerializeField] private GameObject makeOrder;    // Make Order Button 
+    [SerializeField] private GameObject serveOrder;    // Serve Order Button 
+
     private void Awake()
     {
         // Get PlayerInput component and cache actions
@@ -55,21 +60,32 @@ public class TouchManager : MonoBehaviour
 
     private void TouchPressed(InputAction.CallbackContext context)
     {
-        // Get the touch position from input (screen space)
-        Vector2 touchedPosition = touchPositionAction.ReadValue<Vector2>();
-
-        // Create a ray from the camera through the touched screen point
-        Ray ray = Camera.main.ScreenPointToRay(touchedPosition);
-
-        // Define a horizontal plane at the player's Y position
-        Plane groundPlane = new Plane(Vector3.up, new Vector3(0, player.transform.position.y, 0));
-
-        float enter;
-        // If the ray hits the plane, set that point as the new target position
-        if (groundPlane.Raycast(ray, out enter))
+        if (CheckUI())
         {
-            position = ray.GetPoint(enter);   // Get the intersection point in world space
-            moving = true;                    // Start moving the player
+            // Get the touch position from input (screen space)
+            Vector2 touchedPosition = touchPositionAction.ReadValue<Vector2>();
+
+            // Create a ray from the camera through the touched screen point
+            Ray ray = Camera.main.ScreenPointToRay(touchedPosition);
+
+            // Define a horizontal plane at the player's Y position
+            Plane groundPlane = new Plane(Vector3.up, new Vector3(0, player.transform.position.y, 0));
+
+            float enter;
+            // If the ray hits the plane, set that point as the new target position
+            if (groundPlane.Raycast(ray, out enter))
+            {
+                position = ray.GetPoint(enter);   // Get the intersection point in world space
+                moving = true;                    // Start moving the player
+            }
         }
+    }
+
+    private bool CheckUI()   // Check if any buttons are active in the scene
+    {
+        if (takeOrder.activeSelf) return false;
+        if (makeOrder.activeSelf) return false;
+        if (serveOrder.activeSelf) return false;
+        return true;
     }
 }
