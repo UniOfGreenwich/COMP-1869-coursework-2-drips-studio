@@ -14,7 +14,7 @@ public class TouchManager : MonoBehaviour
     private Vector3 position;                         // Target world position where player should move
     private bool moving;                              // Flag to check if the player is currently moving
 
-    [SerializeField] private bool isUIActive = false; // Check if UI is Active
+    //[SerializeField] private bool isUIActive = false; // Check if UI is Active
     [SerializeField] private GameObject takeOrder;    // Take Order Button 
     [SerializeField] private GameObject makeOrder;    // Make Order Button 
     [SerializeField] private GameObject serveOrder;    // Serve Order Button 
