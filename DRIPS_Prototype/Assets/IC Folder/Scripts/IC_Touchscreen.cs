@@ -1,3 +1,5 @@
+using NUnit.Framework;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -18,6 +20,8 @@ public class IC_Touchscreen : MonoBehaviour
     private Vector2 startTouchPos;
     private bool isDragging = false;
 
+    [SerializeField] List<string> pointOfInterests;
+
     void Start()
     {
         if (mainCamera == null)
@@ -34,31 +38,37 @@ public class IC_Touchscreen : MonoBehaviour
         switch (touch.phase)
         {
             case TouchPhase.Began:
-                startTouchPos = touch.position;
-                isDragging = false;
+                if (CheckUI())
+                {
+                    startTouchPos = touch.position;
+                    isDragging = false;
+                }
                 break;
 
             case TouchPhase.Moved:
-                if (Vector2.Distance(touch.position, startTouchPos) > dragThreshold)
+                if (CheckUI())
                 {
-                    isDragging = true;
+                    if (Vector2.Distance(touch.position, startTouchPos) > dragThreshold)
+                    {
+                        isDragging = true;
 
-                    // Convert screen delta to world-space delta
-                    Vector2 delta = touch.deltaPosition;
+                        // Convert screen delta to world-space delta
+                        Vector2 delta = touch.deltaPosition;
 
-                    // ISOMETRIC TRANSLATION
-                    Vector3 right = mainCamera.transform.right;
-                    Vector3 forward = mainCamera.transform.forward;
-                    right.y = 0;
-                    forward.y = 0;
-                    right.Normalize();
-                    forward.Normalize();
+                        // ISOMETRIC TRANSLATION
+                        Vector3 right = mainCamera.transform.right;
+                        Vector3 forward = mainCamera.transform.forward;
+                        right.y = 0;
+                        forward.y = 0;
+                        right.Normalize();
+                        forward.Normalize();
 
-                    // Combine input with camera orientation
-                    Vector3 move = (-right * delta.x - forward * delta.y) * panSpeed;
+                        // Combine input with camera orientation
+                        Vector3 move = (-right * delta.x - forward * delta.y) * panSpeed;
 
-                    // Move camera rig along the ground plane
-                    cameraRig.position += move;
+                        // Move camera rig along the ground plane
+                        cameraRig.position += move;
+                    }
                 }
                 break;
 
@@ -69,7 +79,15 @@ public class IC_Touchscreen : MonoBehaviour
                     {
                         Ray ray = mainCamera.ScreenPointToRay(touch.position);
                         if (Physics.Raycast(ray, out RaycastHit hit))
-                            navMeshAgent.destination = hit.point;
+                        {
+                            //put here check of hit collider with point of interest collider and move close to it
+
+                            for(int i = 0; i < pointOfInterests.Count; i++)
+                            if (hit.collider.CompareTag(pointOfInterests[i]))
+                            {
+                                navMeshAgent.destination = hit.point;
+                            }
+                        }
                     }
                 }
                 break;
@@ -78,9 +96,18 @@ public class IC_Touchscreen : MonoBehaviour
 
     private bool CheckUI()   // Check if any buttons are active in the scene
     {
-        if (takeButton.activeSelf) return false;
-        if (makeButton.activeSelf) return false;
-        if (serveButton.activeSelf) return false;
+        if (takeButton.activeSelf)
+        {
+            return false;
+        }
+        if (makeButton.activeSelf)
+        {
+            return false;
+        }
+        if (serveButton.activeSelf)
+        {
+            return false;
+        }
         return true;
     }
 }
