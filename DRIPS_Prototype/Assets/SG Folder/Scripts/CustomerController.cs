@@ -15,8 +15,8 @@ public class CustomerController : MonoBehaviour
     [SerializeField] private SeatingManager seatingManager;
 
     [Header("Timings")]
-    [SerializeField] private float orderDuration = 2f;     // placeholder; integrate your real order flow later
-    [SerializeField] private float sitDuration = 30f;      // per the requirement
+    [SerializeField] private float orderDuration = 2f;     
+    [SerializeField] private float sitDuration = 30f;      
 
     private NavMeshAgent agent;
     private State state = State.None;
