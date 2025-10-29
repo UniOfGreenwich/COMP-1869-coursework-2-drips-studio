@@ -12,7 +12,8 @@ Material:
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
-  m_InvalidKeywords: []
+  m_InvalidKeywords:
+  - _SHADINGAFFECTEDBYNORMALMAP_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -124,7 +125,7 @@ Material:
     - _CastShadowsStyle: 0
     - _CastShadowsThicknessRandomMode: 0
     - _CastShadowsThicknesshRandomIntensity: 0
-    - _CellTransitionSmoothness: 0.2
+    - _CellTransitionSmoothness: 0.204
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
     - _CoordinateSystem: 0
@@ -171,7 +172,7 @@ Material:
     - _Metallic: 0
     - _NoiseIntensity: 0
     - _NoiseTextureQuality: 3
-    - _NumberOfCells: 2
+    - _NumberOfCells: 4
     - _NumberOfCellsHatching: 2
     - _OcclusionStrength: 1
     - _OpacityRandomIntensity: 0
@@ -269,7 +270,7 @@ Material:
     - _StylingCastShadowsSyncWithOtherStyling: 1
     - _StylingCastShadowsThickness: 0.72
     - _StylingCastShadowsThicknessControl: 0
-    - _StylingCastShadowsThicknessFalloff: 0.5
+    - _StylingCastShadowsThicknessFalloff: 0.513
     - _StylingDFFalloff: 0
     - _StylingDFStartingDistance: 0
     - _StylingDistanceFadeValue: 0
@@ -305,7 +306,7 @@ Material:
     - _StylingShadingSyncWithOtherStyling: 0
     - _StylingShadingThickness: 0.72
     - _StylingShadingThicknessControl: 0
-    - _StylingShadingThicknessFalloff: 0.5
+    - _StylingShadingThicknessFalloff: 0.513
     - _StylingSpecularBlending: 0
     - _StylingSpecularCutOutShading: 0
     - _StylingSpecularDensity: 30
@@ -325,7 +326,7 @@ Material:
     - _StylingSpecularThicknessFalloff: 0.5
     - _StylingSpecularUseLightColors: 0
     - _StylingTerminatorPosition: 0
-    - _SumLightsBeforePosterization: 1
+    - _SumLightsBeforePosterization: 0
     - _Surface: 0
     - _SyncWithLightPartitioning: 0
     - _SyncWithRim: 0
@@ -340,7 +341,7 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - _BaseColor: {r: 0.4117647, g: 0.32156864, b: 0.2784314, a: 1}
+    - _BaseColor: {r: 0.80784315, g: 0.9019608, b: 0.9098039, a: 1}
     - _CastShadowColor: {r: 0, g: 0, b: 0, a: 1}
     - _CastShadowsPolarCenter: {r: 0, g: 0, b: 0, a: 1}
     - _Color: {r: 0.23114192, g: 0.27358484, b: 0.22583655, a: 1}

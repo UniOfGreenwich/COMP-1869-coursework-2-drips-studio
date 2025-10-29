@@ -331,7 +331,7 @@ Material:
     - _SyncWithRim: 0
     - _SyncWithSpecular: 0
     - _TerminatorPosition: 0
-    - _TerminatorSmoothness: 0
+    - _TerminatorSmoothness: 0.193
     - _TerminatorWidth: 0
     - _TheToonShaderIdentifier: 1
     - _ThicknessRandomMode: 0
