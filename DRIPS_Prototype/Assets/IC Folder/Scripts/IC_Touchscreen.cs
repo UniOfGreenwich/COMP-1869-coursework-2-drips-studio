@@ -80,8 +80,7 @@ public class IC_Touchscreen : MonoBehaviour
                         Ray ray = mainCamera.ScreenPointToRay(touch.position);
                         if (Physics.Raycast(ray, out RaycastHit hit))
                         {
-                            //put here check of hit collider with point of interest collider and move close to it
-
+                            //Checks through the point of interests (PoI) and once it's matches a known PoI, it moves to that direction
                             for(int i = 0; i < pointOfInterests.Count; i++)
                             if (hit.collider.CompareTag(pointOfInterests[i]))
                             {
