@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -77,7 +77,7 @@ public class CustomerController : MonoBehaviour
         }
         else
         {
-            // Queue full ? leave immediately
+            // Queue full → leave immediately
             state = State.Leaving;
         }
 
@@ -100,7 +100,7 @@ public class CustomerController : MonoBehaviour
             }
             else
             {
-                // No seat available ? just leave
+                // No seat available → just leave
                 state = State.Leaving;
             }
         }
