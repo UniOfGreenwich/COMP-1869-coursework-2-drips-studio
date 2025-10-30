@@ -46,31 +46,64 @@ public class IC_Touchscreen : MonoBehaviour
                 break;
 
             case TouchPhase.Moved:
-                if (CheckUI())
+                if (Input.touchCount == 1)
                 {
-                    if (Vector2.Distance(touch.position, startTouchPos) > dragThreshold)
+                    if (CheckUI())
                     {
-                        isDragging = true;
+                        if (Vector2.Distance(touch.position, startTouchPos) > dragThreshold)
+                        {
+                            isDragging = true;
 
-                        // Convert screen delta to world-space delta
-                        Vector2 delta = touch.deltaPosition;
+                            // Convert screen delta to world-space delta
+                            Vector2 delta = touch.deltaPosition;
 
-                        // ISOMETRIC TRANSLATION
-                        Vector3 right = mainCamera.transform.right;
-                        Vector3 forward = mainCamera.transform.forward;
-                        right.y = 0;
-                        forward.y = 0;
-                        right.Normalize();
-                        forward.Normalize();
+                            // ISOMETRIC TRANSLATION
+                            Vector3 right = mainCamera.transform.right;
+                            Vector3 forward = mainCamera.transform.forward;
+                            right.y = 0;
+                            forward.y = 0;
+                            right.Normalize();
+                            forward.Normalize();
 
-                        // Combine input with camera orientation
-                        Vector3 move = (-right * delta.x - forward * delta.y) * panSpeed;
+                            // Combine input with camera orientation
+                            Vector3 move = (-right * delta.x - forward * delta.y) * panSpeed;
 
-                        // Move camera rig along the ground plane
-                        cameraRig.position += move;
+                            // Move camera rig along the ground plane
+                            cameraRig.position += move;
+                        }
                     }
                 }
-                break;
+                else if (Input.touchCount == 2)
+                {
+                    Vector2 currentTouch0Pos = Input.GetTouch(0).position;
+                    Vector2 currentTouch1Pos = Input.GetTouch(1).position;
+                    Vector2 previousTouch0Pos = Input.GetTouch(0).deltaPosition;
+                    Vector2 previousTouch1Pos = Input.GetTouch(1).deltaPosition;
+                    float currentDistance = Vector2.Distance(currentTouch0Pos, currentTouch1Pos);
+                    float previousDistance = Vector2.Distance(currentTouch0Pos - previousTouch0Pos, currentTouch1Pos - previousTouch1Pos);
+                    float touchDeltaDistance = currentDistance - previousDistance;
+                    float varianceDistance = 5.0f;
+
+                    //Debug.Log("current touch 0: " + currentTouch0Pos);
+                    //Debug.Log("previous touch 0: " + previousTouch0Pos);
+                    //Debug.Log("current touch 1: " + currentTouch1Pos);
+                    //Debug.Log("previous touch 1: " + previousTouch1Pos);
+                    //Debug.Log("current distance: " + currentDistance);
+                    //Debug.Log("previous distance: " + previousDistance);
+
+                    if (touchDeltaDistance + varianceDistance <= 1)
+                    {
+
+                        Camera.main.orthographicSize = Mathf.Clamp(Camera.main.orthographicSize + 0.1f, 4, 24);
+                    }
+
+                    if (touchDeltaDistance + varianceDistance > 1)
+                    {
+
+                        Camera.main.orthographicSize = Mathf.Clamp(Camera.main.orthographicSize - 0.1f, 4, 24);
+                    }
+                }
+                    break;
 
             case TouchPhase.Ended:
                 if (!isDragging)
