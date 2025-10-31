@@ -488,7 +488,7 @@ public class StylizedSurfaceEditor : BaseShaderGUI {
             if (mesh == null) {
                 return;
             }
-
+            
             if (keywordEnabled) {
                 if (!MeshSmoother.HasSmoothNormals(mesh)) {
                     SmoothNormals(mesh);
