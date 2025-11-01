@@ -8,7 +8,6 @@ using static DrinkIngredientsEnum;
 public class DrinkPresets : ScriptableObject
 {
     // There are some options you must choose, others that are optional
-    public string drinkName;
     public CupSize cupSize;
     public EspressoAmount espresso;
     public List<Additive> additives;

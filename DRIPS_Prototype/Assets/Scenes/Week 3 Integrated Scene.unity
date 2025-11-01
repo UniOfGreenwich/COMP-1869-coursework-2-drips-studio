@@ -5937,7 +5937,7 @@ GameObject:
   - component: {fileID: 631070325}
   m_Layer: 0
   m_Name: Coffee Machine
-  m_TagString: Untagged
+  m_TagString: CoffeeMachine
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6312,6 +6312,50 @@ Transform:
   - {fileID: 1774824345}
   - {fileID: 660030326}
   m_Father: {fileID: 1357938940}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &689648401
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 689648403}
+  - component: {fileID: 689648402}
+  m_Layer: 0
+  m_Name: Interaction Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &689648402
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 689648401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe56b9d37f035b04ca33ad6feeb70b90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &689648403
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 689648401}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -5.482413, y: -2.452649, z: 6.9898524}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &690012760
 GameObject:
@@ -15986,6 +16030,7 @@ MonoBehaviour:
   serveButton: {fileID: 92736940}
   panSpeed: 0.01
   dragThreshold: 10
+  pointOfInterests: []
 --- !u!195 &1610719727
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -16021,7 +16066,7 @@ GameObject:
   - component: {fileID: 1616268096}
   m_Layer: 0
   m_Name: Register
-  m_TagString: Untagged
+  m_TagString: Register
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19889,7 +19934,7 @@ GameObject:
   - component: {fileID: 1990163415}
   m_Layer: 0
   m_Name: Serving Tray
-  m_TagString: Untagged
+  m_TagString: ServingTray
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -21358,3 +21403,4 @@ SceneRoots:
   - {fileID: 631070323}
   - {fileID: 1990163411}
   - {fileID: 465796025}
+  - {fileID: 689648403}
