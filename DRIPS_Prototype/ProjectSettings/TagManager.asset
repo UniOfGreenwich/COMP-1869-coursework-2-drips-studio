@@ -5,9 +5,10 @@ TagManager:
   serializedVersion: 3
   tags:
   - InteractableObject
-  - CoffeeMachine
-  - Register
-  - ServingTray
+  - CameraRig
+  - PoI Register
+  - PoI CoffeeMachine
+  - PoI ServingTray
   layers:
   - Default
   - TransparentFX
