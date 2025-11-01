@@ -12,6 +12,7 @@ public class DrinkIngredientsEnum
     // Number of espresso shots
     public enum EspressoAmount
     {
+        Zero,
         One,
         Two
     }
@@ -19,7 +20,6 @@ public class DrinkIngredientsEnum
     // Possible additives or ingredients
     public enum Additive
     {
-        None,
         Water,
         Milk,
         ChocolatePowder,
