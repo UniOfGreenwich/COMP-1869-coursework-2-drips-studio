@@ -8,10 +8,11 @@ public class TicketInstance : MonoBehaviour
     public List<DrinkPresets> availableDrinks;
 
     [Header("Current Drink Order")]
-    public DrinkPresets currentOrder;
+    public DrinkPresets customerOrder;
 
     void Start()
     {
+        LoadAvailableDrinks();
         GenerateOrder();
     }
 
@@ -23,7 +24,14 @@ public class TicketInstance : MonoBehaviour
             return;
         }
 
-        currentOrder = availableDrinks[Random.Range(0, availableDrinks.Count)];
-        Debug.Log($"Generated order: {currentOrder.drinkName}");
+        customerOrder = availableDrinks[Random.Range(0, availableDrinks.Count)];
+        Debug.Log("Generated customer order");
+    }
+
+    void LoadAvailableDrinks()
+    {
+        DrinkPresets[] found = Resources.LoadAll<DrinkPresets>("");
+        availableDrinks = new List<DrinkPresets>(found);
+        Debug.Log($"Loaded {availableDrinks.Count} drink presets.");
     }
 }
