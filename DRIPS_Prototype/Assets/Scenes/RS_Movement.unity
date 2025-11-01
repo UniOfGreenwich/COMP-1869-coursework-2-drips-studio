@@ -5937,7 +5937,7 @@ GameObject:
   - component: {fileID: 631070325}
   m_Layer: 0
   m_Name: Coffee Machine
-  m_TagString: CoffeeMachine
+  m_TagString: PoI CoffeeMachine
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7363,7 +7363,7 @@ GameObject:
   - component: {fileID: 796393073}
   m_Layer: 0
   m_Name: Cube (38)
-  m_TagString: Register
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8226,7 +8226,7 @@ GameObject:
   - component: {fileID: 870538632}
   m_Layer: 0
   m_Name: Cube (56)
-  m_TagString: CoffeeMachine
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8658,7 +8658,7 @@ GameObject:
   - component: {fileID: 889881758}
   m_Layer: 0
   m_Name: Cube (42)
-  m_TagString: Register
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8998,7 +8998,7 @@ GameObject:
   - component: {fileID: 940587043}
   m_Layer: 0
   m_Name: Cylinder
-  m_TagString: CoffeeMachine
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9545,7 +9545,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1031808164}
-  - component: {fileID: 1031808166}
   - component: {fileID: 1031808165}
   m_Layer: 0
   m_Name: TouchManager
@@ -9553,7 +9552,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1031808164
 Transform:
   m_ObjectHideFlags: 0
@@ -9563,11 +9562,11 @@ Transform:
   m_GameObject: {fileID: 1031808163}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.9623017, y: 10.63081, z: -3.7146373}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2062069887}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1031808165
 MonoBehaviour:
@@ -9578,45 +9577,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1031808163}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6087a25ef9c13a24ea59d14c2f26a623, type: 3}
+  m_Script: {fileID: 11500000, guid: d48d3c7f9e539a94ba360318f34507f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1610719720}
-  playerMovSpeed: 5
-  isUIActive: 0
-  takeOrder: {fileID: 1774026802}
-  makeOrder: {fileID: 467446369}
-  serveOrder: {fileID: 92736940}
---- !u!114 &1031808166
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1031808163}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: 6ef08eecfd979c24dbbb080ac27b96d3, type: 3}
-  m_NotificationBehavior: 0
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents: []
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
-  m_DefaultActionMap: Touch
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
+  navMeshAgent: {fileID: 0}
+  mainCamera: {fileID: 0}
+  cameraRig: {fileID: 0}
+  panSpeed: 0.02
+  dragThreshold: 10
+  pointOfInterests: []
 --- !u!1 &1043263717
 GameObject:
   m_ObjectHideFlags: 0
@@ -12376,7 +12345,7 @@ GameObject:
   - component: {fileID: 1252542228}
   m_Layer: 0
   m_Name: Cylinder (1)
-  m_TagString: CoffeeMachine
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14298,7 +14267,7 @@ GameObject:
   - component: {fileID: 1445398014}
   m_Layer: 0
   m_Name: Cube (53)
-  m_TagString: CoffeeMachine
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15372,7 +15341,7 @@ GameObject:
   - component: {fileID: 1533837094}
   m_Layer: 0
   m_Name: Cube (41)
-  m_TagString: Register
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15869,7 +15838,6 @@ GameObject:
   - component: {fileID: 1610719722}
   - component: {fileID: 1610719721}
   - component: {fileID: 1610719725}
-  - component: {fileID: 1610719726}
   - component: {fileID: 1610719727}
   m_Layer: 0
   m_Name: Player
@@ -15963,12 +15931,12 @@ Transform:
   m_GameObject: {fileID: 1610719720}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.62, y: 11.966, z: -16.77}
+  m_LocalPosition: {x: -0.34230185, y: 1.3351898, z: -13.055363}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 66838739}
-  m_Father: {fileID: 2062069887}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &1610719725
 Rigidbody:
@@ -15997,30 +15965,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 84
   m_CollisionDetection: 1
---- !u!114 &1610719726
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1610719720}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d48d3c7f9e539a94ba360318f34507f2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  navMeshAgent: {fileID: 1610719727}
-  mainCamera: {fileID: 302319738}
-  cameraRig: {fileID: 1624506823}
-  takeButton: {fileID: 1774026802}
-  makeButton: {fileID: 467446369}
-  serveButton: {fileID: 92736940}
-  panSpeed: 0.01
-  dragThreshold: 10
-  pointOfInterests:
-  - CoffeeMachine
-  - Register
-  - ServingTray
 --- !u!195 &1610719727
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -16056,7 +16000,7 @@ GameObject:
   - component: {fileID: 1616268096}
   m_Layer: 0
   m_Name: Register
-  m_TagString: Register
+  m_TagString: PoI Register
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -16181,7 +16125,7 @@ GameObject:
   - component: {fileID: 1624506823}
   m_Layer: 0
   m_Name: CameraRig
-  m_TagString: Untagged
+  m_TagString: CameraRig
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -16984,7 +16928,7 @@ GameObject:
   - component: {fileID: 1733796413}
   m_Layer: 0
   m_Name: Cube (55)
-  m_TagString: CoffeeMachine
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18972,7 +18916,7 @@ GameObject:
   - component: {fileID: 1875896598}
   m_Layer: 0
   m_Name: Cube (54)
-  m_TagString: CoffeeMachine
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19924,7 +19868,7 @@ GameObject:
   - component: {fileID: 1990163415}
   m_Layer: 0
   m_Name: Serving Tray
-  m_TagString: Untagged
+  m_TagString: PoI ServingTray
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -20540,39 +20484,6 @@ Transform:
   - {fileID: 1058452283}
   - {fileID: 1226240360}
   m_Father: {fileID: 2025281245}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &2062069886
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2062069887}
-  m_Layer: 0
-  m_Name: Touch Management
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2062069887
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2062069886}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.9623017, y: -10.63081, z: 3.7146373}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1610719724}
-  - {fileID: 1031808164}
-  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2069081627
 GameObject:
@@ -21286,7 +21197,7 @@ GameObject:
   - component: {fileID: 2130800085}
   m_Layer: 0
   m_Name: Cube (52)
-  m_TagString: CoffeeMachine
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -21387,7 +21298,8 @@ SceneRoots:
   - {fileID: 1624506823}
   - {fileID: 521256867}
   - {fileID: 971596798}
-  - {fileID: 2062069887}
+  - {fileID: 1031808164}
+  - {fileID: 1610719724}
   - {fileID: 804651592}
   - {fileID: 1616268094}
   - {fileID: 631070323}

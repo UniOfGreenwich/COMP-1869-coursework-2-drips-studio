@@ -1,5 +1,6 @@
 using NUnit.Framework;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -9,9 +10,6 @@ public class IC_Touchscreen : MonoBehaviour
     public NavMeshAgent navMeshAgent;
     public Camera mainCamera;
     public Transform cameraRig;
-    public GameObject takeButton;
-    public GameObject makeButton;
-    public GameObject serveButton;
 
     [Header("Panning Settings")]
     public float panSpeed = 0.02f;
@@ -20,15 +18,27 @@ public class IC_Touchscreen : MonoBehaviour
     private Vector2 startTouchPos;
     private bool isDragging = false;
 
-    [SerializeField] List<string> pointOfInterests;
+    [SerializeField] List<string> pointOfInterests = new List<string>();
 
-    void Start()
+    void Awake()
     {
+        UpdatePoI();
+
         if (mainCamera == null)
+        {
             mainCamera = Camera.main;
+        }
+
+        navMeshAgent = GameObject.FindGameObjectWithTag("Player").GetComponent<NavMeshAgent>();
+        cameraRig = GameObject.FindGameObjectWithTag("CameraRig").GetComponent<Transform>();
     }
 
     void Update()
+    {
+        TouchInput();
+    }
+
+    void TouchInput()
     {
         if (Input.touchCount == 0)
             return;
@@ -38,18 +48,18 @@ public class IC_Touchscreen : MonoBehaviour
         switch (touch.phase)
         {
             case TouchPhase.Began:
-                if (CheckUI())
-                {
+                //if (CheckUI())
+                //{
                     startTouchPos = touch.position;
                     isDragging = false;
-                }
+                //}
                 break;
 
             case TouchPhase.Moved:
                 if (Input.touchCount == 1)
                 {
-                    if (CheckUI())
-                    {
+                    //if (CheckUI())
+                    //{
                         if (Vector2.Distance(touch.position, startTouchPos) > dragThreshold)
                         {
                             isDragging = true;
@@ -68,10 +78,13 @@ public class IC_Touchscreen : MonoBehaviour
                             // Combine input with camera orientation
                             Vector3 move = (-right * delta.x - forward * delta.y) * panSpeed;
 
-                            // Move camera rig along the ground plane
-                            cameraRig.position += move;
+                            if (cameraRig != null)
+                            {
+                                // Move camera rig along the ground plane
+                                cameraRig.position += move;
+                            }
                         }
-                    }
+                    //}
                 }
                 else if (Input.touchCount == 2)
                 {
@@ -84,62 +97,80 @@ public class IC_Touchscreen : MonoBehaviour
                     float touchDeltaDistance = currentDistance - previousDistance;
                     float varianceDistance = 5.0f;
 
-                    //Debug.Log("current touch 0: " + currentTouch0Pos);
-                    //Debug.Log("previous touch 0: " + previousTouch0Pos);
-                    //Debug.Log("current touch 1: " + currentTouch1Pos);
-                    //Debug.Log("previous touch 1: " + previousTouch1Pos);
-                    //Debug.Log("current distance: " + currentDistance);
-                    //Debug.Log("previous distance: " + previousDistance);
-
                     if (touchDeltaDistance + varianceDistance <= 1)
                     {
 
-                        Camera.main.orthographicSize = Mathf.Clamp(Camera.main.orthographicSize + 0.1f, 4, 24);
+                        Camera.main.orthographicSize = Mathf.Clamp(mainCamera.orthographicSize + 0.5f, 4, 24);
                     }
 
                     if (touchDeltaDistance + varianceDistance > 1)
                     {
 
-                        Camera.main.orthographicSize = Mathf.Clamp(Camera.main.orthographicSize - 0.1f, 4, 24);
+                        Camera.main.orthographicSize = Mathf.Clamp(mainCamera.orthographicSize - 0.5f, 4, 24);
                     }
                 }
-                    break;
+                break;
 
             case TouchPhase.Ended:
                 if (!isDragging)
                 {
-                    if (CheckUI())
-                    {
+                    //if (CheckUI())
+                    //{
                         Ray ray = mainCamera.ScreenPointToRay(touch.position);
                         if (Physics.Raycast(ray, out RaycastHit hit))
                         {
                             //Checks through the point of interests (PoI) and once it's matches a known PoI, it moves to that direction
-                            for(int i = 0; i < pointOfInterests.Count; i++)
-                            if (hit.collider.CompareTag(pointOfInterests[i]))
-                            {
-                                navMeshAgent.destination = hit.point;
-                            }
+                            for (int i = 0; i < pointOfInterests.Count; i++)
+                                if (hit.collider.CompareTag(pointOfInterests[i]))
+                                {
+                                    if(navMeshAgent != null)
+                                    {                                
+                                        navMeshAgent.destination = hit.point;
+                                    }
+                                }
                         }
-                    }
+                    //}
                 }
                 break;
         }
     }
 
-    private bool CheckUI()   // Check if any buttons are active in the scene
+    public void UpdatePoI()
     {
-        if (takeButton.activeSelf)
+        List<GameObject> tempObjectInSceneList = GetNonSceneObjects();
+        List<string> tempTagList = GetAllTags(tempObjectInSceneList);
+
+        for(int i = 0; i <= tempTagList.Count; i++)
         {
-            return false;
+            if (tempTagList[i].Contains("PoI"))
+            {
+                pointOfInterests.Add(tempTagList[i]);
+            }
         }
-        if (makeButton.activeSelf)
+        
+    }
+    List<GameObject> GetNonSceneObjects()
+    {
+        List<GameObject> objectsInScene = new List<GameObject>();
+
+        foreach (GameObject go in Object.FindObjectsOfType<GameObject>(true))
         {
-            return false;
+            if (!UnityEditor.EditorUtility.IsPersistent(go))
+            {
+                objectsInScene.Add(go);
+            }
         }
-        if (serveButton.activeSelf)
+        return objectsInScene;
+    }
+
+    List<string> GetAllTags(List<GameObject> gameObjectList)
+    {
+        List<string> tagsInScene = new List<string>();
+
+        foreach (GameObject go in gameObjectList)
         {
-            return false;
+            tagsInScene.Add(go.tag);
         }
-        return true;
+        return tagsInScene;
     }
 }
