@@ -140,7 +140,7 @@ public class IC_Touchscreen : MonoBehaviour
         List<GameObject> tempObjectInSceneList = GetNonSceneObjects();
         List<string> tempTagList = GetAllTags(tempObjectInSceneList);
 
-        for(int i = 0; i <= tempTagList.Count; i++)
+        for(int i = 0; i < tempTagList.Count; i++)
         {
             if (tempTagList[i].Contains("PoI"))
             {
