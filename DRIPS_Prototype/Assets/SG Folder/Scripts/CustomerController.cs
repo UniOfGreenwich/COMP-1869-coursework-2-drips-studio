@@ -15,14 +15,18 @@ public class CustomerController : MonoBehaviour
     [SerializeField] private SeatingManager seatingManager;
 
     [Header("Timings")]
-    [SerializeField] private float orderDuration = 2f;     
-    [SerializeField] private float sitDuration = 30f;      
+    [SerializeField] private float orderDuration = 2f;
+    [SerializeField] private float sitDuration = 30f;
+
+    [Header("Arrival Tuning")]
+    [SerializeField] private float arriveDistance = 0.4f;
+    [SerializeField] private float stuckTimeout = 6f;
 
     private NavMeshAgent agent;
     private State state = State.None;
     private Seat mySeat;
-
     private Vector3 queuedTarget;
+    private float stateEnterTime;
 
     private void Awake()
     {
@@ -37,7 +41,6 @@ public class CustomerController : MonoBehaviour
         StartCoroutine(StateMachine());
     }
 
-    // QueueManager uses this to reposition the customer within queue
     public void SetQueueTarget(Vector3 pos)
     {
         queuedTarget = pos;
@@ -45,12 +48,14 @@ public class CustomerController : MonoBehaviour
             MoveTo(queuedTarget);
     }
 
-    public void OnDequeuedFromFront(Vector3 counterPos)
+    // NEW: called when promoted to counter
+    public void OnGoToCounter(Vector3 counterPos)
     {
-        if (state == State.Queueing)
+        if (state == State.Queueing || state == State.Spawning)
         {
             state = State.MovingToCounter;
             MoveTo(counterPos);
+            MarkStateEnter();
         }
     }
 
@@ -58,36 +63,33 @@ public class CustomerController : MonoBehaviour
     {
         state = State.Spawning;
 
-        // Try to join the queue
         if (queueManager.TryJoinQueue(this))
         {
             state = State.Queueing;
             MoveTo(queuedTarget);
+            MarkStateEnter();
 
-            // Wait in queue until we become the front and get dequeued (QueueManager will call OnDequeuedFromFront)
+            // Wait until QueueManager promotes us (calls OnGoToCounter)
             while (state == State.Queueing)
                 yield return null;
 
-            // MovingToCounter handled when dequeued
+            // Move to counter with robust arrival or timeout
             while (state == State.MovingToCounter)
             {
-                if (ReachedDestination()) state = State.Ordering;
+                if (Arrived() || TimedOut()) state = State.Ordering;
                 yield return null;
             }
         }
         else
         {
-            // Queue full → leave immediately
             state = State.Leaving;
         }
 
-        // Ordering (placeholder)
+        // Ordering
         if (state == State.Ordering)
         {
             yield return new WaitForSeconds(orderDuration);
-            queueManager.FrontCustomerDone();
-
-            // Find a seat
+            queueManager.CounterFreed();      // let next customer advance
             state = State.FindingSeat;
         }
 
@@ -96,27 +98,25 @@ public class CustomerController : MonoBehaviour
             if (seatingManager.TryGetFreeSeat(out mySeat))
             {
                 state = State.MovingToSeat;
+                // If you added Approach/SitPoint later, you can change this to mySeat.approachPoint.position
                 MoveTo(mySeat.transform.position);
+                MarkStateEnter();
             }
             else
             {
-                // No seat available → just leave
                 state = State.Leaving;
             }
         }
 
         while (state == State.MovingToSeat)
         {
-            if (ReachedDestination())
-            {
+            if (Arrived() || TimedOut())
                 state = State.Sitting;
-            }
             yield return null;
         }
 
         if (state == State.Sitting)
         {
-            // (Optional Later on) Attach a drink prop, etc.
             yield return new WaitForSeconds(sitDuration);
             if (mySeat != null)
             {
@@ -129,9 +129,8 @@ public class CustomerController : MonoBehaviour
         if (state == State.Leaving)
         {
             MoveTo(exitPoint.position);
-            while (!ReachedDestination())
-                yield return null;
-
+            float t0 = Time.time;
+            while (!Arrived() && Time.time - t0 < 12f) yield return null;
             Destroy(gameObject);
         }
     }
@@ -144,18 +143,25 @@ public class CustomerController : MonoBehaviour
             Debug.LogWarning("NavMeshAgent missing or not on NavMesh.");
     }
 
-    private bool ReachedDestination()
+    private bool Arrived()
     {
         if (agent == null) return true;
         if (agent.pathPending) return false;
-        if (agent.remainingDistance > agent.stoppingDistance) return false;
-        if (agent.hasPath && agent.velocity.sqrMagnitude != 0f) return false;
-        return true;
+
+        if (agent.remainingDistance <= Mathf.Max(agent.stoppingDistance, arriveDistance))
+            return true;
+
+        if (!agent.hasPath && agent.velocity.sqrMagnitude < 0.01f)
+            return Vector3.Distance(transform.position, agent.destination) <= arriveDistance;
+
+        return false;
     }
+
+    private bool TimedOut() => Time.time - stateEnterTime > stuckTimeout;
+    private void MarkStateEnter() => stateEnterTime = Time.time;
 
     private void OnDestroy()
     {
-        // if we were in queue and destroyed early, ensure queue is consistent
         if (queueManager != null && state == State.Queueing)
             queueManager.LeaveQueue(this);
 
@@ -163,4 +169,3 @@ public class CustomerController : MonoBehaviour
             seatingManager.ReleaseSeat(mySeat);
     }
 }
-
