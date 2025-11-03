@@ -41,7 +41,9 @@ public class IC_Touchscreen : MonoBehaviour
     void TouchInput()
     {
         if (Input.touchCount == 0)
+        {
             return;
+        }
 
         Touch touch = Input.GetTouch(0);
 
