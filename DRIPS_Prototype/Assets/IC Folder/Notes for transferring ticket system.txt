@@ -1,0 +1,4 @@
+Notes for transferring ticket system to main scene.
+
+There are 2 prefabs. the ticket itself holds logic for randomising a drink preset.
+The ticket manager controls the spawning and verifying of tickets and drinks.
