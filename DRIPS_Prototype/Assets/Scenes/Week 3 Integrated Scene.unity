@@ -5937,7 +5937,7 @@ GameObject:
   - component: {fileID: 631070325}
   m_Layer: 0
   m_Name: Coffee Machine
-  m_TagString: CoffeeMachine
+  m_TagString: PoI CoffeeMachine
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6342,6 +6342,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe56b9d37f035b04ca33ad6feeb70b90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ticketManager: {fileID: 0}
 --- !u!4 &689648403
 Transform:
   m_ObjectHideFlags: 0
@@ -9627,7 +9628,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1610719720}
   playerMovSpeed: 5
-  isUIActive: 0
   takeOrder: {fileID: 1774026802}
   makeOrder: {fileID: 467446369}
   serveOrder: {fileID: 92736940}
@@ -16025,9 +16025,6 @@ MonoBehaviour:
   navMeshAgent: {fileID: 1610719727}
   mainCamera: {fileID: 302319738}
   cameraRig: {fileID: 1624506823}
-  takeButton: {fileID: 1774026802}
-  makeButton: {fileID: 467446369}
-  serveButton: {fileID: 92736940}
   panSpeed: 0.01
   dragThreshold: 10
   pointOfInterests: []
@@ -16066,7 +16063,7 @@ GameObject:
   - component: {fileID: 1616268096}
   m_Layer: 0
   m_Name: Register
-  m_TagString: Register
+  m_TagString: PoI Register
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -16191,7 +16188,7 @@ GameObject:
   - component: {fileID: 1624506823}
   m_Layer: 0
   m_Name: CameraRig
-  m_TagString: Untagged
+  m_TagString: CameraRig
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19934,7 +19931,7 @@ GameObject:
   - component: {fileID: 1990163415}
   m_Layer: 0
   m_Name: Serving Tray
-  m_TagString: ServingTray
+  m_TagString: PoI ServingTray
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
