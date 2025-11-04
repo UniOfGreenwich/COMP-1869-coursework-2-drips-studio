@@ -8644,6 +8644,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   queuePointsRoot: {fileID: 1612726057}
   maxQueueSize: 3
+  orderSpotClearRadius: 0.6
+  customerLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  promoteDelay: 0.5
 --- !u!1 &870538630
 GameObject:
   m_ObjectHideFlags: 0
@@ -19859,7 +19864,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1882027995}
   m_Layer: 0
-  m_Name: Slot_4
+  m_Name: Slot_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

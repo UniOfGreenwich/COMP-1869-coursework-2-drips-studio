@@ -152,9 +152,9 @@ MonoBehaviour:
   seatingManager: {fileID: 0}
   orderDuration: 3
   sitDuration: 30
-  arriveDistance: 0.45
-  stuckTimeout: 6
-  orderZoneTag: OrderZone
+  arriveDistance: 0.6
+  stuckTimeout: 2
+  forceOrderingDelay: 1.5
 --- !u!54 &-7806746256350033271
 Rigidbody:
   m_ObjectHideFlags: 0
