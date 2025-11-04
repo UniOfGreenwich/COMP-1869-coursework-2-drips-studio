@@ -9,6 +9,8 @@ TagManager:
   - PoI Register
   - PoI CoffeeMachine
   - PoI ServingTray
+  - PoI Milk
+  - PoI Cups
   layers:
   - Default
   - TransparentFX
