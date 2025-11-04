@@ -8,6 +8,7 @@ TagManager:
   - CoffeeMachine
   - Register
   - ServingTray
+  - OrderZone
   layers:
   - Default
   - TransparentFX
