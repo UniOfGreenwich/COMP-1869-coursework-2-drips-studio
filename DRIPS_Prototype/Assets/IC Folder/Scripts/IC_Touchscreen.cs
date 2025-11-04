@@ -10,6 +10,7 @@ public class IC_Touchscreen : MonoBehaviour
     public NavMeshAgent navMeshAgent;
     public Camera mainCamera;
     public Transform cameraRig;
+    public GameObject touchParticleEffect;
 
     [Header("Panning Settings")]
     public float panSpeed = 0.02f;
@@ -128,6 +129,9 @@ public class IC_Touchscreen : MonoBehaviour
                                     if(navMeshAgent != null)
                                     {                                
                                         navMeshAgent.destination = hit.point;
+                                        GameObject pe = Instantiate(touchParticleEffect, hit.point, Quaternion.identity);
+                                        pe.GetComponent<ParticleSystem>().Play();
+                                        Destroy(pe, 1f);
                                     }
                                 }
                         }

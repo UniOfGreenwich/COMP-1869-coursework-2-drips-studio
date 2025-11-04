@@ -19870,6 +19870,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2258629242464174269, guid: 240707cef978a0c4991c3a573ab4c000, type: 3}
+      propertyPath: touchParticleEffect
+      value: 
+      objectReference: {fileID: 2602878741203235250, guid: 320165d181d5fa942ac7749c11368bbc, type: 3}
     - target: {fileID: 3825132115723015117, guid: 240707cef978a0c4991c3a573ab4c000, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
