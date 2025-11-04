@@ -11,7 +11,7 @@ public class CustomerController : MonoBehaviour
         MovingToCounter,
         Ordering,
         FindingSeat,
-        MovingToSeat,
+        MovingToSeat,   // walk to Approach or Seat
         Sitting,
         Leaving
     }
@@ -43,14 +43,11 @@ public class CustomerController : MonoBehaviour
         StartCoroutine(Main());
     }
 
-    // QueueManager will call these:
+    // Called by QueueManager
     public void SetQueueTarget(Vector3 pos)
     {
         queueTarget = pos;
-        if (state != State.Queueing)
-        {
-            state = State.Queueing;
-        }
+        if (state != State.Queueing) state = State.Queueing;
         MoveTo(queueTarget);
     }
 
@@ -64,9 +61,7 @@ public class CustomerController : MonoBehaviour
     {
         // Try join queue. If queue full, just leave.
         if (!queueManager.TryJoinQueue(this))
-        {
             state = State.Leaving;
-        }
 
         // Wait in queue until promoted
         while (state == State.Queueing) yield return null;
@@ -84,13 +79,27 @@ public class CustomerController : MonoBehaviour
         state = State.FindingSeat;
         if (seatingManager.TryGetFreeSeat(out mySeat) && mySeat != null)
         {
+            // ---- WALK TO APPROACH (if present) OR TO SEAT ----
+            Vector3 walkTarget = mySeat.approachPoint ? mySeat.approachPoint.position
+                                                      : mySeat.transform.position;
+
             state = State.MovingToSeat;
-            MoveTo(mySeat.transform.position);
+            MoveTo(walkTarget);
             while (!Arrived()) yield return null;
 
+            // ---- TELEPORT ONTO THE CHAIR ----
+            Vector3 sitPos = mySeat.sitPoint ? mySeat.sitPoint.position : mySeat.transform.position;
+            Quaternion sitRot = mySeat.sitPoint ? mySeat.sitPoint.rotation : mySeat.transform.rotation;
+
+            SafeWarp(sitPos);
+            transform.rotation = sitRot;
+            if (agent) agent.isStopped = true;
+
+            // ---- SIT, THEN LEAVE ----
             state = State.Sitting;
             yield return new WaitForSeconds(sitDuration);
 
+            if (agent) agent.isStopped = false;
             seatingManager.ReleaseSeat(mySeat);
             mySeat = null;
         }
@@ -98,21 +107,34 @@ public class CustomerController : MonoBehaviour
         // Leave
         state = State.Leaving;
         MoveTo(exitPoint.position);
-        // just give them time to walk off; then despawn
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(5f); // simple exit window
         Destroy(gameObject);
     }
 
     private void MoveTo(Vector3 pos)
     {
-        if (agent != null && agent.isOnNavMesh) agent.SetDestination(pos);
+        if (agent != null && agent.isOnNavMesh)
+            agent.SetDestination(pos);
     }
 
     private bool Arrived()
     {
         if (agent == null || agent.pathPending) return false;
-        if (agent.remainingDistance <= Mathf.Max(arriveDistance, agent.stoppingDistance)) return true;
-        return false;
+        return agent.remainingDistance <= Mathf.Max(arriveDistance, agent.stoppingDistance);
     }
+
+    private void SafeWarp(Vector3 position)
+    {
+        if (agent != null) agent.Warp(position);
+        else transform.position = position;
+    }
+
+    private void OnDestroy()
+    {
+        if (mySeat != null && seatingManager != null)
+            seatingManager.ReleaseSeat(mySeat);
+    }
+
 }
+
 
