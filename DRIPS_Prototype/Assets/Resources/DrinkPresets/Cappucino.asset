@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d64ff9813659de94fb947f5731b4a5c0, type: 3}
   m_Name: Cappucino
   m_EditorClassIdentifier: 
-  drinkName: Cappucino
   cupSize: 0
-  espresso: 0
-  additives: 02000000
+  espresso: 1
+  additives: 01000000

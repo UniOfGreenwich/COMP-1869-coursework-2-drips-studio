@@ -12,7 +12,7 @@ public class TicketManager : MonoBehaviour
     void Start()
     {
         // Try to find a Canvas automatically
-        mainCanvas = FindObjectOfType<Canvas>();
+        mainCanvas = FindAnyObjectByType<Canvas>();
         if (mainCanvas == null)
         {
             Debug.LogError("No Canvas found in scene! Please add one.");

@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/Scenes/SampleScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 0
-    path: Assets/Scenes/IC Scene.unity
+    path: Assets/Scenes/IC Prototype Scene.unity
     guid: e12653f9fd97d284abc5896e7ae5884a
   - enabled: 0
     path: Assets/Scenes/RS Scene.unity
