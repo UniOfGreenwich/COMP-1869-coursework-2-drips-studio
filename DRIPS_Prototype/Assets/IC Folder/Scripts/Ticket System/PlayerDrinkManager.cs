@@ -13,7 +13,6 @@ public class PlayerDrinkManager : MonoBehaviour
 
     private void Awake()
     {
-        // Singleton setup
         if (Instance == null)
             Instance = this;
         else
@@ -27,7 +26,7 @@ public class PlayerDrinkManager : MonoBehaviour
 
     public void ResetDrink()
     {
-        cupSize = CupSize.Small;
+        cupSize = CupSize.None;
         espresso = EspressoAmount.Zero;
         additives.Clear();
         Debug.Log("Player drink reset to empty.");

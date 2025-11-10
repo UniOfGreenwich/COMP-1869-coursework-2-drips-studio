@@ -5,6 +5,7 @@ public class DrinkIngredientsEnum
     // Types of Cup Sizes
     public enum CupSize
     {
+        None,
         Small,
         Large
     }
