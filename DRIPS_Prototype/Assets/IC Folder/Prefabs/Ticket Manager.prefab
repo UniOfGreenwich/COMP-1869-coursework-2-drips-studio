@@ -10,6 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 5622949951640509863}
   - component: {fileID: 2919042736698509055}
+  - component: {fileID: 8879577864820577769}
+  - component: {fileID: 471019891925897866}
+  - component: {fileID: 2993987891308573359}
   m_Layer: 0
   m_Name: Ticket Manager
   m_TagString: Untagged
@@ -44,5 +47,45 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3baa99a5a55ef2545be7d39406804a7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ticketPrefab: {fileID: 0}
-  maxTickets: 3
+  ticketPrefab: {fileID: 380605931434676547, guid: ab204da1b9cf8a94dacd2b1c6e738958, type: 3}
+  maxTickets: 1
+--- !u!114 &8879577864820577769
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5913235021554577522}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03316a541e2a51a47ac1a39b3f21609b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cupSize: 0
+  espresso: 0
+  additives: 
+--- !u!114 &471019891925897866
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5913235021554577522}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84bdbdd05272e2c4bb1993c5acd186bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2993987891308573359
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5913235021554577522}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe56b9d37f035b04ca33ad6feeb70b90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ticketManager: {fileID: 0}
