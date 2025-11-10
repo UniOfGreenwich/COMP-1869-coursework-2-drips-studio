@@ -1,0 +1,84 @@
+using UnityEngine;
+using static DrinkIngredientsEnum;
+
+public class CheckingStation : MonoBehaviour
+{
+    private DrinkComparer drinkComparer;
+    private TicketInstance ticketInstance;
+
+    [Header("Cooldown Settings")]
+    [SerializeField] private float activationCooldown = 1.0f; // seconds
+    private float lastActivationTime = 0f;
+
+    private bool playerInside = false;
+
+    private void Awake()
+    {
+        // Automatically find references in the scene
+        drinkComparer = FindObjectOfType<DrinkComparer>();
+
+        if (drinkComparer == null)
+            Debug.LogError("No DrinkComparer found in the scene!");
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (!other.CompareTag("Player"))
+            return;
+
+        playerInside = true;
+
+
+        ticketInstance = FindObjectOfType<TicketInstance>();
+        if (ticketInstance == null)
+            Debug.LogError("No TicketInstance found in the scene!");
+
+        // Check if enough time passed since last activation
+        if (Time.time - lastActivationTime >= activationCooldown)
+        {
+            lastActivationTime = Time.time;
+            RunDrinkCheck();
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            playerInside = false;
+        }
+    }
+
+    private void RunDrinkCheck()
+    {
+        if (PlayerDrinkManager.Instance == null)
+        {
+            Debug.LogWarning("PlayerDrinkManager not found!");
+            return;
+        }
+
+        if (ticketInstance == null || ticketInstance.customerOrder == null)
+        {
+            Debug.LogWarning("TicketInstance or customer order missing!");
+            return;
+        }
+
+        DrinkPresets playerDrink = ScriptableObject.CreateInstance<DrinkPresets>();
+        playerDrink.cupSize = PlayerDrinkManager.Instance.cupSize;
+        playerDrink.espresso = PlayerDrinkManager.Instance.espresso;
+        playerDrink.additives = new System.Collections.Generic.List<Additive>(PlayerDrinkManager.Instance.additives);
+
+        bool drinksMatch = drinkComparer.CompareDrinks(playerDrink, ticketInstance.customerOrder);
+
+        if (drinksMatch)
+        {
+            Debug.Log("Correct drink served!");
+        }
+        else
+        {
+            Debug.Log("Wrong drink served!");
+        }
+
+        Destroy(playerDrink);
+    }
+}

@@ -1,7 +1,7 @@
 using UnityEngine;
 using static DrinkIngredientsEnum;
 
-public class MilkStation : MonoBehaviour
+public class CoffeeStation : MonoBehaviour
 {
     private bool playerInside = false;
     private float lastToggleTime = 0f;
@@ -18,8 +18,7 @@ public class MilkStation : MonoBehaviour
             if (Time.time - lastToggleTime >= toggleCooldown)
             {
                 lastToggleTime = Time.time;
-                PlayerDrinkManager.Instance.ToggleAdditive(Additive.Milk);
-                Debug.Log("Player added milk to the drink!");
+                PlayerDrinkManager.Instance.SetEspresso(EspressoAmount.One);
             }
         }
     }
