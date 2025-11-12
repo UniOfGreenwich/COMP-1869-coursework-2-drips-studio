@@ -5592,43 +5592,17 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 660030325}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &667193865 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5139146329851082969, guid: 81f71c375c712994881a60c38f349aed, type: 3}
-  m_PrefabInstance: {fileID: 1868111311}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &667193867 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6336022396668266847, guid: 81f71c375c712994881a60c38f349aed, type: 3}
   m_PrefabInstance: {fileID: 1868111311}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 667193865}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe56b9d37f035b04ca33ad6feeb70b90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!65 &667193870
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 667193865}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.13894558, y: 0.32140207, z: 0.5162121}
-  m_Center: {x: -0.19978285, y: -0.33929896, z: -0.8367395}
 --- !u!1 &668101578
 GameObject:
   m_ObjectHideFlags: 0
@@ -13652,6 +13626,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1752648478356057725, guid: edbfb27ff413d6b459aece3a98e291b8, type: 3}
+      propertyPath: m_Speed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1752648478356057725, guid: edbfb27ff413d6b459aece3a98e291b8, type: 3}
+      propertyPath: m_Acceleration
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1752648478356057725, guid: edbfb27ff413d6b459aece3a98e291b8, type: 3}
+      propertyPath: m_AngularSpeed
+      value: 1000
+      objectReference: {fileID: 0}
     - target: {fileID: 4501118064738687386, guid: edbfb27ff413d6b459aece3a98e291b8, type: 3}
       propertyPath: m_Name
       value: Player
@@ -16985,30 +16971,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3640245712425248457, guid: 81f71c375c712994881a60c38f349aed, type: 3}
-      propertyPath: m_Size.x
-      value: 1.606761
-      objectReference: {fileID: 0}
-    - target: {fileID: 3640245712425248457, guid: 81f71c375c712994881a60c38f349aed, type: 3}
-      propertyPath: m_Size.z
-      value: 0.70959336
-      objectReference: {fileID: 0}
-    - target: {fileID: 3640245712425248457, guid: 81f71c375c712994881a60c38f349aed, type: 3}
-      propertyPath: m_Center.x
-      value: -0.0675149
-      objectReference: {fileID: 0}
-    - target: {fileID: 3640245712425248457, guid: 81f71c375c712994881a60c38f349aed, type: 3}
-      propertyPath: m_Center.z
-      value: 0.9980751
-      objectReference: {fileID: 0}
-    - target: {fileID: 5063477983288932554, guid: 81f71c375c712994881a60c38f349aed, type: 3}
-      propertyPath: m_Size.z
-      value: 0.71706724
-      objectReference: {fileID: 0}
-    - target: {fileID: 5063477983288932554, guid: 81f71c375c712994881a60c38f349aed, type: 3}
-      propertyPath: m_Center.z
-      value: 0.1414664
-      objectReference: {fileID: 0}
     - target: {fileID: 5139146329851082969, guid: 81f71c375c712994881a60c38f349aed, type: 3}
       propertyPath: m_Name
       value: Register
@@ -17060,10 +17022,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5139146329851082969, guid: 81f71c375c712994881a60c38f349aed, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 667193870}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 81f71c375c712994881a60c38f349aed, type: 3}
 --- !u!1 &1881509470
 GameObject:

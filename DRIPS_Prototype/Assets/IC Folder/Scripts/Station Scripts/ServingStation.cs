@@ -80,6 +80,7 @@ public class CheckingStation : MonoBehaviour
         {
             Debug.Log("Correct drink served!");
             ticketManager.currentTickets = 0;
+            playerDrinkManager.ResetDrink();
         }
         else
         {
