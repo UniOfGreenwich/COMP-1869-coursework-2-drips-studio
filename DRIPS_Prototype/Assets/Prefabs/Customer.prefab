@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: -7806746256350033271}
   m_Layer: 0
   m_Name: Customer
-  m_TagString: Untagged
+  m_TagString: Customer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -153,8 +153,6 @@ MonoBehaviour:
   orderDuration: 3
   sitDuration: 30
   arriveDistance: 0.6
-  stuckTimeout: 2
-  forceOrderingDelay: 1.5
 --- !u!54 &-7806746256350033271
 Rigidbody:
   m_ObjectHideFlags: 0

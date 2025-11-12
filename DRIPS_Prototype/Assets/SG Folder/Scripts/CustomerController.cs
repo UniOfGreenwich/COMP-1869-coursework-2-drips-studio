@@ -22,11 +22,11 @@ public class CustomerController : MonoBehaviour
     [SerializeField] private SeatingManager seatingManager;
 
     [Header("Timings")]
-    [SerializeField] private float orderDuration = 3f;
     [SerializeField] private float sitDuration = 30f;
 
     [Header("Arrival")]
     [SerializeField] private float arriveDistance = 0.6f;
+    [SerializeField] public bool hasBeenServed = false;
 
     private NavMeshAgent agent;
     private State state;
@@ -70,9 +70,9 @@ public class CustomerController : MonoBehaviour
         while (state == State.MovingToCounter && !Arrived())
             yield return null;
 
-        // Order (3s)
+        // Order
         state = State.Ordering;
-        yield return new WaitForSeconds(orderDuration);
+        yield return new WaitUntil(() => hasBeenServed == true);
         queueManager.CounterFreed();
 
         // Find a seat

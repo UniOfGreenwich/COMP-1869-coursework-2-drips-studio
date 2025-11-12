@@ -5,6 +5,8 @@ public class CheckingStation : MonoBehaviour
 {
     private DrinkComparer drinkComparer;
     private TicketInstance ticketInstance;
+    private TicketManager ticketManager;
+    private PlayerDrinkManager playerDrinkManager;
 
     [Header("Cooldown Settings")]
     [SerializeField] private float activationCooldown = 1.0f; // seconds
@@ -17,8 +19,12 @@ public class CheckingStation : MonoBehaviour
         // Automatically find references in the scene
         drinkComparer = FindObjectOfType<DrinkComparer>();
 
+        playerDrinkManager = FindAnyObjectByType<PlayerDrinkManager>();
+
         if (drinkComparer == null)
             Debug.LogError("No DrinkComparer found in the scene!");
+
+        ticketManager = FindAnyObjectByType<TicketManager>();   
     }
 
     private void OnTriggerEnter(Collider other)
@@ -73,10 +79,12 @@ public class CheckingStation : MonoBehaviour
         if (drinksMatch)
         {
             Debug.Log("Correct drink served!");
+            ticketManager.currentTickets = 0;
         }
         else
         {
             Debug.Log("Wrong drink served!");
+            playerDrinkManager.ResetDrink();
         }
 
         Destroy(playerDrink);

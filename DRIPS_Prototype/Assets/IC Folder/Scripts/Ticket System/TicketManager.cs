@@ -4,9 +4,9 @@ public class TicketManager : MonoBehaviour
 {
     [Header("Ticket Settings")]
     public GameObject ticketPrefab;   // Assign your Ticket prefab here
-    public int maxTickets = 3;
+    public int maxTickets = 1;
 
-    private int currentTickets = 0;
+    public int currentTickets = 0;
     private Canvas mainCanvas;
 
     void Start()

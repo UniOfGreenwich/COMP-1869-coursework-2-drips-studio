@@ -11,6 +11,8 @@ TagManager:
   - PoI ServingTray
   - PoI Milk
   - PoI Cups
+  - OrderZone
+  - Customer
   layers:
   - Default
   - TransparentFX
