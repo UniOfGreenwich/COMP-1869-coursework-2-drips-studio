@@ -1,6 +1,4 @@
-using NUnit.Framework;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -19,19 +17,22 @@ public class IC_Touchscreen : MonoBehaviour
     private Vector2 startTouchPos;
     private bool isDragging = false;
 
-    [SerializeField] List<string> pointOfInterests = new List<string>();
+    [SerializeField] private List<string> pointOfInterests = new List<string>();
 
     void Awake()
     {
         UpdatePoI();
 
         if (mainCamera == null)
-        {
             mainCamera = Camera.main;
-        }
 
-        navMeshAgent = GameObject.FindGameObjectWithTag("Player").GetComponent<NavMeshAgent>();
-        cameraRig = GameObject.FindGameObjectWithTag("CameraRig").GetComponent<Transform>();
+        if (navMeshAgent == null)
+            navMeshAgent = GameObject.FindGameObjectWithTag("Player")?.GetComponent<NavMeshAgent>()
+                ?? FindAnyObjectByType<NavMeshAgent>();
+
+        if (cameraRig == null)
+            cameraRig = GameObject.FindGameObjectWithTag("CameraRig")?.transform
+                ?? FindAnyObjectByType<Transform>();
     }
 
     void Update()
@@ -42,52 +43,36 @@ public class IC_Touchscreen : MonoBehaviour
     void TouchInput()
     {
         if (Input.touchCount == 0)
-        {
             return;
-        }
 
         Touch touch = Input.GetTouch(0);
 
         switch (touch.phase)
         {
             case TouchPhase.Began:
-                //if (CheckUI())
-                //{
-                    startTouchPos = touch.position;
-                    isDragging = false;
-                //}
+                startTouchPos = touch.position;
+                isDragging = false;
                 break;
 
             case TouchPhase.Moved:
                 if (Input.touchCount == 1)
                 {
-                    //if (CheckUI())
-                    //{
-                        if (Vector2.Distance(touch.position, startTouchPos) > dragThreshold)
-                        {
-                            isDragging = true;
+                    if (Vector2.Distance(touch.position, startTouchPos) > dragThreshold)
+                    {
+                        isDragging = true;
 
-                            // Convert screen delta to world-space delta
-                            Vector2 delta = touch.deltaPosition;
+                        Vector2 delta = touch.deltaPosition;
+                        Vector3 right = mainCamera.transform.right;
+                        Vector3 forward = mainCamera.transform.forward;
+                        right.y = 0;
+                        forward.y = 0;
+                        right.Normalize();
+                        forward.Normalize();
 
-                            // ISOMETRIC TRANSLATION
-                            Vector3 right = mainCamera.transform.right;
-                            Vector3 forward = mainCamera.transform.forward;
-                            right.y = 0;
-                            forward.y = 0;
-                            right.Normalize();
-                            forward.Normalize();
-
-                            // Combine input with camera orientation
-                            Vector3 move = (-right * delta.x - forward * delta.y) * panSpeed;
-
-                            if (cameraRig != null)
-                            {
-                                // Move camera rig along the ground plane
-                                cameraRig.position += move;
-                            }
-                        }
-                    //}
+                        Vector3 move = (-right * delta.x - forward * delta.y) * panSpeed;
+                        if (cameraRig != null)
+                            cameraRig.position += move;
+                    }
                 }
                 else if (Input.touchCount == 2)
                 {
@@ -101,57 +86,46 @@ public class IC_Touchscreen : MonoBehaviour
                     float varianceDistance = 5.0f;
 
                     if (touchDeltaDistance + varianceDistance <= 1)
-                    {
-
-                        Camera.main.orthographicSize = Mathf.Clamp(mainCamera.orthographicSize + 0.5f, 4, 24);
-                    }
+                        mainCamera.orthographicSize = Mathf.Clamp(mainCamera.orthographicSize + 0.5f, 4, 24);
 
                     if (touchDeltaDistance + varianceDistance > 1)
-                    {
-
-                        Camera.main.orthographicSize = Mathf.Clamp(mainCamera.orthographicSize - 0.5f, 4, 24);
-                    }
+                        mainCamera.orthographicSize = Mathf.Clamp(mainCamera.orthographicSize - 0.5f, 4, 24);
                 }
                 break;
 
             case TouchPhase.Ended:
                 if (!isDragging)
                 {
-                    //if (CheckUI())
-                    //{
-                        Ray ray = mainCamera.ScreenPointToRay(touch.position);
-                        if (Physics.Raycast(ray, out RaycastHit hit))
+                    Ray ray = mainCamera.ScreenPointToRay(touch.position);
+                    if (Physics.Raycast(ray, out RaycastHit hit))
+                    {
+                        for (int i = 0; i < pointOfInterests.Count; i++)
                         {
-                            //Checks through the point of interests (PoI) and once it's matches a known PoI, it moves to that direction
-                            for (int i = 0; i < pointOfInterests.Count; i++)
-                                if (hit.collider.CompareTag(pointOfInterests[i]))
+                            if (hit.collider.CompareTag(pointOfInterests[i]))
+                            {
+                                if (navMeshAgent != null)
                                 {
-                                    if(navMeshAgent != null)
-                                    {
                                     Transform targetPos = hit.collider.transform.Find("Position");
 
                                     if (targetPos != null)
                                     {
                                         navMeshAgent.destination = targetPos.position;
-
                                         GameObject pe = Instantiate(touchParticleEffect, targetPos.position, Quaternion.identity);
                                         pe.GetComponent<ParticleSystem>().Play();
                                         Destroy(pe, 1f);
                                     }
                                     else
                                     {
-                                        // fallback if "Position" child doesn’t exist
                                         navMeshAgent.destination = hit.point;
-
                                         GameObject pe = Instantiate(touchParticleEffect, hit.point, Quaternion.identity);
                                         pe.GetComponent<ParticleSystem>().Play();
                                         Destroy(pe, 1f);
                                         Debug.Log($"{hit.collider.name} has no child named 'Position' — using clicked point instead.");
                                     }
                                 }
-                                }
+                            }
                         }
-                    //}
+                    }
                 }
                 break;
         }
@@ -159,40 +133,23 @@ public class IC_Touchscreen : MonoBehaviour
 
     public void UpdatePoI()
     {
-        List<GameObject> tempObjectInSceneList = GetNonSceneObjects();
-        List<string> tempTagList = GetAllTags(tempObjectInSceneList);
+        pointOfInterests.Clear();
 
-        for(int i = 0; i < tempTagList.Count; i++)
+#if UNITY_2023_1_OR_NEWER
+        GameObject[] foundObjects = Object.FindObjectsByType<GameObject>(FindObjectsSortMode.None);
+#else
+        GameObject[] foundObjects = Object.FindObjectsOfType<GameObject>(true);
+#endif
+
+        foreach (GameObject go in foundObjects)
         {
-            if (tempTagList[i].Contains("PoI"))
+            // Only consider tagged scene objects with "PoI" in the tag
+            if (go.CompareTag("Untagged") == false && go.tag.Contains("PoI") && !pointOfInterests.Contains(go.tag))
             {
-                pointOfInterests.Add(tempTagList[i]);
+                pointOfInterests.Add(go.tag);
             }
         }
-        
-    }
-    List<GameObject> GetNonSceneObjects()
-    {
-        List<GameObject> objectsInScene = new List<GameObject>();
 
-        foreach (GameObject go in Object.FindObjectsOfType<GameObject>(true))
-        {
-            if (!UnityEditor.EditorUtility.IsPersistent(go))
-            {
-                objectsInScene.Add(go);
-            }
-        }
-        return objectsInScene;
-    }
-
-    List<string> GetAllTags(List<GameObject> gameObjectList)
-    {
-        List<string> tagsInScene = new List<string>();
-
-        foreach (GameObject go in gameObjectList)
-        {
-            tagsInScene.Add(go.tag);
-        }
-        return tagsInScene;
+        Debug.Log($"[IC_Touchscreen] Found {pointOfInterests.Count} Points of Interest.");
     }
 }
