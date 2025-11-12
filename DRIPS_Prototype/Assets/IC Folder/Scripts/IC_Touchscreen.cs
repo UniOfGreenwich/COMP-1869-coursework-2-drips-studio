@@ -127,12 +127,28 @@ public class IC_Touchscreen : MonoBehaviour
                                 if (hit.collider.CompareTag(pointOfInterests[i]))
                                 {
                                     if(navMeshAgent != null)
-                                    {                                
-                                        navMeshAgent.destination = hit.point;
-                                        GameObject pe = Instantiate(touchParticleEffect, hit.point, Quaternion.identity);
+                                    {
+                                    Transform targetPos = hit.collider.transform.Find("Position");
+
+                                    if (targetPos != null)
+                                    {
+                                        navMeshAgent.destination = targetPos.position;
+
+                                        GameObject pe = Instantiate(touchParticleEffect, targetPos.position, Quaternion.identity);
                                         pe.GetComponent<ParticleSystem>().Play();
                                         Destroy(pe, 1f);
                                     }
+                                    else
+                                    {
+                                        // fallback if "Position" child doesn’t exist
+                                        navMeshAgent.destination = hit.point;
+
+                                        GameObject pe = Instantiate(touchParticleEffect, hit.point, Quaternion.identity);
+                                        pe.GetComponent<ParticleSystem>().Play();
+                                        Destroy(pe, 1f);
+                                        Debug.Log($"{hit.collider.name} has no child named 'Position' — using clicked point instead.");
+                                    }
+                                }
                                 }
                         }
                     //}
