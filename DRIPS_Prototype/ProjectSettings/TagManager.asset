@@ -13,6 +13,7 @@ TagManager:
   - PoI Cups
   - OrderZone
   - Customer
+  - PoI Splatter
   layers:
   - Default
   - TransparentFX

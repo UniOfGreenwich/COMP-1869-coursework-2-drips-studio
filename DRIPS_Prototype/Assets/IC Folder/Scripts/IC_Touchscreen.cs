@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using System.Collections;
 
 public class IC_Touchscreen : MonoBehaviour
 {
@@ -33,6 +34,21 @@ public class IC_Touchscreen : MonoBehaviour
         if (cameraRig == null)
             cameraRig = GameObject.FindGameObjectWithTag("CameraRig")?.transform
                 ?? FindAnyObjectByType<Transform>();
+    }
+
+    void Start()
+    {
+        // Start continuously checking for new PoIs
+        StartCoroutine(UpdatePoIListLoop());
+    }
+
+    IEnumerator UpdatePoIListLoop()
+    {
+        while (true)
+        {
+            UpdatePoI();
+            yield return new WaitForSeconds(2f); // refresh every 2 seconds
+        }
     }
 
     void Update()
@@ -143,13 +159,10 @@ public class IC_Touchscreen : MonoBehaviour
 
         foreach (GameObject go in foundObjects)
         {
-            // Only consider tagged scene objects with "PoI" in the tag
             if (go.CompareTag("Untagged") == false && go.tag.Contains("PoI") && !pointOfInterests.Contains(go.tag))
             {
                 pointOfInterests.Add(go.tag);
             }
         }
-
-        Debug.Log($"[IC_Touchscreen] Found {pointOfInterests.Count} Points of Interest.");
     }
 }
