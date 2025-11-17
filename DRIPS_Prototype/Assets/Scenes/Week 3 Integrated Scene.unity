@@ -5597,7 +5597,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6336022396668266847, guid: 81f71c375c712994881a60c38f349aed, type: 3}
   m_PrefabInstance: {fileID: 1868111311}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1868111312}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe56b9d37f035b04ca33ad6feeb70b90, type: 3}
@@ -8330,6 +8330,37 @@ Transform:
   - {fileID: 920782767}
   - {fileID: 1548175804}
   - {fileID: 1621522422}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &977449671
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 977449672}
+  m_Layer: 0
+  m_Name: Audio Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &977449672
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 977449671}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &987088270
@@ -17022,8 +17053,30 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5139146329851082969, guid: 81f71c375c712994881a60c38f349aed, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1868111313}
   m_SourcePrefab: {fileID: 100100000, guid: 81f71c375c712994881a60c38f349aed, type: 3}
+--- !u!1 &1868111312 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5139146329851082969, guid: 81f71c375c712994881a60c38f349aed, type: 3}
+  m_PrefabInstance: {fileID: 1868111311}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1868111313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1868111312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77694f1306e79c842b3a72e758fddbb4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioEvents: []
+  audioServiceSource: {fileID: 0}
 --- !u!1 &1881509470
 GameObject:
   m_ObjectHideFlags: 0
@@ -18945,6 +18998,10 @@ PrefabInstance:
       propertyPath: minSpawnDelay
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 2334208924715267768, guid: b98093982eea95645b10e63cedf47309, type: 3}
+      propertyPath: randomRotation
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9109457380425903708, guid: b98093982eea95645b10e63cedf47309, type: 3}
       propertyPath: m_Name
       value: Splatter Manager
@@ -19018,3 +19075,4 @@ SceneRoots:
   - {fileID: 987088274}
   - {fileID: 1189065702}
   - {fileID: 3989640185132837738}
+  - {fileID: 977449672}
