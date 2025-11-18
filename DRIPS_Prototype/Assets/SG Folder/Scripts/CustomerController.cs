@@ -28,12 +28,18 @@ public class CustomerController : MonoBehaviour
     [SerializeField] private float arriveDistance = 0.6f;
     [SerializeField] public bool hasBeenServed = false;
 
+    private TrashCanStation trashCanStation;
     private NavMeshAgent agent;
     private State state;
     private Vector3 queueTarget;
     private Seat mySeat;
 
     private void Awake() => agent = GetComponent<NavMeshAgent>();
+
+    private void Start()
+    {
+        trashCanStation = FindAnyObjectByType<TrashCanStation>();
+    }
 
     public void Init(QueueManager qm, SeatingManager sm, Transform exit)
     {
@@ -102,6 +108,9 @@ public class CustomerController : MonoBehaviour
             if (agent) agent.isStopped = false;
             seatingManager.ReleaseSeat(mySeat);
             mySeat = null;
+
+            // +1 to trash can
+            trashCanStation.IncreaseBinLevel();
         }
 
         // Leave
