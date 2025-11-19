@@ -86,11 +86,30 @@ public class CustomerController : MonoBehaviour
         if (seatingManager.TryGetFreeSeat(out mySeat) && mySeat != null)
         {
             // ---- WALK TO APPROACH (if present) OR TO SEAT ----
-            Vector3 walkTarget = mySeat.approachPoint ? mySeat.approachPoint.position
-                                                      : mySeat.transform.position;
 
-            state = State.MovingToSeat;
-            MoveTo(walkTarget);
+            if(mySeat.approachPointLeft || mySeat.approachPointRight)
+            {
+                Vector3 walkTarget;
+                float distanceFromLeft = Vector3.Distance(gameObject.transform.position, mySeat.approachPointLeft.position);
+                float distanceFromRight = Vector3.Distance(gameObject.transform.position, mySeat.approachPointRight.position);
+
+                if (distanceFromLeft < distanceFromRight)
+                {
+                    walkTarget = mySeat.approachPointLeft.position;
+                }
+                else if (distanceFromRight < distanceFromLeft)
+                {
+                    walkTarget = mySeat.approachPointRight.position;
+                }
+                else
+                {
+                    walkTarget = mySeat.transform.position;
+                }
+
+                state = State.MovingToSeat;
+                MoveTo(walkTarget);
+            }
+
             while (!Arrived()) yield return null;
 
             // ---- TELEPORT ONTO THE CHAIR ----

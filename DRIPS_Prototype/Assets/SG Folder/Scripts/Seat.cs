@@ -4,7 +4,8 @@ public class Seat : MonoBehaviour
 {
     [Header("Waypoints (optional but recommended)")]
     [Tooltip("Point on the NavMesh in front of the chair.")]
-    public Transform approachPoint;
+    public Transform approachPointLeft;
+    public Transform approachPointRight;
 
     [Tooltip("Exact seat position (can be off the NavMesh).")]
     public Transform sitPoint;
@@ -17,15 +18,18 @@ public class Seat : MonoBehaviour
     private void OnValidate()
     {
         // Auto-find children called "Approach" or "SitPoint" if not assigned
-        if (approachPoint == null)
+        if (approachPointLeft == null && approachPointRight == null)
         {
-            var t = transform.Find("Approach");
-            if (t) approachPoint = t;
+            var tl = transform.Find("ApproachLeft");
+            if (tl) approachPointLeft = tl;
+
+            var tr = transform.Find("ApproachRight");
+            if (tr) approachPointRight = tr;
         }
 
         if (sitPoint == null)
         {
-            var t = transform.Find("SitPoint");
+            var t = transform.Find("Sit");
             if (t) sitPoint = t;
         }
     }
@@ -35,11 +39,13 @@ public class Seat : MonoBehaviour
         Gizmos.color = IsOccupied ? Color.red : Color.green;
         Gizmos.DrawWireSphere(transform.position, 0.15f);
 
-        if (approachPoint)
+        if (approachPointLeft && approachPointRight)
         {
             Gizmos.color = Color.yellow;
-            Gizmos.DrawWireSphere(approachPoint.position, 0.1f);
-            Gizmos.DrawLine(transform.position, approachPoint.position);
+            Gizmos.DrawWireSphere(approachPointLeft.position, 0.1f);
+            Gizmos.DrawLine(transform.position, approachPointLeft.position);
+            Gizmos.DrawWireSphere(approachPointRight.position, 0.1f);
+            Gizmos.DrawLine(transform.position, approachPointRight.position);
         }
 
         if (sitPoint)
