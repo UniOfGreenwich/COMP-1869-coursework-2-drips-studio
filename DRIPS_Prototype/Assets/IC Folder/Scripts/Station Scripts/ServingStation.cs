@@ -7,6 +7,8 @@ public class CheckingStation : MonoBehaviour
     private TicketInstance ticketInstance;
     private TicketManager ticketManager;
     private PlayerDrinkManager playerDrinkManager;
+    private InteractSquishAnimation tipJar;
+    
 
     [Header("Cooldown Settings")]
     [SerializeField] private float activationCooldown = 1.0f; // seconds
@@ -24,7 +26,9 @@ public class CheckingStation : MonoBehaviour
         if (drinkComparer == null)
             Debug.LogError("No DrinkComparer found in the scene!");
 
-        ticketManager = FindAnyObjectByType<TicketManager>();   
+        ticketManager = FindAnyObjectByType<TicketManager>();
+
+        tipJar = GameObject.Find("Tip Jar")?.GetComponent<InteractSquishAnimation>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -81,6 +85,9 @@ public class CheckingStation : MonoBehaviour
             Debug.Log("Correct drink served!");
             ticketManager.currentTickets = 0;
             playerDrinkManager.ResetDrink();
+            tipJar.squish = true;
+            ParticleSystem moneySpill = tipJar.transform.Find("Money Spill")?.GetComponent<ParticleSystem>();
+            moneySpill.Play();
         }
         else
         {

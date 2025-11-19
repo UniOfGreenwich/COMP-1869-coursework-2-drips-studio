@@ -5,7 +5,13 @@ public class CoffeeStation : MonoBehaviour
 {
     private bool playerInside = false;
     private float lastToggleTime = 0f;
+    private ParticleSystem steam;
     [SerializeField] private float toggleCooldown = 1f; // seconds between toggles
+
+    private void Start()
+    {
+        steam = GetComponentInChildren<ParticleSystem>();
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -19,6 +25,7 @@ public class CoffeeStation : MonoBehaviour
             {
                 lastToggleTime = Time.time;
                 PlayerDrinkManager.Instance.SetEspresso(EspressoAmount.One);
+                steam.Play();
             }
         }
     }
