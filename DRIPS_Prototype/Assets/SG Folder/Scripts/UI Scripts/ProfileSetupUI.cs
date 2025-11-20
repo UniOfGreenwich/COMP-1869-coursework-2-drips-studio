@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;            
+using TMPro;
 using UnityEngine.SceneManagement;
 
 public class ProfileSetupUI : MonoBehaviour
@@ -10,23 +10,38 @@ public class ProfileSetupUI : MonoBehaviour
     public TMP_InputField cafeNameInput;
 
     [Header("Avatar Options")]
-    public Image[] avatarImages;   // The images shown in the UI
-    public int selectedAvatarIndex = 0;
+    public Image bigAvatarImage;   // big image at the top
+    public Image[] avatarImages;   // the 3 small images
 
     [Header("Highlight Colors")]
     public Color normalColor = Color.white;
     public Color selectedColor = Color.yellow;
 
+    private int selectedAvatarIndex = 0;
+
     private void Start()
     {
+        // Set default big image
+        if (avatarImages.Length > 0 && bigAvatarImage != null)
+        {
+            bigAvatarImage.sprite = avatarImages[selectedAvatarIndex].sprite;
+        }
+
         UpdateAvatarHighlights();
     }
 
-    // Hook this to each avatar button's OnClick, and pass the index
     public void OnAvatarClicked(int index)
     {
         selectedAvatarIndex = index;
+
+        // Update highlight
         UpdateAvatarHighlights();
+
+        // Update big image
+        if (bigAvatarImage != null && index >= 0 && index < avatarImages.Length)
+        {
+            bigAvatarImage.sprite = avatarImages[index].sprite;
+        }
     }
 
     private void UpdateAvatarHighlights()
@@ -39,12 +54,10 @@ public class ProfileSetupUI : MonoBehaviour
 
     public void OnContinueButton()
     {
-        // Save data into static profile
         PlayerProfile.PlayerName = playerNameInput.text;
         PlayerProfile.CafeName = cafeNameInput.text;
         PlayerProfile.AvatarIndex = selectedAvatarIndex;
 
-        // Load next scene (change name to real scene)
-        SceneManager.LoadScene("NextSceneName");
+        SceneManager.LoadScene("NextSceneName"); // change to your real scene name
     }
 }
