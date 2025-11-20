@@ -186,7 +186,7 @@ Material:
     - _FlatRimSize: 0.5
     - _FlatSpecularEdgeSmoothness: 0
     - _FlatSpecularSize: 0.1
-    - _Flatness: 1
+    - _Flatness: 0.335
     - _FlatnessExtra: 1
     - _GlossMapScale: 0
     - _Glossiness: 0
@@ -261,7 +261,7 @@ Material:
     - _RimThicknessRandomMode: 0
     - _RimThicknesshRandomIntensity: 0
     - _SSCameraDistanceScaled: 1
-    - _SelfShadingSize: 1
+    - _SelfShadingSize: 0.559
     - _SelfShadingSizeExtra: 0.6
     - _ShadingAffectedByNormalMap: 1
     - _ShadingFunction: 0
@@ -271,7 +271,7 @@ Material:
     - _ShadingNoise2Seed: 1
     - _ShadingStyle: 0
     - _ShadingUseLightColors: 0
-    - _ShadowEdgeSize: 0.05
+    - _ShadowEdgeSize: 0.365
     - _ShadowEdgeSizeExtra: 0.05
     - _Smoothness: 0.5
     - _SmoothnessSource: 0
