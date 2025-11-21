@@ -58,6 +58,8 @@ public class InteractableObject : MonoBehaviour
 
     public void OnServeButtonPressed()
     {
+        Debug.Log("[ InteractableObject ]: The Button Has Been Pressed");
+
         if (tm.currentTickets == tm.maxTickets)
         {
             Debug.Log("Cannot Serve: Max Tickets Reached");
