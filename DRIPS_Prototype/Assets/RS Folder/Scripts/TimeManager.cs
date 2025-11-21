@@ -1,26 +1,32 @@
 using UnityEngine;
 using System;
+using System.Collections;
 
 public enum Season { Spring, Summer, Autumn, Winter}
 
 public class TimeManager : MonoBehaviour
 {
     public Season currentSeason;
+    DateTime today;
     public int currentDay;
     public int currentMonth;
+    public int currentHour;
+    public int currentMinute;
+    public string currentTime;
+    
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
-    {
+    {        
+        StartCoroutine(UpdateTime());
         CheckCurrentDate();
     }
 
     public void CheckCurrentDate()
     {
-        DateTime today = DateTime.Now;
-
         currentDay = today.Day;
         currentMonth = today.Month;
+        
 
         switch (currentMonth)
         {
@@ -119,6 +125,28 @@ public class TimeManager : MonoBehaviour
             case (31, 12):
             //New Year's Eve
             break;
+        }
+    }
+
+    public void CheckCurrentTime()
+    {
+        currentHour = today.Hour;
+        currentMinute = today.Minute;
+        currentTime = currentHour + ":" + currentMinute;
+    }
+
+    private void OnApplicationQuit()
+    {
+        StopAllCoroutines();
+    }
+
+    public IEnumerator UpdateTime()
+    {
+        while (true)
+        {
+            today = DateTime.Now;
+            CheckCurrentTime();
+            yield return new WaitForSeconds(5);
         }
     }
 }
