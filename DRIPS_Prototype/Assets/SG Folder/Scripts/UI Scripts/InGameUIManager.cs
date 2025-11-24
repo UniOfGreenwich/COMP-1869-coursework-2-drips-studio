@@ -11,15 +11,24 @@ public class InGameUIManager : MonoBehaviour
     [Header("Panels")]
     public GameObject sideMenuPanel;
     public GameObject settingsPanel;
+    public GameObject rewardsPanel;
+    public  GameObject dailyRewardsPanel;
+    public  GameObject shopPanel;
 
     private bool sideMenuOpen = false;
     private bool settingsOpen = false;
+    private bool rewardsOpen = false;
+    private bool dailyRewardsOpen = false;
+    private bool shopOpen = false;
 
     private void Start()
     {
         // make sure panels start closed
         sideMenuPanel.SetActive(false);
         settingsPanel.SetActive(false);
+        rewardsPanel.SetActive(false);
+        dailyRewardsPanel.SetActive(false);
+        shopPanel.SetActive(false);
     }
 
     public void ToggleSideMenu()
@@ -36,6 +45,31 @@ public class InGameUIManager : MonoBehaviour
         // Optional?? pause game while settings open??
         Time.timeScale = settingsOpen ? 0f : 1f;
     }
+
+    public void ToggleRewardsMenu()
+    {
+        rewardsOpen = !rewardsOpen;
+        ToggleDailyRewardsPanel();
+        
+        rewardsPanel.SetActive(rewardsOpen);
+    }
+
+    public void ToggleDailyRewardsPanel()
+    {
+        shopOpen = false;
+        shopPanel.SetActive(false);
+        dailyRewardsOpen = true;
+        dailyRewardsPanel.SetActive(true);
+    }
+
+    public void ToggleShopPanel()
+    {
+        shopOpen = true;
+        shopPanel.SetActive(true);
+        dailyRewardsOpen = false;
+        dailyRewardsPanel.SetActive(false);
+    }
+
 
     public void UpdateHUD(int day, float timeOfDay, float money)
     {
