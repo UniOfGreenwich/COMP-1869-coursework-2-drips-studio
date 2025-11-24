@@ -17163,6 +17163,7 @@ MonoBehaviour:
   time: {fileID: 1189439340}
   money: {fileID: 423470434}
   timeManager: {fileID: 0}
+  load: 0
 --- !u!1 &1888399478
 GameObject:
   m_ObjectHideFlags: 0
