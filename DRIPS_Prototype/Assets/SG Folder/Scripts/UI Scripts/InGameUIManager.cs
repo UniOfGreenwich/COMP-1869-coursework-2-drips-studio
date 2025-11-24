@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.Rendering.Universal;
 
 public class InGameUIManager : MonoBehaviour
 {
@@ -7,6 +8,12 @@ public class InGameUIManager : MonoBehaviour
     public TMP_Text dayText;
     public TMP_Text timeText;
     public TMP_Text moneyText;
+
+    [Header("References")]
+    public GameObject canvas;
+    public GameObject interactButton;
+    public GameObject player;
+
 
     [Header("Panels")]
     public GameObject sideMenuPanel;
@@ -23,6 +30,9 @@ public class InGameUIManager : MonoBehaviour
 
     private void Start()
     {
+        // make sure main canvas is enabled on start
+        canvas.SetActive(true);
+
         // make sure panels start closed
         sideMenuPanel.SetActive(false);
         settingsPanel.SetActive(false);
@@ -76,5 +86,15 @@ public class InGameUIManager : MonoBehaviour
         dayText.text = $"DAY {day}";
         timeText.text = $"TIME {timeOfDay:00:00}";
         moneyText.text = $"MONEY ${money:0.00}";
+    }
+
+    public void InteractButton()
+    {
+        // create a sphere radius of 5 units
+        // store vector 3 positions in a list from objects named "Position"
+        // find the parent object of the closest one
+        // check if the parent object has any of these component scripts: "CoffeeStation", "CupStation", "MilkStation", "ServingStation", "TrashCanStation"
+        // if yes, create a reference to that component. if not, Debug "No Station Script Found"
+
     }
 }

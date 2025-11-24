@@ -7,17 +7,7 @@ public class TicketManager : MonoBehaviour
     public int maxTickets = 1;
 
     public int currentTickets = 0;
-    private Canvas mainCanvas;
-
-    void Start()
-    {
-        // Try to find a Canvas automatically
-        mainCanvas = FindAnyObjectByType<Canvas>();
-        if (mainCanvas == null)
-        {
-            Debug.LogError("No Canvas found in scene! Please add one.");
-        }
-    }
+    public Canvas mainCanvas;
 
     public void SpawnTicket()
     {

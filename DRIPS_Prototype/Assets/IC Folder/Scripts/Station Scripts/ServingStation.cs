@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 using static DrinkIngredientsEnum;
 
 public class CheckingStation : MonoBehaviour
@@ -8,27 +9,38 @@ public class CheckingStation : MonoBehaviour
     private TicketManager ticketManager;
     private PlayerDrinkManager playerDrinkManager;
     private InteractSquishAnimation tipJar;
-    
 
     [Header("Cooldown Settings")]
     [SerializeField] private float activationCooldown = 1.0f; // seconds
     private float lastActivationTime = 0f;
 
     private bool playerInside = false;
+    public Button interactButton;
 
     private void Awake()
     {
         // Automatically find references in the scene
         drinkComparer = FindObjectOfType<DrinkComparer>();
-
         playerDrinkManager = FindAnyObjectByType<PlayerDrinkManager>();
 
         if (drinkComparer == null)
             Debug.LogError("No DrinkComparer found in the scene!");
 
         ticketManager = FindAnyObjectByType<TicketManager>();
-
         tipJar = GameObject.Find("Tip Jar")?.GetComponent<InteractSquishAnimation>();
+
+        if (interactButton == null)
+            Debug.LogError("CheckingStation: interactButton reference missing!");
+    }
+
+    private void Start()
+    {
+        // Set up button once
+        interactButton.onClick.RemoveAllListeners();
+        interactButton.onClick.AddListener(Interact);
+
+        // Hide button initially
+        interactButton.gameObject.SetActive(false);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -38,29 +50,33 @@ public class CheckingStation : MonoBehaviour
 
         playerInside = true;
 
-
         ticketInstance = FindObjectOfType<TicketInstance>();
         if (ticketInstance == null)
             Debug.LogError("No TicketInstance found in the scene!");
 
-        // Check if enough time passed since last activation
+        // Only show button if cooldown is ready
         if (Time.time - lastActivationTime >= activationCooldown)
         {
-            lastActivationTime = Time.time;
-            RunDrinkCheck();
+            interactButton.onClick.RemoveAllListeners();
+            interactButton.onClick.AddListener(Interact);
+            interactButton.gameObject.SetActive(true);
+            Debug.Log("CheckingStation: Interact button shown");
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player"))
-        {
-            playerInside = false;
-        }
+        if (!other.CompareTag("Player"))
+            return;
+
+        playerInside = false;
+        interactButton.gameObject.SetActive(false);
     }
 
-    private void RunDrinkCheck()
+    public void Interact()
     {
+        lastActivationTime = Time.time;
+
         if (PlayerDrinkManager.Instance == null)
         {
             Debug.LogWarning("PlayerDrinkManager not found!");
@@ -85,9 +101,10 @@ public class CheckingStation : MonoBehaviour
             Debug.Log("Correct drink served!");
             ticketManager.currentTickets = 0;
             playerDrinkManager.ResetDrink();
+
             tipJar.squish = true;
             ParticleSystem moneySpill = tipJar.transform.Find("Money Spill")?.GetComponent<ParticleSystem>();
-            moneySpill.Play();
+            moneySpill?.Play();
         }
         else
         {
@@ -96,5 +113,8 @@ public class CheckingStation : MonoBehaviour
         }
 
         Destroy(playerDrink);
+
+        // Hide button after interaction
+        interactButton.gameObject.SetActive(false);
     }
 }
