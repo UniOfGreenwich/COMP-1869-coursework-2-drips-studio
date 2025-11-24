@@ -7,7 +7,7 @@ public enum Season { Spring, Summer, Autumn, Winter}
 public class TimeManager : MonoBehaviour
 {
     public Season currentSeason;
-    DateTime today;
+    public DateTime today;
     public int currentDay;
     public int currentMonth;
     public int currentHour;
@@ -146,6 +146,10 @@ public class TimeManager : MonoBehaviour
         {
             today = DateTime.Now;
             CheckCurrentTime();
+            if (GameManager.Instance.player != null)
+            {
+                GameManager.Instance.player.SetQuitTime(today);
+            }
             yield return new WaitForSeconds(5);
         }
     }
