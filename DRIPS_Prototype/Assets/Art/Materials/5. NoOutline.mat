@@ -7,12 +7,11 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: 12.Terracotta
+  m_Name: 5. NoOutline
   m_Shader: {fileID: 4800000, guid: bee44b4a58655ee4cbff107302a3e131, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
-  - DR_OUTLINE_ON
   - _CELPRIMARYMODE_SINGLE
   - _DETAILMAPBLENDINGMODE_MULTIPLY
   - _GRADIENTSPACE_WORLD
@@ -186,7 +185,7 @@ Material:
     - _FlatRimSize: 0.5
     - _FlatSpecularEdgeSmoothness: 0
     - _FlatSpecularSize: 0.1
-    - _Flatness: 0.6
+    - _Flatness: 0.357
     - _FlatnessExtra: 1
     - _GlossMapScale: 0
     - _Glossiness: 0
@@ -223,7 +222,7 @@ Material:
     - _OpacityRandomMode: 0
     - _OutlineCameraDistanceImpact: 0
     - _OutlineDepthOffset: 0
-    - _OutlineEnabled: 1
+    - _OutlineEnabled: 0
     - _OutlineScale: 1
     - _OutlineSpace: 0
     - _OutlineWidth: 1.6
@@ -232,7 +231,7 @@ Material:
     - _PolarCenterMode: 0
     - _QueueControl: -1
     - _QueueOffset: 0
-    - _ReceiveShadows: 1
+    - _ReceiveShadows: 0
     - _RimAffectedArea: 1
     - _RimAffectedByNormalMap: 1
     - _RimAnchorSSToObjectsOrigin: 1
@@ -403,11 +402,11 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - _BaseColor: {r: 0.8156863, g: 0.41568628, b: 0.28627452, a: 1}
+    - _BaseColor: {r: 0.57254905, g: 0.3529412, b: 0.24313726, a: 1}
     - _CastShadowColor: {r: 0, g: 0, b: 0, a: 1}
     - _CastShadowsPolarCenter: {r: 0, g: 0, b: 0, a: 1}
     - _Color: {r: 0.23114192, g: 0.27358484, b: 0.22583655, a: 1}
-    - _ColorDim: {r: 0, g: 0, b: 0, a: 1}
+    - _ColorDim: {r: 0.03773582, g: 0.03773582, b: 0.03773582, a: 1}
     - _ColorDimCurve: {r: 0.85023, g: 0.85034, b: 0.8504499, a: 0.85056}
     - _ColorDimExtra: {r: 0.85023, g: 0.85034, b: 0.8504499, a: 0.85056}
     - _ColorDimSteps: {r: 0.85023, g: 0.85034, b: 0.8504499, a: 0.85056}
