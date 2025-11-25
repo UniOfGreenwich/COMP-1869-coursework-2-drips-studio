@@ -269,7 +269,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   splatterPrefab: {fileID: 8054959663728107892, guid: c2597cd55d64ea1478dada44353693ab, type: 3}
-  minSpawnDelay: 30
-  maxSpawnDelay: 120
-  randomRotation: 1
+  minSpawnDelay: 15
+  maxSpawnDelay: 45
+  randomRotation: 0
   destroyPlaceholders: 1

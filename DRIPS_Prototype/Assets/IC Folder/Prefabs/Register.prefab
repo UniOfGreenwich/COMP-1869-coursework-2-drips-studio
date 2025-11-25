@@ -260,6 +260,7 @@ GameObject:
   - component: {fileID: 6336022396668266847}
   - component: {fileID: 5063477983288932554}
   - component: {fileID: 3753263646250121031}
+  - component: {fileID: 2960194188332308663}
   m_Layer: 0
   m_Name: Register
   m_TagString: PoI Register
@@ -363,6 +364,20 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.13894558, y: 0.32140207, z: 0.5162121}
   m_Center: {x: -0.19978285, y: -0.33929896, z: -0.8367395}
+--- !u!114 &2960194188332308663
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5139146329851082969}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77694f1306e79c842b3a72e758fddbb4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioEvents: []
+  audioServiceSource: {fileID: 0}
 --- !u!1 &6786270747565722081
 GameObject:
   m_ObjectHideFlags: 0
