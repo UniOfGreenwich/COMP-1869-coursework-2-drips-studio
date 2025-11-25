@@ -1,32 +1,35 @@
 using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
 
 public class InteractableObject : MonoBehaviour
 {
+    [Header("UI")]
     public Button serveButton;
+
+    [Header("References")]
+    [SerializeField] private TicketManager tm;
 
     private bool playerInside = false;
     private bool customerInside = false;
     private CustomerController customerController;
-    [SerializeField] TicketManager tm;
 
-    private void Start()
+    private void Awake()
     {
-        tm = FindAnyObjectByType<TicketManager>();
-    }
-    private void OnEnable()
-    {
-        StartCoroutine(WaitForButton());
-    }
+        // Find TicketManager if not assigned
+        if (tm == null)
+            tm = FindAnyObjectByType<TicketManager>();
 
-    private IEnumerator WaitForButton()
-    {
-        yield return new WaitUntil(() => serveButton != null && serveButton.gameObject.activeInHierarchy);
-
-        serveButton.gameObject.SetActive(false);
-        serveButton.onClick.RemoveAllListeners();
-        serveButton.onClick.AddListener(OnServeButtonPressed);
+        // Setup the serve button listener immediately
+        if (serveButton != null)
+        {
+            serveButton.onClick.RemoveAllListeners();
+            serveButton.onClick.AddListener(OnServeButtonPressed);
+            serveButton.gameObject.SetActive(false); // hide at start
+        }
+        else
+        {
+            Debug.LogError("[InteractableObject]: Serve Button not assigned!");
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -37,11 +40,17 @@ public class InteractableObject : MonoBehaviour
         if (other.CompareTag("Customer"))
         {
             customerInside = true;
+
+            // Get the CustomerController on this object
             customerController = other.GetComponent<CustomerController>();
+
+            if (customerController == null)
+                Debug.LogError("[InteractableObject]: CustomerController NOT found on " + other.name);
+            else
+                Debug.Log("[InteractableObject]: CustomerController detected on " + customerController.gameObject.name);
         }
 
-        if (playerInside && customerInside)
-            serveButton.gameObject.SetActive(true);
+        UpdateButtonState();
     }
 
     private void OnTriggerExit(Collider other)
@@ -50,25 +59,37 @@ public class InteractableObject : MonoBehaviour
             playerInside = false;
 
         if (other.CompareTag("Customer"))
+        {
             customerInside = false;
+            customerController = null;
+        }
 
-        if (!playerInside || !customerInside)
-            serveButton.gameObject.SetActive(false);
+        UpdateButtonState();
+    }
+
+    private void UpdateButtonState()
+    {
+        if (serveButton != null)
+            serveButton.gameObject.SetActive(playerInside && customerInside);
     }
 
     public void OnServeButtonPressed()
     {
-        Debug.Log("[ InteractableObject ]: The Button Has Been Pressed  ");
+        if (customerController == null)
+        {
+            Debug.LogError("[InteractableObject]: Serve pressed but no CustomerController found!");
+            return;
+        }
 
-        if (tm.currentTickets == tm.maxTickets)
+        if (tm.currentTickets >= tm.maxTickets)
         {
-            Debug.Log("Cannot Serve: Max Tickets Reached");
+            Debug.Log("[InteractableObject]: Cannot serve — Max tickets reached");
+            return;
         }
-        else
-        {
-            Debug.Log("should spawn ticket and customer should sit down");
-            customerController.hasBeenServed = true;
-            tm.SpawnTicket();
-        }
+
+        // Serve the customer
+        Debug.Log("[InteractableObject]: Serving customer, spawning ticket");
+        customerController.hasBeenServed = true;
+        tm.SpawnTicket();
     }
 }

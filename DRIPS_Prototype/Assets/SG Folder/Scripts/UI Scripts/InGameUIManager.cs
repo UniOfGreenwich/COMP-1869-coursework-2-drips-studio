@@ -102,16 +102,6 @@ public class InGameUIManager : MonoBehaviour
         customersServedText.text = "Customers Served: " + slideMenuValues.customersServed;
     }
 
-    public void InteractButton()
-    {
-        // create a sphere radius of 5 units
-        // store vector 3 positions in a list from objects named "Position"
-        // find the parent object of the closest one
-        // check if the parent object has any of these component scripts: "CoffeeStation", "CupStation", "MilkStation", "ServingStation", "TrashCanStation"
-        // if yes, create a reference to that component. if not, Debug "No Station Script Found"
-
-    }
-
     private void FixedUpdate()
     {
         customersServedText.text = "Customers Served: " + slideMenuValues.customersServed;
