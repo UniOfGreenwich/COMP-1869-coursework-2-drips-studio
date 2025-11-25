@@ -36,7 +36,7 @@ public class TicketManager : MonoBehaviour
         if (rect == null)
             rect = newTicket.AddComponent<RectTransform>();
 
-        rect.anchoredPosition = Vector2.zero;
+        rect.anchoredPosition = new Vector2(145f, -290f);
         rect.localScale = Vector3.one;
 
         // Generate random order
@@ -48,10 +48,22 @@ public class TicketManager : MonoBehaviour
         Debug.Log("Spawned new ticket in center of screen!");
     }
 
-    public void RemoveTicket(GameObject ticket)
+    public void RemoveTicket()
     {
-        Destroy(ticket);
         currentTickets--;
         Debug.Log("Ticket removed");
+
+        GameObject[] allObjects = GameObject.FindObjectsOfType<GameObject>();
+
+        foreach (var obj in allObjects)
+        {
+            if (obj.name.Contains("Ticket"))
+            {
+                Destroy(obj);
+                return; // stop after deleting one
+            }
+        }
+
+        Debug.LogWarning("No Ticket object found!");
     }
 }

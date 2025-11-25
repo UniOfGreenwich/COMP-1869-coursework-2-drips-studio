@@ -9,10 +9,16 @@ public class InGameUIManager : MonoBehaviour
     public TMP_Text timeText;
     public TMP_Text moneyText;
 
+    [Header("Slide Menu")]
+    public TMP_Text customersServedText;
+    public TMP_Text customersServedCorrectlyText;
+    public TMP_Text reputationText;
+
     [Header("References")]
     public GameObject canvas;
     public GameObject interactButton;
     public GameObject player;
+    public SlideMenuValues slideMenuValues;
 
 
     [Header("Panels")]
@@ -39,6 +45,9 @@ public class InGameUIManager : MonoBehaviour
         rewardsPanel.SetActive(false);
         dailyRewardsPanel.SetActive(false);
         shopPanel.SetActive(false);
+
+        // Find References
+        slideMenuValues = FindAnyObjectByType<SlideMenuValues>();
     }
 
     public void ToggleSideMenu()
@@ -88,6 +97,11 @@ public class InGameUIManager : MonoBehaviour
         moneyText.text = $"MONEY ${money:0.00}";
     }
 
+    public void IncrementCustomersServed()
+    {
+        customersServedText.text = "Customers Served: " + slideMenuValues.customersServed;
+    }
+
     public void InteractButton()
     {
         // create a sphere radius of 5 units
@@ -96,5 +110,22 @@ public class InGameUIManager : MonoBehaviour
         // check if the parent object has any of these component scripts: "CoffeeStation", "CupStation", "MilkStation", "ServingStation", "TrashCanStation"
         // if yes, create a reference to that component. if not, Debug "No Station Script Found"
 
+    }
+
+    private void FixedUpdate()
+    {
+        customersServedText.text = "Customers Served: " + slideMenuValues.customersServed;
+        customersServedCorrectlyText.text = "Customers Served Correctly: " + slideMenuValues.customersServedCorrectly;
+    }
+    public void UpdateReputation()
+    {
+        if (slideMenuValues.customersServed == 0)
+        {
+            reputationText.text = "Reputation: N/A";
+            return;
+        }
+
+        float rep = (float)slideMenuValues.customersServedCorrectly / slideMenuValues.customersServed * 100f;
+        reputationText.text = "Reputation: " + Mathf.RoundToInt(rep) + "%";
     }
 }

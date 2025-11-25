@@ -9,6 +9,8 @@ public class CheckingStation : MonoBehaviour
     private TicketManager ticketManager;
     private PlayerDrinkManager playerDrinkManager;
     private InteractSquishAnimation tipJar;
+    private SlideMenuValues slideMenuValues;
+    private InGameUIManager inGameUIManager;
 
     [Header("Cooldown Settings")]
     [SerializeField] private float activationCooldown = 1.0f; // seconds
@@ -31,6 +33,9 @@ public class CheckingStation : MonoBehaviour
 
         if (interactButton == null)
             Debug.LogError("CheckingStation: interactButton reference missing!");
+
+        slideMenuValues = FindAnyObjectByType<SlideMenuValues>();
+        inGameUIManager = FindAnyObjectByType<InGameUIManager>();
     }
 
     private void Start()
@@ -105,11 +110,19 @@ public class CheckingStation : MonoBehaviour
             tipJar.squish = true;
             ParticleSystem moneySpill = tipJar.transform.Find("Money Spill")?.GetComponent<ParticleSystem>();
             moneySpill?.Play();
+            slideMenuValues.customersServed++;
+            slideMenuValues.customersServedCorrectly++;
+            inGameUIManager.UpdateReputation();
+            ticketManager.RemoveTicket();
         }
         else
         {
             Debug.Log("Wrong drink served!");
+            ticketManager.currentTickets = 0;
             playerDrinkManager.ResetDrink();
+            slideMenuValues.customersServed++;
+            inGameUIManager.UpdateReputation();
+            ticketManager.RemoveTicket();
         }
 
         Destroy(playerDrink);
