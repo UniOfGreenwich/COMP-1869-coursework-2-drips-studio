@@ -6,6 +6,7 @@ public class CupStation : MonoBehaviour
 {
     private bool playerInside = false;
     private float lastToggleTime = 0f;
+    private RandomSoundEffectTrigger trigger;
 
     [SerializeField] private float toggleCooldown = 1f;
     public Button interactButton;
@@ -20,6 +21,8 @@ public class CupStation : MonoBehaviour
     {
         // Start with button hidden
         interactButton.gameObject.SetActive(false);
+
+        trigger = GetComponent<RandomSoundEffectTrigger>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -64,5 +67,7 @@ public class CupStation : MonoBehaviour
 
         // Hide button after use
         interactButton.gameObject.SetActive(false);
+
+        trigger.Play();
     }
 }

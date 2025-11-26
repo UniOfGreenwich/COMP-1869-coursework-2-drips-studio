@@ -6,6 +6,7 @@ public class MilkStation : MonoBehaviour
 {
     private bool playerInside = false;
     private float lastToggleTime = 0f;
+    private RandomSoundEffectTrigger trigger;
 
     [SerializeField] private float toggleCooldown = 1f; // seconds between toggles
     public Button interactButton;
@@ -24,6 +25,8 @@ public class MilkStation : MonoBehaviour
 
         // Hide button at start
         interactButton.gameObject.SetActive(false);
+
+        trigger = GetComponent<RandomSoundEffectTrigger>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -62,5 +65,7 @@ public class MilkStation : MonoBehaviour
 
         // Hide button after use
         interactButton.gameObject.SetActive(false);
+
+        trigger.Play();
     }
 }

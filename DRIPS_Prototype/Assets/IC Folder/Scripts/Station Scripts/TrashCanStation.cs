@@ -7,14 +7,16 @@ public class TrashCanStation : MonoBehaviour
     [SerializeField] private int binLevel;
     [SerializeField] private int binMaxCapacity;
 
-    [Header("Interact Button")]
-    public Button interactButton; // Assign in Inspector
+    [Header("References")]
+    public Button interactButton;
 
     [Header("Cooldown Settings")]
     [SerializeField] private float toggleCooldown = 0.5f; // optional, prevents accidental double clicks
     private float lastToggleTime = 0f;
 
     private bool playerInside = false;
+
+    private RandomSoundEffectTrigger trigger;
 
     private void Awake()
     {
@@ -29,6 +31,8 @@ public class TrashCanStation : MonoBehaviour
         // Hide button at start
         if (interactButton != null)
             interactButton.gameObject.SetActive(false);
+
+        trigger = GetComponent<RandomSoundEffectTrigger>();
     }
 
     private void Update()
@@ -45,6 +49,7 @@ public class TrashCanStation : MonoBehaviour
     public void ResetBinLevel()
     {
         binLevel = 0;
+        trigger.Play();
         Debug.Log("Trash can emptied!");
 
         // Hide button after use

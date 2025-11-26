@@ -2,8 +2,11 @@ using UnityEngine;
 
 public class IC_Splatter : MonoBehaviour
 {
+    public SoundEffectTrigger trigger;
+
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Player")) Destroy(gameObject);
+        trigger.Play();
+        if (other.gameObject.CompareTag("Player")) Destroy(gameObject, 1);
     }
 }

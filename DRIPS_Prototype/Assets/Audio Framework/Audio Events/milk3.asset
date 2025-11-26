@@ -21,4 +21,4 @@ MonoBehaviour:
   maxDistance: 20
   loop: 0
   priority: 128
-  mixerGroupOverride: {fileID: 0}
+  mixerGroupOverride: {fileID: -4463338578801070341, guid: 2fbc2ee0a1e60e54a8197a2880ac2661, type: 2}
