@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,6 +13,7 @@ public class InteractableObject : MonoBehaviour
     private bool playerInside = false;
     private bool customerInside = false;
     private CustomerController customerController;
+    private RandomSoundEffectTrigger trigger;
 
     private void Awake()
     {
@@ -19,17 +21,7 @@ public class InteractableObject : MonoBehaviour
         if (tm == null)
             tm = FindAnyObjectByType<TicketManager>();
 
-        // Setup the serve button listener immediately
-        if (serveButton != null)
-        {
-            serveButton.onClick.RemoveAllListeners();
-            serveButton.onClick.AddListener(OnServeButtonPressed);
-            serveButton.gameObject.SetActive(false); // hide at start
-        }
-        else
-        {
-            Debug.LogError("[InteractableObject]: Serve Button not assigned!");
-        }
+        trigger = GetComponent<RandomSoundEffectTrigger>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -91,5 +83,6 @@ public class InteractableObject : MonoBehaviour
         Debug.Log("[InteractableObject]: Serving customer, spawning ticket");
         customerController.hasBeenServed = true;
         tm.SpawnTicket();
+        trigger.Play();
     }
 }

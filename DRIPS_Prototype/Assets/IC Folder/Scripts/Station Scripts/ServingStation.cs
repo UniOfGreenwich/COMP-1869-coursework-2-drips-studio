@@ -113,7 +113,7 @@ public class CheckingStation : MonoBehaviour
             slideMenuValues.customersServed++;
             slideMenuValues.customersServedCorrectly++;
             inGameUIManager.UpdateReputation();
-            ticketManager.RemoveTicket();
+            ticketManager.RemoveTicket(ticketInstance.gameObject);
         }
         else
         {
@@ -122,7 +122,7 @@ public class CheckingStation : MonoBehaviour
             playerDrinkManager.ResetDrink();
             slideMenuValues.customersServed++;
             inGameUIManager.UpdateReputation();
-            ticketManager.RemoveTicket();
+            ticketManager.RemoveTicket(ticketInstance.gameObject);
         }
 
         Destroy(playerDrink);

@@ -29,7 +29,7 @@ public class TicketManager : MonoBehaviour
             return;
         }
 
-        // Spawn ticket in the middle of the screen
+        // Spawn ticket under canvas
         GameObject newTicket = Instantiate(ticketPrefab, mainCanvas.transform);
 
         RectTransform rect = newTicket.GetComponent<RectTransform>();
@@ -39,31 +39,26 @@ public class TicketManager : MonoBehaviour
         rect.anchoredPosition = new Vector2(145f, -290f);
         rect.localScale = Vector3.one;
 
-        // Generate random order
+        // Get TicketInstance and assign this manager directly (THE FIX)
         TicketInstance ticket = newTicket.GetComponent<TicketInstance>();
         if (ticket != null)
+        {
+            ticket.tm = this;        // <-- FIX: direct assignment
             ticket.GenerateOrder();
+        }
+        else
+        {
+            Debug.LogError("Spawned ticket has no TicketInstance component!");
+        }
 
         currentTickets++;
         Debug.Log("Spawned new ticket in center of screen!");
     }
 
-    public void RemoveTicket()
+    public void RemoveTicket(GameObject ticketObj)
     {
-        currentTickets--;
+        currentTickets = Mathf.Max(0, currentTickets - 1);
+        Destroy(ticketObj);
         Debug.Log("Ticket removed");
-
-        GameObject[] allObjects = GameObject.FindObjectsOfType<GameObject>();
-
-        foreach (var obj in allObjects)
-        {
-            if (obj.name.Contains("Ticket"))
-            {
-                Destroy(obj);
-                return; // stop after deleting one
-            }
-        }
-
-        Debug.LogWarning("No Ticket object found!");
     }
 }

@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2709212827827379342
+--- !u!1 &5199136338886028198
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,7 +8,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 978490375767118036}
+  - component: {fileID: 8287280652225359890}
   m_Layer: 0
   m_Name: Position
   m_TagString: Untagged
@@ -16,20 +16,20 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &978490375767118036
+--- !u!4 &8287280652225359890
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2709212827827379342}
+  m_GameObject: {fileID: 5199136338886028198}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.0060197474, y: 0.0007968724, z: 0}
-  m_LocalScale: {x: 0.006718469, y: 0.006718469, z: 0.0030838903}
+  m_LocalPosition: {x: -2.115702, y: 1.0200015, z: -12.850031}
+  m_LocalScale: {x: 1.4285772, y: 10.000041, z: 1.2500069}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 5048834750355671477}
+  m_Father: {fileID: 2062196653888709257}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5890213710787378659
 GameObject:
@@ -61,9 +61,10 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.0739999, y: 1.2340002, z: 2.06}
-  m_LocalScale: {x: 0.7, y: 0.1, z: 0.8}
+  m_LocalScale: {x: 0.5196779, y: 0.07423969, z: 0.5934127}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 8287280652225359890}
   - {fileID: 5048834750355671477}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -115,8 +116,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.8308647, y: 1, z: 1.2016624}
-  m_Center: {x: -1.0667645, y: 0, z: 0.01959145}
+  m_Size: {x: 1.3854609, y: 1, z: 0.88568825}
+  m_Center: {x: -1.7215612, y: 0, z: 0.07294239}
 --- !u!114 &8872025747997709541
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -197,10 +198,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 6376871230647872428, guid: aaea08e66320af047b343b60b9481428, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 978490375767118036}
+    m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aaea08e66320af047b343b60b9481428, type: 3}
 --- !u!4 &5048834750355671477 stripped
