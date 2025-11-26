@@ -15,6 +15,7 @@ TagManager:
   - Customer
   - PoI Splatter
   - PoI Trash Can
+  - TimeManager
   layers:
   - Default
   - TransparentFX

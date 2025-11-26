@@ -7,7 +7,7 @@ public enum Season { Spring, Summer, Autumn, Winter}
 public class TimeManager : MonoBehaviour
 {
     public Season currentSeason;
-    DateTime today;
+    public DateTime today;
     public int currentDay;
     public int currentMonth;
     public int currentHour;
@@ -116,6 +116,9 @@ public class TimeManager : MonoBehaviour
             case (1, 12):
             // Start Advent Calendar Event
             break;
+            case (12, 12):
+            //Pitch Presentation Day
+            break;
             case (24, 12):
             // Christma's Eve
             break;
@@ -132,7 +135,7 @@ public class TimeManager : MonoBehaviour
     {
         currentHour = today.Hour;
         currentMinute = today.Minute;
-        currentTime = currentHour + ":" + currentMinute;
+        currentTime = String.Format("{0:00}:{1:00}", currentHour, currentMinute);
     }
 
     private void OnApplicationQuit()
