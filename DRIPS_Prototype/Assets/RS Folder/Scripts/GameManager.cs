@@ -33,8 +33,17 @@ public class GameManager : MonoBehaviour
         timeManager = GameObject.FindGameObjectWithTag("TimeManager").GetComponent<TimeManager>();
     }
 
+    private void Start()
+    {
+        SaveManager.Load();
+    }
+
     public void SaveButton()
     {
+        if (player != null)
+        {
+            player.SetQuitTime(timeManager.today);
+        }
         SaveManager.Save();
     }
 
@@ -44,21 +53,12 @@ public class GameManager : MonoBehaviour
         load = true;
     }
 
-    //private void OnApplicationPause()
-    //{
-    //    if (player != null)
-    //    {
-    //        player.SetQuitTime(timeManager.today);
-    //    }
-    //    SaveButton();
-    //}
-    private void OnApplicationQuit()
+    private void OnApplicationPause()
     {
-        //if (player != null)
-        //{
-        //    player.SetQuitTime(timeManager.today);
-        //}
-        SaveButton();
+        if(Time.time > 1f)
+        {
+            SaveButton();
+        }
     }
 
     public void AddMoney(int amount)

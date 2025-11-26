@@ -15,7 +15,19 @@ public class SaveManager
     {
         HandleSaveData();
 
-        File.WriteAllText(SaveFileName(), JsonUtility.ToJson(saveData, true));
+        string saveFilePath = SaveFileName();
+        string json = JsonUtility.ToJson(saveData, true);
+        try
+        {
+            // This is the line that is failing on Android
+            File.WriteAllText(saveFilePath, json);
+            Debug.Log("Save successful.");
+        }
+        catch (System.Exception e)
+        {
+            //THIS IS THE KEY: Log the actual error to the console/Logcat
+            Debug.LogError("SAVE FAILED! Actual error on Android: " + e.GetType().Name + " - " + e.Message);
+        }
     }    
 
     private static void HandleSaveData()
@@ -25,10 +37,27 @@ public class SaveManager
 
     public static void Load()
     {
-        string saveContent = File.ReadAllText(SaveFileName());
+        string saveFilePath = SaveFileName();
 
-        saveData = JsonUtility.FromJson<SaveData>(saveContent);
-        HandleLoadData();
+        if (!File.Exists(saveFilePath))
+        {
+            Debug.LogWarning("Save file not found or write failed. Loading defaults.");
+            // If file doesn't exist, we exit and keep the default saveData values.
+            return;
+        }
+
+        try
+        {
+            string saveContent = File.ReadAllText(saveFilePath);
+            saveData = JsonUtility.FromJson<SaveData>(saveContent);
+            HandleLoadData();
+            Debug.Log("Load successful.");
+        }
+        catch (System.Exception e)
+        {
+            // Handle potential corruption or malformed JSON
+            Debug.LogError("LOAD FAILED! Data might be corrupted: " + e.Message);
+        }
     }
 
     private static void HandleLoadData()

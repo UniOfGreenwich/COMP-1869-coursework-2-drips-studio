@@ -116,6 +116,9 @@ public class TimeManager : MonoBehaviour
             case (1, 12):
             // Start Advent Calendar Event
             break;
+            case (12, 12):
+            //Pitch Presentation Day
+            break;
             case (24, 12):
             // Christma's Eve
             break;
@@ -132,7 +135,7 @@ public class TimeManager : MonoBehaviour
     {
         currentHour = today.Hour;
         currentMinute = today.Minute;
-        currentTime = currentHour + ":" + currentMinute;
+        currentTime = String.Format("{0:00}:{1:00}", currentHour, currentMinute);
     }
 
     private void OnApplicationQuit()
@@ -146,10 +149,6 @@ public class TimeManager : MonoBehaviour
         {
             today = DateTime.Now;
             CheckCurrentTime();
-            if (GameManager.Instance.player != null)
-            {
-                GameManager.Instance.player.SetQuitTime(today);
-            }
             yield return new WaitForSeconds(5);
         }
     }
