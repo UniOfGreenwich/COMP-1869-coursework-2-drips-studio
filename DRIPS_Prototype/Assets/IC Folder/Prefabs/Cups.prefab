@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 1991601901877923731}
   - component: {fileID: 2909986940898893854}
   - component: {fileID: 9102444177330596110}
+  - component: {fileID: 1129843979833264528}
   m_Layer: 0
   m_Name: Cups
   m_TagString: PoI Cups
@@ -123,8 +124,25 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.38511515, y: 0.13264, z: 0.99570644}
-  m_Center: {x: 0.7916548, y: 0.12228912, z: 0.14383584}
+  m_Size: {x: 0.6455323, y: 0.13264, z: 0.3671454}
+  m_Center: {x: 0.9218634, y: 0.12228912, z: 0.06963142}
+--- !u!114 &1129843979833264528
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3251908241154181502}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77694f1306e79c842b3a72e758fddbb4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioEvents:
+  - {fileID: 11400000, guid: 81069768d48cef64ea5529252d5847f7, type: 2}
+  - {fileID: 11400000, guid: 7cc5331e8af378a4981cd6344faacd90, type: 2}
+  - {fileID: 11400000, guid: a5e95bd5fd2a26641bd914978e1a0185, type: 2}
+  audioServiceSource: {fileID: 0}
 --- !u!1001 &1780179521404114860
 PrefabInstance:
   m_ObjectHideFlags: 0

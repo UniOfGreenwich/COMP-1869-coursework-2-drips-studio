@@ -17,6 +17,7 @@ public class TrashCanStation : MonoBehaviour
     private bool playerInside = false;
 
     private RandomSoundEffectTrigger trigger;
+    private InteractSquishAnimation squish;
 
     private void Awake()
     {
@@ -33,6 +34,7 @@ public class TrashCanStation : MonoBehaviour
             interactButton.gameObject.SetActive(false);
 
         trigger = GetComponent<RandomSoundEffectTrigger>();
+        squish = GetComponent<InteractSquishAnimation>();
     }
 
     private void Update()
@@ -50,6 +52,7 @@ public class TrashCanStation : MonoBehaviour
     {
         binLevel = 0;
         trigger.Play();
+        squish.squish = true;
         Debug.Log("Trash can emptied!");
 
         // Hide button after use

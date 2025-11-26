@@ -7,6 +7,7 @@ public class CoffeeStation : MonoBehaviour
     private bool playerInside = false;
     private float lastToggleTime = 0f;
     private RandomSoundEffectTrigger trigger;
+    private InteractSquishAnimation squish;
 
     [SerializeField] private float toggleCooldown = 1f;
     public Button interactButton;
@@ -28,6 +29,7 @@ public class CoffeeStation : MonoBehaviour
         interactButton.gameObject.SetActive(false);
 
         trigger = GetComponent<RandomSoundEffectTrigger>();
+        squish = GetComponent<InteractSquishAnimation>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -76,5 +78,6 @@ public class CoffeeStation : MonoBehaviour
         interactButton.gameObject.SetActive(false);
 
         trigger.Play();
+        squish.squish = true;
     }
 }
