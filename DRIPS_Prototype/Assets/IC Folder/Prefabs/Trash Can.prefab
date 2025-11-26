@@ -12,7 +12,7 @@ GameObject:
   m_Layer: 0
   m_Name: Position
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 4162164826716764455, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 1907581516300592575}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -1.043}
+  m_LocalPosition: {x: 0, y: 0, z: 1.077}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -103,6 +103,7 @@ MonoBehaviour:
   binLevel: 0
   binMaxCapacity: 5
   interactButton: {fileID: 0}
+  toggleCooldown: 0.5
 --- !u!65 &3358216404836040633
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -122,8 +123,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.39066476, y: 1, z: 0.4522314}
-  m_Center: {x: -0.06438592, y: 0, z: -0.8770704}
+  m_Size: {x: 0.39066476, y: 1, z: 0.42757177}
+  m_Center: {x: -0.06438592, y: 0, z: 0.98128104}
 --- !u!1001 &2375478614102846150
 PrefabInstance:
   m_ObjectHideFlags: 0
