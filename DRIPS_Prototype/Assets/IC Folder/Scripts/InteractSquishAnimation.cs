@@ -36,7 +36,7 @@ public class InteractSquishAnimation : MonoBehaviour
     );
 
     [Header("Looping Settings")]
-    [SerializeField] private bool looping;
+    [SerializeField] private bool looping = false;
     [SerializeField] private float loopingDelay = 0.5f;
 
     [Header("Control")]
@@ -70,7 +70,7 @@ public class InteractSquishAnimation : MonoBehaviour
         if (squish && _squashAndStretchCoroutine == null)
         {
             CheckForAndStartCoroutine();
-            StartCoroutine(ResetSquish());
+            if (!looping) StartCoroutine(ResetSquish());
         }
         else if (!squish && _squashAndStretchCoroutine != null)
         {
