@@ -18,7 +18,7 @@ public class TicketInstance : MonoBehaviour
 
     private float timerDuration = 15f;     // 15 seconds
     private float timerRemaining;
-    private TicketManager tm;
+    public TicketManager tm;
 
     void Start()
     {
@@ -49,7 +49,7 @@ public class TicketInstance : MonoBehaviour
         {
             if (timerRemaining < 0)
             {
-                tm.RemoveTicket();
+                tm.RemoveTicket(gameObject);
             }
         }
     }
