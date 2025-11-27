@@ -3,9 +3,10 @@ using UnityEngine;
 public class CheckWalking : MonoBehaviour
 {
     public InteractSquishAnimation squish;
+    public GameObject billboardUI;
 
     [Header("Movement Sensitivity")]
-    public float movementThreshold = 0.01f;    // how much movement counts as "walking"
+    public float movementThreshold = 0.05f;    // how much movement counts as "walking"
 
     private Vector3 lastPosition;
     private bool isMoving = false;
@@ -33,5 +34,21 @@ public class CheckWalking : MonoBehaviour
         }
 
         lastPosition = currentPosition;
+    }
+
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Customer"))
+        {
+            billboardUI.SetActive(true);
+        }
+    }
+
+    public void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("Customer"))
+        {
+            billboardUI.SetActive(false);
+        }
     }
 }
