@@ -70,8 +70,8 @@ public class GameManager : MonoBehaviour
     }
 
     public TextMeshProUGUI currentTime;
-    public TextMeshProUGUI time;
     public TextMeshProUGUI money;
+    public TextMeshProUGUI currentDate;
     public TimeManager timeManager;
     public bool load;
 
@@ -84,10 +84,9 @@ public class GameManager : MonoBehaviour
                 currentTime.text = timeManager.currentTime;
             }
 
-            if (time != null && load)
+            if (currentDate != null)
             {
-                time.text = player.GetQuitTime();
-                load = false;
+                currentDate.text = timeManager.CheckCurrentDate();
             }
         }
 

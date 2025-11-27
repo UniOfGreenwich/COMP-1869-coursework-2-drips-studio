@@ -19,10 +19,10 @@ public class TimeManager : MonoBehaviour
     void Start()
     {        
         StartCoroutine(UpdateTime());
-        CheckCurrentDate();
+        CheckCurrentDay();
     }
 
-    public void CheckCurrentDate()
+    public void CheckCurrentDay()
     {
         currentDay = today.Day;
         currentMonth = today.Month;
@@ -136,6 +136,11 @@ public class TimeManager : MonoBehaviour
         currentHour = today.Hour;
         currentMinute = today.Minute;
         currentTime = String.Format("{0:00}:{1:00}", currentHour, currentMinute);
+    }
+
+    public string CheckCurrentDate()
+    {
+        return String.Format("{0:00}/{1:00}/{2:0000}", today.Day, today.Month, today.Year);
     }
 
     private void OnApplicationQuit()
