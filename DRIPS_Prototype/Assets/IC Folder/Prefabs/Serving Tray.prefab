@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 5199136338886028198}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.115702, y: 1.0200015, z: -12.850031}
+  m_LocalPosition: {x: -1.793, y: 1.0200015, z: -0.012}
   m_LocalScale: {x: 1.4285772, y: 10.000041, z: 1.2500069}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -44,6 +44,9 @@ GameObject:
   - component: {fileID: 3971898570636088810}
   - component: {fileID: 7889638981274066148}
   - component: {fileID: 8872025747997709541}
+  - component: {fileID: 7479989967985529050}
+  - component: {fileID: 6190538156274299767}
+  - component: {fileID: 7528145409510932488}
   m_Layer: 0
   m_Name: Serving Tray
   m_TagString: PoI ServingTray
@@ -131,7 +134,101 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activationCooldown: 4
+  correctTrigger: {fileID: 7479989967985529050}
+  incorrectTrigger: {fileID: 6190538156274299767}
   interactButton: {fileID: 0}
+--- !u!114 &7479989967985529050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5890213710787378659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77694f1306e79c842b3a72e758fddbb4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioEvents:
+  - {fileID: 11400000, guid: 3b740196c9c822b40af7485619af7bb2, type: 2}
+  - {fileID: 11400000, guid: 5398b94da925a7d41a44c774452e3dfd, type: 2}
+  - {fileID: 11400000, guid: 7da13e80adb36ee43893b276b8671284, type: 2}
+  audioServiceSource: {fileID: 0}
+--- !u!114 &6190538156274299767
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5890213710787378659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77694f1306e79c842b3a72e758fddbb4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioEvents:
+  - {fileID: 11400000, guid: c1093e2d4f32a4d4f9f9f2b022a2edd8, type: 2}
+  - {fileID: 11400000, guid: 0fc2bf7c96fae44498f9ee4be46542d2, type: 2}
+  audioServiceSource: {fileID: 0}
+--- !u!114 &7528145409510932488
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5890213710787378659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e0e0607fd20af343b5c4ca6c62d2921, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  transformToAffect: {fileID: 0}
+  axisToAffect: 2
+  animationDuration: 0.25
+  canBeOverwritten: 0
+  playOnStart: 0
+  playsEveryTime: 1
+  chanceToPlay: 100
+  initialScale: 1
+  maximumScale: 1.2
+  resetToInitialScaleAfterAnimation: 1
+  reverseAnimationCurveAfterPlaying: 0
+  squashAndStretchCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.25
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  looping: 0
+  loopingDelay: 0.5
+  squish: 0
 --- !u!1001 &2192728472054768153
 PrefabInstance:
   m_ObjectHideFlags: 0

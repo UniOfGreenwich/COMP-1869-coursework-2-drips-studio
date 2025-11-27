@@ -14,6 +14,7 @@ public class InteractableObject : MonoBehaviour
     private bool customerInside = false;
     private CustomerController customerController;
     private RandomSoundEffectTrigger trigger;
+    private InteractSquishAnimation squish;
 
     private void Awake()
     {
@@ -22,6 +23,7 @@ public class InteractableObject : MonoBehaviour
             tm = FindAnyObjectByType<TicketManager>();
 
         trigger = GetComponent<RandomSoundEffectTrigger>();
+        squish = GetComponent<InteractSquishAnimation>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -84,5 +86,6 @@ public class InteractableObject : MonoBehaviour
         customerController.hasBeenServed = true;
         tm.SpawnTicket();
         trigger.Play();
+        squish.squish = true;
     }
 }

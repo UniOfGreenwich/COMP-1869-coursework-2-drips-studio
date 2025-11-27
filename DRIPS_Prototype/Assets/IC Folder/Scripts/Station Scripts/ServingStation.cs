@@ -1,3 +1,4 @@
+using System.Collections.Specialized;
 using UnityEngine;
 using UnityEngine.UI;
 using static DrinkIngredientsEnum;
@@ -15,6 +16,11 @@ public class CheckingStation : MonoBehaviour
     [Header("Cooldown Settings")]
     [SerializeField] private float activationCooldown = 1.0f; // seconds
     private float lastActivationTime = 0f;
+
+    [Header("References")]
+    public RandomSoundEffectTrigger correctTrigger;
+    public RandomSoundEffectTrigger incorrectTrigger;
+    private InteractSquishAnimation squish;
 
     private bool playerInside = false;
     public Button interactButton;
@@ -46,6 +52,8 @@ public class CheckingStation : MonoBehaviour
 
         // Hide button initially
         interactButton.gameObject.SetActive(false);
+
+        squish = GetComponent<InteractSquishAnimation>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -110,6 +118,8 @@ public class CheckingStation : MonoBehaviour
             tipJar.squish = true;
             ParticleSystem moneySpill = tipJar.transform.Find("Money Spill")?.GetComponent<ParticleSystem>();
             moneySpill?.Play();
+            correctTrigger.Play();
+            squish.squish = true;
             slideMenuValues.customersServed++;
             slideMenuValues.customersServedCorrectly++;
             inGameUIManager.UpdateReputation();
@@ -118,6 +128,8 @@ public class CheckingStation : MonoBehaviour
         else
         {
             Debug.Log("Wrong drink served!");
+            incorrectTrigger.Play();
+            squish.squish = true;
             ticketManager.currentTickets = 0;
             playerDrinkManager.ResetDrink();
             slideMenuValues.customersServed++;

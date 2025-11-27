@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 8903037481556324130}
   - component: {fileID: 2248478015712180007}
   - component: {fileID: -1497284190975120760}
+  - component: {fileID: 1384367621023019993}
   m_Layer: 0
   m_Name: Splatter
   m_TagString: PoI Splatter
@@ -153,6 +154,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b98c3b740f192bf45b5318f7cd789a0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  trigger: {fileID: 1384367621023019993}
+--- !u!114 &1384367621023019993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8054959663728107892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 215ce6d1917294049a62143115f98780, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioEvent: {fileID: 11400000, guid: 78fd750cb7da2474b95fc978aa112154, type: 2}
+  audioServiceSource: {fileID: 0}
 --- !u!1001 &8005235557302894707
 PrefabInstance:
   m_ObjectHideFlags: 0

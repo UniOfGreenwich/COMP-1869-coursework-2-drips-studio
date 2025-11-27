@@ -7,23 +7,34 @@ public class TrashCanStation : MonoBehaviour
     [SerializeField] private int binLevel;
     [SerializeField] private int binMaxCapacity;
 
-    public Button interactButton; // Assign in inspector
+    [Header("References")]
+    public Button interactButton;
+
+    [Header("Cooldown Settings")]
+    [SerializeField] private float toggleCooldown = 0.5f; // optional, prevents accidental double clicks
+    private float lastToggleTime = 0f;
+
+    private bool playerInside = false;
+
+    private RandomSoundEffectTrigger trigger;
+    private InteractSquishAnimation squish;
+
+    private void Awake()
+    {
+        if (interactButton == null)
+            Debug.LogError("TrashCanStation: interactButton reference missing!");
+    }
 
     private void Start()
     {
         binLevel = 0;
 
-        // Setup button
+        // Hide button at start
         if (interactButton != null)
-        {
-            interactButton.onClick.RemoveAllListeners();
-            interactButton.onClick.AddListener(ResetBinLevel);
             interactButton.gameObject.SetActive(false);
-        }
-        else
-        {
-            Debug.LogError("TrashCanStation: interactButton reference missing!");
-        }
+
+        trigger = GetComponent<RandomSoundEffectTrigger>();
+        squish = GetComponent<InteractSquishAnimation>();
     }
 
     private void Update()
@@ -40,10 +51,18 @@ public class TrashCanStation : MonoBehaviour
     public void ResetBinLevel()
     {
         binLevel = 0;
+        trigger.Play();
+        squish.squish = true;
         Debug.Log("Trash can emptied!");
 
         // Hide button after use
         interactButton?.gameObject.SetActive(false);
+    }
+
+    public void Interact()
+    {
+        lastToggleTime = Time.time;
+        ResetBinLevel();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -51,10 +70,18 @@ public class TrashCanStation : MonoBehaviour
         if (!other.CompareTag("Player"))
             return;
 
-        // Show interact button
-        if (interactButton != null)
+        playerInside = true;
+
+        // Show button only if cooldown allows
+        if (Time.time - lastToggleTime >= toggleCooldown)
         {
-            interactButton.gameObject.SetActive(true);
+            if (interactButton != null)
+            {
+                interactButton.onClick.RemoveAllListeners();
+                interactButton.onClick.AddListener(Interact);
+                interactButton.gameObject.SetActive(true);
+                Debug.Log("TrashCanStation: Interact button shown");
+            }
         }
     }
 
@@ -63,7 +90,7 @@ public class TrashCanStation : MonoBehaviour
         if (!other.CompareTag("Player"))
             return;
 
-        // Hide button when leaving
+        playerInside = false;
         interactButton?.gameObject.SetActive(false);
     }
 }

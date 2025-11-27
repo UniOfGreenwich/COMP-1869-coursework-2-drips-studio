@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 5063477983288932554}
   - component: {fileID: 3753263646250121031}
   - component: {fileID: 2960194188332308663}
+  - component: {fileID: 1290239231086447771}
   m_Layer: 0
   m_Name: Register
   m_TagString: PoI Register
@@ -62,7 +63,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -5.98, y: 1.3360004, z: 0.22900009}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.3328437, y: 1.3328437, z: 1.3328437}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8835962248469694234}
@@ -88,8 +89,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.606761, y: 0.30646086, z: 0.70959336}
-  m_Center: {x: -0.0675149, y: -0.34676957, z: 0.9980751}
+  m_Size: {x: 0.9345731, y: 0.3064609, z: 0.7095933}
+  m_Center: {x: 0.0010117432, y: -0.34676957, z: 0.9980752}
 --- !u!114 &6336022396668266847
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -144,8 +145,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.13894558, y: 0.32140207, z: 0.5162121}
-  m_Center: {x: -0.19978285, y: -0.33929896, z: -0.8367395}
+  m_Size: {x: 0.40745917, y: 0.32140207, z: 0.4287065}
+  m_Center: {x: 0.01854767, y: -0.33929896, z: -0.55946285}
 --- !u!114 &2960194188332308663
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -158,8 +159,70 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77694f1306e79c842b3a72e758fddbb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioEvents: []
+  audioEvents:
+  - {fileID: 11400000, guid: fc80864c22e0d2541926f54e8d1f2ae8, type: 2}
+  - {fileID: 11400000, guid: 43f537f60b6a598488de8be463db54a5, type: 2}
+  - {fileID: 11400000, guid: 3a271a7bc15f4a140bb223fcbb41ddbf, type: 2}
   audioServiceSource: {fileID: 0}
+--- !u!114 &1290239231086447771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5139146329851082969}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e0e0607fd20af343b5c4ca6c62d2921, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  transformToAffect: {fileID: 0}
+  axisToAffect: 2
+  animationDuration: 0.25
+  canBeOverwritten: 0
+  playOnStart: 0
+  playsEveryTime: 1
+  chanceToPlay: 100
+  initialScale: 1
+  maximumScale: 1.3
+  resetToInitialScaleAfterAnimation: 1
+  reverseAnimationCurveAfterPlaying: 0
+  squashAndStretchCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.25
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  looping: 0
+  loopingDelay: 0.5
+  squish: 0
 --- !u!1001 &7219107260038799795
 PrefabInstance:
   m_ObjectHideFlags: 0
