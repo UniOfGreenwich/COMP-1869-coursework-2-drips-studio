@@ -1,19 +1,30 @@
 using UnityEngine;
 using UnityEngine.Networking;
 using System.Collections;
+using NUnit.Framework;
+using UnityEngine.Rendering.Universal;
+
+public enum Weather { Clear, Rain, Snow, Clouds}
 
 public class WeatherManager : MonoBehaviour
 {
     private string apiKey = "b1b3276c883b7bd3b0225ff49e755532";
     private float latitude;
     private float longitude;
-    private string cityName = "London";
+    [SerializeField] private string cityName;
     private bool isDataReady;
     private string url;
+    public Weather currentWeather;
+    public Material[] skybox;
 
     private void Start()
     {
         StartCoroutine(GetLocation());
+    }
+
+    private void Update()
+    {
+
     }
 
     public void GetWeather()
@@ -71,15 +82,39 @@ public class WeatherManager : MonoBehaviour
         {
             case "Clear":
                 Debug.Log("It's Sunny");
+                currentWeather = Weather.Clear;
+                RenderSettings.skybox = skybox[0];
+                DynamicGI.UpdateEnvironment();
                 break;
             case "Rain":
                 Debug.Log("It's Rainy");
+                currentWeather = Weather.Rain;
+                RenderSettings.skybox = skybox[2];
+                DynamicGI.UpdateEnvironment();
                 break;
             case "Snow":
                 Debug.Log("It's Snowy");
+                currentWeather = Weather.Snow;
+                RenderSettings.skybox = skybox[1];
+                DynamicGI.UpdateEnvironment();
                 break;
             case "Clouds":
                 Debug.Log("It's Cloudy");
+                currentWeather = Weather.Clouds;
+                RenderSettings.skybox = skybox[1];
+                DynamicGI.UpdateEnvironment();
+                break;
+            case "Thunderstorm":
+                Debug.Log("It's Cloudy");
+                currentWeather = Weather.Clouds;
+                RenderSettings.skybox = skybox[2];
+                DynamicGI.UpdateEnvironment();
+                break;
+            case "Drizzle":
+                Debug.Log("It's Cloudy");
+                currentWeather = Weather.Clouds;
+                RenderSettings.skybox = skybox[1];
+                DynamicGI.UpdateEnvironment();
                 break;
         }
     }

@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: efd1c33efd2d58340b88804268e6833f, type: 2}
+  m_SkyboxMaterial: {fileID: 0}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -6301,6 +6301,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: WeatherManager
       objectReference: {fileID: 0}
+    - target: {fileID: 7918726315540213358, guid: 96b5f799c5bcc08468800d32fee79399, type: 3}
+      propertyPath: cityName
+      value: Cape Town
+      objectReference: {fileID: 0}
+    - target: {fileID: 7918726315540213358, guid: 96b5f799c5bcc08468800d32fee79399, type: 3}
+      propertyPath: skybox.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7918726315540213358, guid: 96b5f799c5bcc08468800d32fee79399, type: 3}
+      propertyPath: 'skybox.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: efd1c33efd2d58340b88804268e6833f, type: 2}
+    - target: {fileID: 7918726315540213358, guid: 96b5f799c5bcc08468800d32fee79399, type: 3}
+      propertyPath: 'skybox.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: d4454f71d85928744be7771e2143dab7, type: 2}
+    - target: {fileID: 7918726315540213358, guid: 96b5f799c5bcc08468800d32fee79399, type: 3}
+      propertyPath: 'skybox.Array.data[2]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 2039a0ad0a9d05549928b70362f54902, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -15965,34 +15985,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 688559123564412234, guid: edbfb27ff413d6b459aece3a98e291b8, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 82d6d9d843072054ca31559c600c485c, type: 2}
-    - target: {fileID: 790496533870159710, guid: edbfb27ff413d6b459aece3a98e291b8, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 450886064b9eaef4c9fc20965827228e, type: 2}
     - target: {fileID: 4501118064738687386, guid: edbfb27ff413d6b459aece3a98e291b8, type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 6875679537356407710, guid: edbfb27ff413d6b459aece3a98e291b8, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: ee4fb6e72083f624b81fe6bb70c2259e, type: 2}
-    - target: {fileID: 7716534821675038448, guid: edbfb27ff413d6b459aece3a98e291b8, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 068b4bcfefa77ba43bfd2ee86f34b7db, type: 2}
-    - target: {fileID: 7987628044708718368, guid: edbfb27ff413d6b459aece3a98e291b8, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 450886064b9eaef4c9fc20965827228e, type: 2}
-    - target: {fileID: 8787816442907661446, guid: edbfb27ff413d6b459aece3a98e291b8, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 068b4bcfefa77ba43bfd2ee86f34b7db, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
