@@ -1,4 +1,6 @@
 using System.Collections;
+using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CustomerSpawner : MonoBehaviour
@@ -15,39 +17,83 @@ public class CustomerSpawner : MonoBehaviour
     [SerializeField] private float spawnIntervalMin = 2f;
     [SerializeField] private float spawnIntervalMax = 5f;
 
-    private int activeCustomers = 0;
+    [SerializeField] private int activeCustomers = 0;
 
-    private void Start()
+    public IEnumerator InitLoop()
     {
-        StartCoroutine(SpawnLoop());
-    }
-
-    private IEnumerator SpawnLoop()
-    {
-        while (true)
+        bool init = true;
+        while (init)
         {
+            GameObject go;
+            CustomerController customer = null;
             // total customers already spawned or queued
             bool canSpawn = activeCustomers < queueManager.MaxQueueSize;
 
             if (canSpawn)
             {
-                var go = Instantiate(customerPrefab, spawnPoint.position, Quaternion.identity);
-                var customer = go.GetComponent<CustomerController>();
+                go = Instantiate(customerPrefab, spawnPoint.position, Quaternion.identity);
+                customer = go.GetComponent<CustomerController>();
                 customer.Init(queueManager, seatingManager, exitPoint);
                 activeCustomers++;
+                float wait = Random.Range(spawnIntervalMin, spawnIntervalMax);
+                yield return new WaitForSeconds(wait);
+            }
+            if(!canSpawn)
+            {
+                init = false;
+            }
+            yield return StartCoroutine(SpawnLoop());
+        }
+        yield return null;
+    }
 
+    public IEnumerator SpawnLoop()
+    {
+        while (GameManager.Instance.open)
+        {
+            GameObject go;
+            CustomerController customer;
+            GameObject[] customerInScene = GameObject.FindGameObjectsWithTag("Customer");
+            // total customers already spawned or queued
+            bool canSpawn = activeCustomers < queueManager.MaxQueueSize;
+
+            if (canSpawn)
+            {
+                if (customerInScene.Length < queueManager.MaxQueueSize)
+                {
+                    go = Instantiate(customerPrefab, spawnPoint.position, Quaternion.identity);
+                    customer = go.GetComponent<CustomerController>();
+                    customer.Init(queueManager, seatingManager, exitPoint);
+                    activeCustomers++;
+                }                
+            }
+            while (!canSpawn)
+            {
                 // when destroyed, reduce count
-                customer.StartCoroutine(DecreaseActiveCountWhenDestroyed(customer));
+                //customer.StartCoroutine(DecreaseActiveCountWhenDestroyed(customer));
+                if (activeCustomers >= queueManager.MaxQueueSize / 2)
+                {
+                    if (customerInScene.Length == queueManager.MaxQueueSize)
+                    {
+                        activeCustomers--;
+                        canSpawn = true;
+                    }
+                }
+                else
+                {
+                    canSpawn = true;
+                }
             }
 
             float wait = Random.Range(spawnIntervalMin, spawnIntervalMax);
             yield return new WaitForSeconds(wait);
         }
+        yield return null;
     }
-
-    private IEnumerator DecreaseActiveCountWhenDestroyed(CustomerController c)
+    public IEnumerator DecreaseActiveCountWhenDestroyed(CustomerController c)
     {
-        while (c != null) yield return null;
+        //while (c != null) yield return null;
         activeCustomers--;
+        yield return null;
     }
 }

@@ -36,7 +36,7 @@ public class IC_SplatterManager : MonoBehaviour
 
     private IEnumerator SplatterLoop()
     {
-        while (true)
+        while (GameManager.Instance.open)
         {
             // Wait a random amount of time between spawns
             float delay = Random.Range(minSpawnDelay, maxSpawnDelay);
@@ -44,6 +44,7 @@ public class IC_SplatterManager : MonoBehaviour
 
             SpawnRandomSplatter();
         }
+        yield return null;
     }
 
     private void SpawnRandomSplatter()

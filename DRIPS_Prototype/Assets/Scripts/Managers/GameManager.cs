@@ -2,9 +2,12 @@ using UnityEngine;
 using System;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 public class GameManager : MonoBehaviour
 {
+    //Creating Singleton
+    #region
     private static GameManager instance;
 
     public static GameManager Instance
@@ -14,8 +17,7 @@ public class GameManager : MonoBehaviour
             return instance;
         }
     }
-
-    public Player player;
+    #endregion
 
     private void Awake()
     {
@@ -31,7 +33,23 @@ public class GameManager : MonoBehaviour
 
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         timeManager = GameObject.FindGameObjectWithTag("TimeManager").GetComponent<TimeManager>();
+        spawner = GameObject.FindGameObjectWithTag("CustomerManager").GetComponent<CustomerSpawner>();
     }
+
+    private void Update()
+    {
+        UpdateUI();
+        if (open)
+        {
+            HandleWorkingShift();
+        }
+    }
+
+    //Save/Load functionality
+    #region
+    public Player player;
+
+    
 
     private void Start()
     {
@@ -68,7 +86,10 @@ public class GameManager : MonoBehaviour
             player.SetPlayerMoney(amount);
         }
     }
+    #endregion
 
+    //UI related
+    #region
     public TextMeshProUGUI currentTime;
     public TextMeshProUGUI money;
     public TextMeshProUGUI currentDate;
@@ -95,10 +116,38 @@ public class GameManager : MonoBehaviour
             money.text = player.GetPlayerMoney().ToString();
         }
     }
+    #endregion
 
-    private void Update()
+    //Opening Cafe
+    #region
+    public CustomerSpawner spawner;
+    public bool open;
+    public float shiftTime = 300;
+
+    public void OpenButton()
     {
-        UpdateUI();
+        open = true;
+        spawner.StartCoroutine(spawner.InitLoop());
     }
 
+    private void HandleWorkingShift()
+    {
+        shiftTime -= Time.deltaTime;
+        if (shiftTime <= 0f)
+        {
+            open = false;
+            GameObject[] customerInScene = GameObject.FindGameObjectsWithTag("Customer");
+            foreach (GameObject customer in customerInScene)
+            {
+                Destroy(customer);
+            }
+            GameObject[] splatters = GameObject.FindGameObjectsWithTag("PoI Splatter");
+            foreach (GameObject splatter in splatters)
+            {
+                Destroy(splatter);
+            }
+            shiftTime = 300;
+        }
+    }
+    #endregion
 }

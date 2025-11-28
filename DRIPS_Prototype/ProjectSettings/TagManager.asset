@@ -16,6 +16,14 @@ TagManager:
   - PoI Splatter
   - PoI Trash Can
   - TimeManager
+  - Ticket
+  - GameManager
+  - AudioManager
+  - TouchManager
+  - SplatterManager
+  - CustomerManager
+  - TicketManager
+  - WeatherManager
   layers:
   - Default
   - TransparentFX

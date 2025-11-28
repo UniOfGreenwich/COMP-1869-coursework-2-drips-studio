@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2993987891308573359}
   m_Layer: 0
   m_Name: Ticket Manager
-  m_TagString: Untagged
+  m_TagString: TicketManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -49,6 +49,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ticketPrefab: {fileID: 380605931434676547, guid: ab204da1b9cf8a94dacd2b1c6e738958, type: 3}
   maxTickets: 1
+  currentTickets: 0
+  mainCanvas: {fileID: 0}
 --- !u!114 &8879577864820577769
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -88,4 +90,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe56b9d37f035b04ca33ad6feeb70b90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ticketManager: {fileID: 0}
+  serveButton: {fileID: 0}
+  tm: {fileID: 2919042736698509055}

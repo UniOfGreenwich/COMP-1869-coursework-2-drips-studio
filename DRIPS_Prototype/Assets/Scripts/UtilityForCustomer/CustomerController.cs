@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -137,6 +138,7 @@ public class CustomerController : MonoBehaviour
         MoveTo(exitPoint.position);
         yield return new WaitForSeconds(5f); // simple exit window
         Destroy(gameObject);
+        yield return null;
     }
 
     private void MoveTo(Vector3 pos)
@@ -161,8 +163,9 @@ public class CustomerController : MonoBehaviour
     {
         if (mySeat != null && seatingManager != null)
             seatingManager.ReleaseSeat(mySeat);
-    }
 
+        StopCoroutine(Main());
+    }
 }
 
 
