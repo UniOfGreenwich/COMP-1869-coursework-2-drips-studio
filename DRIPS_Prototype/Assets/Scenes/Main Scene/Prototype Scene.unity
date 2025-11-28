@@ -7494,7 +7494,7 @@ PrefabInstance:
     - target: {fileID: 1721595258809248140, guid: ec71cc92d1119c0448f19f397225b497, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: f71764395b3d1434483a274281558d51, type: 3}
+      objectReference: {fileID: 21300000, guid: b8e5ce97bdf92804da31d3ee78bcda0f, type: 3}
     - target: {fileID: 1740243982650436317, guid: ec71cc92d1119c0448f19f397225b497, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -7713,11 +7713,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5732188187109965587, guid: ec71cc92d1119c0448f19f397225b497, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 350
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 5732188187109965587, guid: ec71cc92d1119c0448f19f397225b497, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -96.5
       objectReference: {fileID: 0}
     - target: {fileID: 5732188187109965587, guid: ec71cc92d1119c0448f19f397225b497, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -181
+      value: -188
+      objectReference: {fileID: 0}
+    - target: {fileID: 5855701488232024840, guid: ec71cc92d1119c0448f19f397225b497, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6018296575745357912, guid: ec71cc92d1119c0448f19f397225b497, type: 3}
       propertyPath: m_Color.b
@@ -7731,6 +7739,14 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0.764151
       objectReference: {fileID: 0}
+    - target: {fileID: 6288293575033249279, guid: ec71cc92d1119c0448f19f397225b497, type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6288293575033249279, guid: ec71cc92d1119c0448f19f397225b497, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 9489dc83f6b8e9b4394d268626113020, type: 3}
     - target: {fileID: 6300717325010336637, guid: ec71cc92d1119c0448f19f397225b497, type: 3}
       propertyPath: m_Color.b
       value: 0.69800633
@@ -7925,7 +7941,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7387727704928420853, guid: ec71cc92d1119c0448f19f397225b497, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7518959768519526990, guid: ec71cc92d1119c0448f19f397225b497, type: 3}
       propertyPath: m_IsActive
@@ -7937,7 +7953,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8329595804400270021, guid: ec71cc92d1119c0448f19f397225b497, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8515766225486996950, guid: ec71cc92d1119c0448f19f397225b497, type: 3}
       propertyPath: m_SizeDelta.x
@@ -7954,6 +7970,22 @@ PrefabInstance:
     - target: {fileID: 8593933212794938530, guid: ec71cc92d1119c0448f19f397225b497, type: 3}
       propertyPath: m_Name
       value: Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 8749446623095998679, guid: ec71cc92d1119c0448f19f397225b497, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 8749446623095998679, guid: ec71cc92d1119c0448f19f397225b497, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 8749446623095998679, guid: ec71cc92d1119c0448f19f397225b497, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -251.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8749446623095998679, guid: ec71cc92d1119c0448f19f397225b497, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -188
       objectReference: {fileID: 0}
     - target: {fileID: 9102637871650041929, guid: ec71cc92d1119c0448f19f397225b497, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
