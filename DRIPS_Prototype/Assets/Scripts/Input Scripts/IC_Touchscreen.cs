@@ -102,10 +102,10 @@ public class IC_Touchscreen : MonoBehaviour
                     float varianceDistance = 5.0f;
 
                     if (touchDeltaDistance + varianceDistance <= 1)
-                        mainCamera.orthographicSize = Mathf.Clamp(mainCamera.orthographicSize + 0.5f, 4, 13);
+                        mainCamera.orthographicSize = Mathf.Clamp(mainCamera.orthographicSize + 0.5f, 4, 24);
 
                     if (touchDeltaDistance + varianceDistance > 1)
-                        mainCamera.orthographicSize = Mathf.Clamp(mainCamera.orthographicSize - 0.5f, 4, 13);
+                        mainCamera.orthographicSize = Mathf.Clamp(mainCamera.orthographicSize - 0.5f, 4, 24);
                 }
                 break;
 

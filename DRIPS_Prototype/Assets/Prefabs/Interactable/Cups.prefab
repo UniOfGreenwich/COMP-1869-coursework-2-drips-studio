@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 2909986940898893854}
   - component: {fileID: 9102444177330596110}
   - component: {fileID: 1129843979833264528}
+  - component: {fileID: 3355672810322166093}
   m_Layer: 0
   m_Name: Cups
   m_TagString: PoI Cups
@@ -143,6 +144,65 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 7cc5331e8af378a4981cd6344faacd90, type: 2}
   - {fileID: 11400000, guid: a5e95bd5fd2a26641bd914978e1a0185, type: 2}
   audioServiceSource: {fileID: 0}
+--- !u!114 &3355672810322166093
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3251908241154181502}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e0e0607fd20af343b5c4ca6c62d2921, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  transformToAffect: {fileID: 0}
+  axisToAffect: 2
+  animationDuration: 0.25
+  canBeOverwritten: 0
+  playOnStart: 0
+  playsEveryTime: 1
+  chanceToPlay: 100
+  initialScale: 1
+  maximumScale: 1.3
+  resetToInitialScaleAfterAnimation: 1
+  reverseAnimationCurveAfterPlaying: 0
+  squashAndStretchCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.25
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  looping: 0
+  loopingDelay: 0.5
+  squish: 0
 --- !u!1001 &1780179521404114860
 PrefabInstance:
   m_ObjectHideFlags: 0

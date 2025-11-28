@@ -15,12 +15,21 @@ public class WeatherManager : MonoBehaviour
     [SerializeField] private string cityName;
     private bool isDataReady;
     private string url;
+
+    [Header("References")]
     public Weather currentWeather;
     public Material[] skybox;
+    public GameObject rainVFX;
+    public GameObject fogVFX;
+    public GameObject sunVFX;
+    private ParticleSystem rainEmission;
+    private ParticleSystem fogEmission;
 
     private void Start()
     {
         StartCoroutine(GetLocation());
+        rainEmission = rainVFX.GetComponent<ParticleSystem>();
+        fogEmission = fogVFX.GetComponent<ParticleSystem>();
     }
 
     private void Update()
@@ -90,12 +99,15 @@ public class WeatherManager : MonoBehaviour
                 currentWeather = Weather.Clear;
                 RenderSettings.skybox = skybox[0];
                 DynamicGI.UpdateEnvironment();
+                EnableSun();
                 break;
             case "Rain":
                 Debug.Log("It's Rainy");
                 currentWeather = Weather.Rain;
                 RenderSettings.skybox = skybox[2];
                 DynamicGI.UpdateEnvironment();
+                EnableRain();
+                rainEmission.emissionRate = 100;
                 break;
             case "Snow":
                 Debug.Log("It's Snowy");
@@ -108,72 +120,91 @@ public class WeatherManager : MonoBehaviour
                 currentWeather = Weather.Clouds;
                 RenderSettings.skybox = skybox[1];
                 DynamicGI.UpdateEnvironment();
+                EnableFog();
                 break;
             case "Thunderstorm":
                 Debug.Log("It's Thundery");
                 currentWeather = Weather.Thunderstorm;
                 RenderSettings.skybox = skybox[2];
                 DynamicGI.UpdateEnvironment();
+                EnableRain();
+                rainEmission.emissionRate = 400;
                 break;
             case "Drizzle":
                 Debug.Log("It's Drizzly");
                 currentWeather = Weather.Drizzle;
                 RenderSettings.skybox = skybox[1];
                 DynamicGI.UpdateEnvironment();
+                rainEmission.emissionRate = 30;
                 break;
             case "Mist":
                 Debug.Log("It's Misty");
                 currentWeather = Weather.Mist;
                 RenderSettings.skybox = skybox[1];
                 DynamicGI.UpdateEnvironment();
+                rainVFX.SetActive(true);
+                fogVFX.SetActive(true);
+                rainEmission.emissionRate = 30;
+                fogEmission.emissionRate = 10;
                 break;
             case "Smoke":
                 Debug.Log("It's Smoky");
                 currentWeather = Weather.Smoke;
                 RenderSettings.skybox = skybox[0];
                 DynamicGI.UpdateEnvironment();
+                EnableFog();
+                fogEmission.emissionRate = 50;
                 break;
             case "Haze":
                 Debug.Log("It's Hazy");
                 currentWeather = Weather.Haze;
                 RenderSettings.skybox = skybox[0];
                 DynamicGI.UpdateEnvironment();
+                EnableFog();
                 break;
             case "Dust":
                 Debug.Log("It's Dusty");
                 currentWeather = Weather.Drizzle;
                 RenderSettings.skybox = skybox[0];
                 DynamicGI.UpdateEnvironment();
+                EnableFog();
                 break;
             case "Fog":
                 Debug.Log("It's Foggy");
                 currentWeather = Weather.Fog;
                 RenderSettings.skybox = skybox[1];
                 DynamicGI.UpdateEnvironment();
+                EnableFog();
                 break;
             case "Sand":
                 Debug.Log("It's Sandy");
                 currentWeather = Weather.Sand;
                 RenderSettings.skybox = skybox[0];
                 DynamicGI.UpdateEnvironment();
+                EnableFog();
                 break;
             case "Ash":
                 Debug.Log("It's Ashy");
                 currentWeather = Weather.Ash;
                 RenderSettings.skybox = skybox[0];
                 DynamicGI.UpdateEnvironment();
+                EnableFog();
                 break;
             case "Squall":
                 Debug.Log("It's Squally");
                 currentWeather = Weather.Squall;
                 RenderSettings.skybox = skybox[1];
                 DynamicGI.UpdateEnvironment();
+                fogVFX.SetActive(true);
+                rainVFX.SetActive(true);
                 break;
             case "Tornado":
                 Debug.Log("It's Windy");
                 currentWeather = Weather.Tornado;
                 RenderSettings.skybox = skybox[2];
                 DynamicGI.UpdateEnvironment();
+                EnableRain();
+                rainEmission.emissionRate = 600;
                 break;
         }
     }
@@ -235,5 +266,26 @@ public class WeatherManager : MonoBehaviour
     private void OnApplicationQuit()
     {
         StopAllCoroutines();
+    }
+
+    private void EnableRain()
+    {
+        rainVFX.SetActive(true);
+        sunVFX.SetActive(false);
+        fogVFX.SetActive(false);
+    }
+
+    private void EnableFog()
+    {
+        rainVFX.SetActive(false);
+        sunVFX.SetActive(false);
+        fogVFX.SetActive(true);
+    }
+
+    private void EnableSun()
+    {
+        rainVFX.SetActive(false);
+        sunVFX.SetActive(true);
+        fogVFX.SetActive(false);
     }
 }
