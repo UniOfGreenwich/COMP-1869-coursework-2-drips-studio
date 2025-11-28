@@ -188,4 +188,9 @@ public class InteractSquishAnimation : MonoBehaviour
         yield return new WaitForSeconds(animationDuration);
         squish = false;
     }
+
+    public void Squish()
+    {
+        squish = true;
+    }
 }
