@@ -7795,6 +7795,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -188
       objectReference: {fileID: 0}
+    - target: {fileID: 5736724743560199072, guid: ec71cc92d1119c0448f19f397225b497, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1921227724}
+    - target: {fileID: 5736724743560199072, guid: ec71cc92d1119c0448f19f397225b497, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OpenButton
+      objectReference: {fileID: 0}
     - target: {fileID: 5855701488232024840, guid: ec71cc92d1119c0448f19f397225b497, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -16263,7 +16271,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1458473418}
+  - component: {fileID: 1469058123}
   - component: {fileID: 1469058119}
   - component: {fileID: 1469058120}
   - component: {fileID: 1469058122}
@@ -16337,6 +16345,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trigger: {fileID: 1469058121}
+--- !u!4 &1469058123
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1469058117}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1469854332
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17448,13 +17471,10 @@ Transform:
   - {fileID: 867433972}
   - {fileID: 2082972422}
   - {fileID: 1882027995}
-  - {fileID: 1499141135}
   - {fileID: 790727706}
   - {fileID: 787113771}
   - {fileID: 1718358963}
-  - {fileID: 1242005859}
   - {fileID: 1114137691}
-  - {fileID: 20528884}
   m_Father: {fileID: 1908001612}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1617820999
@@ -23178,7 +23198,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 20737630}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -23516,6 +23536,7 @@ PrefabInstance:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 1469058123}
   - {fileID: 560443156}
   - {fileID: 1624506823}
   - {fileID: 521256867}
@@ -23526,3 +23547,4 @@ SceneRoots:
   - {fileID: 1176380146}
   - {fileID: 1305913099}
   - {fileID: 1211317259}
+  - {fileID: 2137042823}

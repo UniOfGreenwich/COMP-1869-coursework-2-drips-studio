@@ -137,14 +137,20 @@ public class GameManager : MonoBehaviour
         {
             open = false;
             GameObject[] customerInScene = GameObject.FindGameObjectsWithTag("Customer");
-            foreach (GameObject customer in customerInScene)
+            if (customerInScene.Length > 0)
             {
-                Destroy(customer);
+                foreach (GameObject customer in customerInScene)
+                {
+                    Destroy(customer);
+                }
             }
             GameObject[] splatters = GameObject.FindGameObjectsWithTag("PoI Splatter");
-            foreach (GameObject splatter in splatters)
+            if (splatters.Length > 0)
             {
-                Destroy(splatter);
+                foreach (GameObject splatter in splatters)
+                {
+                    Destroy(splatter);
+                }
             }
             shiftTime = 300;
         }

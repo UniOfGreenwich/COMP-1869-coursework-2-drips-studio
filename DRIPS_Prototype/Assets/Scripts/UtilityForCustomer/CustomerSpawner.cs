@@ -70,7 +70,6 @@ public class CustomerSpawner : MonoBehaviour
             while (!canSpawn)
             {
                 // when destroyed, reduce count
-                //customer.StartCoroutine(DecreaseActiveCountWhenDestroyed(customer));
                 if (activeCustomers >= queueManager.MaxQueueSize / 2)
                 {
                     if (customerInScene.Length == queueManager.MaxQueueSize)
@@ -88,12 +87,11 @@ public class CustomerSpawner : MonoBehaviour
             float wait = Random.Range(spawnIntervalMin, spawnIntervalMax);
             yield return new WaitForSeconds(wait);
         }
-        yield return null;
-    }
-    public IEnumerator DecreaseActiveCountWhenDestroyed(CustomerController c)
-    {
-        //while (c != null) yield return null;
-        activeCustomers--;
+        GameObject[] customerInSceneEnd = GameObject.FindGameObjectsWithTag("Customer");
+        foreach (GameObject customer in customerInSceneEnd)
+        {
+            Destroy(customer);
+        }
         yield return null;
     }
 }

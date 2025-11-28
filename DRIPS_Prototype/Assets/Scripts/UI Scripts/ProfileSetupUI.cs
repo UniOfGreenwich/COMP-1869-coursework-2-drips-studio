@@ -58,6 +58,6 @@ public class ProfileSetupUI : MonoBehaviour
         PlayerProfile.CafeName = cafeNameInput.text;
         PlayerProfile.AvatarIndex = selectedAvatarIndex;
 
-        SceneManager.LoadScene("NextSceneName"); // change to your real scene name
+        SceneManager.LoadScene("Prototype Scene"); // change to your real scene name
     }
 }

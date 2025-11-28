@@ -28,6 +28,6 @@ public class SceneTransfer : MonoBehaviour
     {
         yield return new WaitForSeconds(1);
         SceneManager.LoadScene("Prototype Scene");
-
+        yield return null;
     }
 }
