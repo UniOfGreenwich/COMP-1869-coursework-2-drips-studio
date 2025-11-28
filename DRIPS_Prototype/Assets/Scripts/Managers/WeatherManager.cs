@@ -3,8 +3,9 @@ using UnityEngine.Networking;
 using System.Collections;
 using NUnit.Framework;
 using UnityEngine.Rendering.Universal;
+using System;
 
-public enum Weather { Clear, Rain, Snow, Clouds}
+public enum Weather { Clear, Rain, Snow, Clouds, Thunderstorm, Drizzle, Mist, Smoke, Haze, Dust, Fog, Sand, Ash, Squall, Tornado}
 
 public class WeatherManager : MonoBehaviour
 {
@@ -43,24 +44,28 @@ public class WeatherManager : MonoBehaviour
 
     private IEnumerator FetchWeatherData(string url)
     {
-        using (UnityWebRequest request = UnityWebRequest.Get(url))
+        while (true)
         {
-            yield return request.SendWebRequest();
-
-            if (request.result == UnityWebRequest.Result.Success)
+            using (UnityWebRequest request = UnityWebRequest.Get(url))
             {
-                // Got the data!
-                string jsonResponse = request.downloadHandler.text;
-                Debug.Log("Weather Data: " + jsonResponse);
+                yield return request.SendWebRequest();
 
-                // Parse the JSON
-                ParseWeatherData(jsonResponse);
+                if (request.result == UnityWebRequest.Result.Success)
+                {
+                    // Got the data!
+                    string jsonResponse = request.downloadHandler.text;
+                    Debug.Log("Weather Data: " + jsonResponse);
+
+                    // Parse the JSON
+                    ParseWeatherData(jsonResponse);
+                }
+                else
+                {
+                    // Error handling
+                    Debug.LogError("Error getting weather: " + request.error);
+                }
             }
-            else
-            {
-                // Error handling
-                Debug.LogError("Error getting weather: " + request.error);
-            }
+            yield return new WaitForSeconds(28800);
         }
     }
 
@@ -105,15 +110,69 @@ public class WeatherManager : MonoBehaviour
                 DynamicGI.UpdateEnvironment();
                 break;
             case "Thunderstorm":
-                Debug.Log("It's Cloudy");
-                currentWeather = Weather.Clouds;
+                Debug.Log("It's Thundery");
+                currentWeather = Weather.Thunderstorm;
                 RenderSettings.skybox = skybox[2];
                 DynamicGI.UpdateEnvironment();
                 break;
             case "Drizzle":
-                Debug.Log("It's Cloudy");
-                currentWeather = Weather.Clouds;
+                Debug.Log("It's Drizzly");
+                currentWeather = Weather.Drizzle;
                 RenderSettings.skybox = skybox[1];
+                DynamicGI.UpdateEnvironment();
+                break;
+            case "Mist":
+                Debug.Log("It's Misty");
+                currentWeather = Weather.Mist;
+                RenderSettings.skybox = skybox[1];
+                DynamicGI.UpdateEnvironment();
+                break;
+            case "Smoke":
+                Debug.Log("It's Smoky");
+                currentWeather = Weather.Smoke;
+                RenderSettings.skybox = skybox[0];
+                DynamicGI.UpdateEnvironment();
+                break;
+            case "Haze":
+                Debug.Log("It's Hazy");
+                currentWeather = Weather.Haze;
+                RenderSettings.skybox = skybox[0];
+                DynamicGI.UpdateEnvironment();
+                break;
+            case "Dust":
+                Debug.Log("It's Dusty");
+                currentWeather = Weather.Drizzle;
+                RenderSettings.skybox = skybox[0];
+                DynamicGI.UpdateEnvironment();
+                break;
+            case "Fog":
+                Debug.Log("It's Foggy");
+                currentWeather = Weather.Fog;
+                RenderSettings.skybox = skybox[1];
+                DynamicGI.UpdateEnvironment();
+                break;
+            case "Sand":
+                Debug.Log("It's Sandy");
+                currentWeather = Weather.Sand;
+                RenderSettings.skybox = skybox[0];
+                DynamicGI.UpdateEnvironment();
+                break;
+            case "Ash":
+                Debug.Log("It's Ashy");
+                currentWeather = Weather.Ash;
+                RenderSettings.skybox = skybox[0];
+                DynamicGI.UpdateEnvironment();
+                break;
+            case "Squall":
+                Debug.Log("It's Squally");
+                currentWeather = Weather.Squall;
+                RenderSettings.skybox = skybox[1];
+                DynamicGI.UpdateEnvironment();
+                break;
+            case "Tornado":
+                Debug.Log("It's Windy");
+                currentWeather = Weather.Tornado;
+                RenderSettings.skybox = skybox[2];
                 DynamicGI.UpdateEnvironment();
                 break;
         }
@@ -172,5 +231,9 @@ public class WeatherManager : MonoBehaviour
         // Stop the service
         Input.location.Stop();
         Debug.Log("Location service stopped.");
+    }
+    private void OnApplicationQuit()
+    {
+        StopAllCoroutines();
     }
 }
