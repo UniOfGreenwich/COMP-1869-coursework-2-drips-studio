@@ -26,6 +26,18 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Production Scenes/RS API Scene.unity
     guid: c2381c03f80985b47bea8957237f5376
+  - enabled: 1
+    path: Assets/Scenes/Main Scene/UI/Map_Scene.unity
+    guid: c9de5e699464ce44fbbeec2ffaa1beb8
+  - enabled: 1
+    path: Assets/Scenes/Main Scene/UI/Start_Scene.unity
+    guid: 82e23bb7579731743b589c7f1eb0cee6
+  - enabled: 1
+    path: Assets/Scenes/Main Scene/Prototype Scene.unity
+    guid: bd2154c63e53a044eab9d6fb37c93ea7
+  - enabled: 1
+    path: Assets/Scenes/Main Scene/UI/Create_Profile_Scene.unity
+    guid: 574d195a68cac204d86c2fe2b04b869b
   m_configObjects:
     com.unity.adaptiveperformance.google.android.provider_settings: {fileID: 11400000, guid: cf00fd8870e575242b5aa1e9e57311d3, type: 2}
     com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: 09d3dec3028f480438a39014294ac268, type: 2}
