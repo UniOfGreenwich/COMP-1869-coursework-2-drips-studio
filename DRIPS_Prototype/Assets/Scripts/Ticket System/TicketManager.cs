@@ -61,4 +61,18 @@ public class TicketManager : MonoBehaviour
         Destroy(ticketObj);
         Debug.Log("Ticket removed");
     }
+    public void ResetTickets()
+    {
+        if (mainCanvas != null)
+        {
+            foreach (Transform child in mainCanvas.transform)
+            {
+                if (child.GetComponent<TicketInstance>())
+                {
+                    Destroy(child.gameObject);
+                }
+            }
+        }
+        currentTickets = 0;
+    }
 }

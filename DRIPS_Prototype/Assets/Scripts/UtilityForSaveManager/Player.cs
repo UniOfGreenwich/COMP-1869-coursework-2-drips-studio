@@ -20,8 +20,8 @@ public class Player : MonoBehaviour
     {
         //data.profilePicture = profilePicture;
         data.quitTime = quitTimeText;
-        //data.quitHour = quitTimeHour;
-        //data.quitMinute = quitTimeMinute;
+        data.quitHour = quitTimeHour;
+        data.quitMinute = quitTimeMinute;
         data.money = money;
     }
 

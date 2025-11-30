@@ -24,4 +24,15 @@ public class SeatingManager : MonoBehaviour
     {
         if (seat != null) seat.Vacate();
     }
+
+    public void ResetSeats()
+    {
+        foreach (Seat seat in seats)
+        {
+            if (seat != null)
+            {
+                seat.Vacate();
+            }
+        }
+    }
 }

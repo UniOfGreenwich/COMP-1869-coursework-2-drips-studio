@@ -92,6 +92,10 @@ public class CustomerSpawner : MonoBehaviour
         {
             Destroy(customer);
         }
-        yield return null;
+    }
+    public void ResetSpawner()
+    {
+        activeCustomers = 0;
+        Debug.Log("Spawner Reset.");
     }
 }

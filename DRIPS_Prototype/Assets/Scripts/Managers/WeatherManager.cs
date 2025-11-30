@@ -32,11 +32,6 @@ public class WeatherManager : MonoBehaviour
         fogEmission = fogVFX.GetComponent<ParticleSystem>();
     }
 
-    private void Update()
-    {
-
-    }
-
     public void GetWeather()
     {
         if (latitude != 0 || longitude != 0)

@@ -161,10 +161,9 @@ public class CustomerController : MonoBehaviour
 
     private void OnDestroy()
     {
+        StopAllCoroutines();
         if (mySeat != null && seatingManager != null)
             seatingManager.ReleaseSeat(mySeat);
-
-        StopCoroutine(Main());
     }
 }
 

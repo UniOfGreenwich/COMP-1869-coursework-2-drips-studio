@@ -34,6 +34,10 @@ public class GameManager : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         timeManager = GameObject.FindGameObjectWithTag("TimeManager").GetComponent<TimeManager>();
         spawner = GameObject.FindGameObjectWithTag("CustomerManager").GetComponent<CustomerSpawner>();
+        sceneManager = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<SceneTransfer>();
+        queue = GameObject.FindGameObjectWithTag("CustomerManager").GetComponent<QueueManager>();
+        seatingManager = GameObject.FindGameObjectWithTag("CustomerManager").GetComponent<SeatingManager>();
+        ticketManager = GameObject.FindGameObjectWithTag("TicketManager").GetComponent<TicketManager>();
     }
 
     private void Update()
@@ -121,6 +125,10 @@ public class GameManager : MonoBehaviour
     //Opening Cafe
     #region
     public CustomerSpawner spawner;
+    public SceneTransfer sceneManager;
+    public QueueManager queue;
+    public SeatingManager seatingManager;
+    public TicketManager ticketManager;
     public bool open;
     public float shiftTime = 300;
 
@@ -135,7 +143,9 @@ public class GameManager : MonoBehaviour
         shiftTime -= Time.deltaTime;
         if (shiftTime <= 0f)
         {
+            spawner.StopAllCoroutines();
             open = false;
+            
             GameObject[] customerInScene = GameObject.FindGameObjectsWithTag("Customer");
             if (customerInScene.Length > 0)
             {
@@ -144,6 +154,7 @@ public class GameManager : MonoBehaviour
                     Destroy(customer);
                 }
             }
+            
             GameObject[] splatters = GameObject.FindGameObjectsWithTag("PoI Splatter");
             if (splatters.Length > 0)
             {
@@ -152,8 +163,16 @@ public class GameManager : MonoBehaviour
                     Destroy(splatter);
                 }
             }
+            
+            spawner.ResetSpawner();
+            queue.ResetQueue();
+            seatingManager.ResetSeats();
+            ticketManager.ResetTickets();
+            PlayerDrinkManager.Instance.ResetDrink();
+
             shiftTime = 300;
-        }
+
+        }        
     }
     #endregion
 }

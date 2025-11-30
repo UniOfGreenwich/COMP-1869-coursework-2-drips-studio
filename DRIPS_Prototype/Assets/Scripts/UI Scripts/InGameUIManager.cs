@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.Rendering.Universal;
+using Unity.VisualScripting;
 
 public class InGameUIManager : MonoBehaviour
 {
@@ -104,8 +105,11 @@ public class InGameUIManager : MonoBehaviour
 
     private void FixedUpdate()
     {
-        customersServedText.text = "Customers Served: " + slideMenuValues.customersServed;
-        customersServedCorrectlyText.text = "Customers Served Correctly: " + slideMenuValues.customersServedCorrectly;
+        if (GameManager.Instance.open)
+        {
+            customersServedText.text = "Customers Served: " + slideMenuValues.customersServed;
+            customersServedCorrectlyText.text = "Customers Served Correctly: " + slideMenuValues.customersServedCorrectly;
+        }
     }
     public void UpdateReputation()
     {

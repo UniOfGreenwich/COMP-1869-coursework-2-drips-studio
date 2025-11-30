@@ -159,7 +159,6 @@ public class InteractSquishAnimation : MonoBehaviour
                 yield return _loopingDelayWaitForSeconds;
 
         } while (looping && squish);
-        yield return null;
     }
 
     public void SetLooping(bool shouldLoop)
@@ -188,7 +187,6 @@ public class InteractSquishAnimation : MonoBehaviour
     {
         yield return new WaitForSeconds(animationDuration);
         squish = false;
-        yield return null;
     }
 
     public void Squish()

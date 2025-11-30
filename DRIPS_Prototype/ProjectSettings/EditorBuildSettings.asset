@@ -20,7 +20,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Production Scenes/RS_Movement.unity
     guid: ed12d94396abb3f4b98bf78492616719
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Production Scenes/PP_ActualScene.unity
     guid: 513ecc0d359b23743a2351c4b8cf323d
   - enabled: 0

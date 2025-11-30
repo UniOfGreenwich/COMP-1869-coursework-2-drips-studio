@@ -50,3 +50,7 @@ MonoBehaviour:
   currentDate: {fileID: 0}
   timeManager: {fileID: 0}
   load: 0
+  spawner: {fileID: 0}
+  sceneManager: {fileID: 0}
+  open: 0
+  shiftTime: 300

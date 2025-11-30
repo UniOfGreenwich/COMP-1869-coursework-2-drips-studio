@@ -44,7 +44,6 @@ public class IC_SplatterManager : MonoBehaviour
 
             SpawnRandomSplatter();
         }
-        yield return null;
     }
 
     private void SpawnRandomSplatter()

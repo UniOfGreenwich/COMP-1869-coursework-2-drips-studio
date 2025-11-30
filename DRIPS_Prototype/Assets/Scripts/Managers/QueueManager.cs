@@ -76,4 +76,9 @@ public class QueueManager : MonoBehaviour
             waiting[i].SetQueueTarget(slots[slotIndex].position);
         }
     }
+    public void ResetQueue()
+    {
+        waiting.Clear();
+        orderingCustomer = null;
+    }
 }

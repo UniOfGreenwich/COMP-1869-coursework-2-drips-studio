@@ -24,6 +24,7 @@ TagManager:
   - CustomerManager
   - TicketManager
   - WeatherManager
+  - SceneManager
   layers:
   - Default
   - TransparentFX
