@@ -4806,6 +4806,9 @@ MonoBehaviour:
   - {fileID: 2100000, guid: efd1c33efd2d58340b88804268e6833f, type: 2}
   - {fileID: 2100000, guid: d4454f71d85928744be7771e2143dab7, type: 2}
   - {fileID: 2100000, guid: 2039a0ad0a9d05549928b70362f54902, type: 2}
+  rainVFX: {fileID: 1485494358408439770}
+  fogVFX: {fileID: 5293098957206371420}
+  sunVFX: {fileID: 5300894105410802001}
 --- !u!1 &4533085403071465735
 GameObject:
   m_ObjectHideFlags: 0
@@ -4868,7 +4871,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -47.3, y: 1.52, z: 7.3}
-  m_LocalScale: {x: 35.20001, y: 131.80734, z: -0.0000104482515}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4617539532383118358}

@@ -6,7 +6,7 @@ public class SceneTransfer : MonoBehaviour
 {
     public void MapToGame()
     {
-        StartCoroutine(MapToGameCoroutine());
+        SceneManager.LoadScene("Prototype Scene");
     }
 
     public void GameToMenu()
@@ -22,11 +22,5 @@ public class SceneTransfer : MonoBehaviour
     public void ProfileToMap()
     {
         SceneManager.LoadScene("Map_Scene");
-    }
-
-    IEnumerator MapToGameCoroutine()
-    {
-        yield return new WaitForSeconds(1);
-        SceneManager.LoadScene("Prototype Scene");
     }
 }
