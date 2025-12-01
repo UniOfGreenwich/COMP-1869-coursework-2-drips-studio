@@ -68,6 +68,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_DogChar
       objectReference: {fileID: 0}
+    - target: {fileID: 1507767883509144192, guid: 7246c51389a67c94189af959613c00db, type: 3}
+      propertyPath: m_TagString
+      value: Dog Fur
+      objectReference: {fileID: 0}
+    - target: {fileID: 3545025847783179587, guid: 7246c51389a67c94189af959613c00db, type: 3}
+      propertyPath: m_TagString
+      value: Dog Fur
+      objectReference: {fileID: 0}
     - target: {fileID: 4794854681106086447, guid: 7246c51389a67c94189af959613c00db, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -76,6 +84,10 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: e5faae225fabe5f46b351301ca362735, type: 2}
+    - target: {fileID: 8640323447078207702, guid: 7246c51389a67c94189af959613c00db, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: c8bbc439af4483042b448747ed5468d1, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

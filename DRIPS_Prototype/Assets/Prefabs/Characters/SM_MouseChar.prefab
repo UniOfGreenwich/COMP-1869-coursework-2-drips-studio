@@ -60,14 +60,26 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: e5faae225fabe5f46b351301ca362735, type: 2}
+    - target: {fileID: -5510116657613186409, guid: 92a0f970b52ddf04c8c9985b68347190, type: 3}
+      propertyPath: m_TagString
+      value: Mouse Fur
+      objectReference: {fileID: 0}
     - target: {fileID: -4179387143531097159, guid: 92a0f970b52ddf04c8c9985b68347190, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: ee4fb6e72083f624b81fe6bb70c2259e, type: 2}
+    - target: {fileID: -2793727289926329592, guid: 92a0f970b52ddf04c8c9985b68347190, type: 3}
+      propertyPath: m_TagString
+      value: Mouse Fur
+      objectReference: {fileID: 0}
     - target: {fileID: -2379341416486954635, guid: 92a0f970b52ddf04c8c9985b68347190, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: a9638fc3c3217bb47acae03a52171fa5, type: 2}
+    - target: {fileID: -1853522124809327581, guid: 92a0f970b52ddf04c8c9985b68347190, type: 3}
+      propertyPath: m_TagString
+      value: Mouse Fur
+      objectReference: {fileID: 0}
     - target: {fileID: -852636779574496328, guid: 92a0f970b52ddf04c8c9985b68347190, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -88,10 +100,18 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 82d6d9d843072054ca31559c600c485c, type: 2}
+    - target: {fileID: 4021278674701040936, guid: 92a0f970b52ddf04c8c9985b68347190, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: a9638fc3c3217bb47acae03a52171fa5, type: 2}
     - target: {fileID: 4505632461866824304, guid: 92a0f970b52ddf04c8c9985b68347190, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: a9638fc3c3217bb47acae03a52171fa5, type: 2}
+    - target: {fileID: 4784532415624793644, guid: 92a0f970b52ddf04c8c9985b68347190, type: 3}
+      propertyPath: m_TagString
+      value: Mouse Fur
+      objectReference: {fileID: 0}
     - target: {fileID: 7689049306720404431, guid: 92a0f970b52ddf04c8c9985b68347190, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 

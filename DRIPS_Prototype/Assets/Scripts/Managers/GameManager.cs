@@ -53,8 +53,6 @@ public class GameManager : MonoBehaviour
     #region
     public Player player;
 
-    
-
     private void Start()
     {
         SaveManager.Load();
@@ -129,6 +127,7 @@ public class GameManager : MonoBehaviour
     public QueueManager queue;
     public SeatingManager seatingManager;
     public TicketManager ticketManager;
+    public IC_SplatterManager splatManager;
     public bool open;
     public float shiftTime = 300;
 
@@ -136,6 +135,7 @@ public class GameManager : MonoBehaviour
     {
         open = true;
         spawner.StartCoroutine(spawner.InitLoop());
+        splatManager.StartCoroutine(splatManager.SplatterLoop());
     }
 
     private void HandleWorkingShift()
@@ -144,6 +144,7 @@ public class GameManager : MonoBehaviour
         if (shiftTime <= 0f)
         {
             spawner.StopAllCoroutines();
+            splatManager.StopAllCoroutines();
             open = false;
             
             GameObject[] customerInScene = GameObject.FindGameObjectsWithTag("Customer");
@@ -168,10 +169,10 @@ public class GameManager : MonoBehaviour
             queue.ResetQueue();
             seatingManager.ResetSeats();
             ticketManager.ResetTickets();
+            splatManager.ResetSplatterPositions();
             PlayerDrinkManager.Instance.ResetDrink();
 
             shiftTime = 300;
-
         }        
     }
     #endregion

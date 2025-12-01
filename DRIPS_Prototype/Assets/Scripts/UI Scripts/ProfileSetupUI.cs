@@ -2,9 +2,12 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
+using Unity.VisualScripting;
 
 public class ProfileSetupUI : MonoBehaviour
 {
+
+
     [Header("Input Fields")]
     public TMP_InputField playerNameInput;
     public TMP_InputField cafeNameInput;
@@ -19,12 +22,39 @@ public class ProfileSetupUI : MonoBehaviour
 
     private int selectedAvatarIndex = 0;
 
+    //private static ProfileSetupUI instanceProfileSetup;
+
+    //public static ProfileSetupUI InstanceProfileSetup
+    //{
+    //    get
+    //    {
+    //        return instanceProfileSetup;
+    //    }
+    //}
+
+    //private void Awake()
+    //{
+    //    if (instanceProfileSetup == null)
+    //    {
+    //        instanceProfileSetup = this;
+    //        DontDestroyOnLoad(gameObject);
+    //    }
+    //    else
+    //    {
+    //        Destroy(gameObject);
+    //    }
+    //}
+
     private void Start()
     {
         // Set default big image
         if (avatarImages.Length > 0 && bigAvatarImage != null)
         {
             bigAvatarImage.sprite = avatarImages[selectedAvatarIndex].sprite;
+        }
+        else
+        {
+            return;
         }
 
         UpdateAvatarHighlights();

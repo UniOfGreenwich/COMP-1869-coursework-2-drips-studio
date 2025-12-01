@@ -2,6 +2,8 @@
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
+using System.Collections.Generic;
+using System.Linq;
 
 public class CustomerController : MonoBehaviour
 {
@@ -35,11 +37,39 @@ public class CustomerController : MonoBehaviour
     private Vector3 queueTarget;
     private Seat mySeat;
 
+    [SerializeField] private GameObject[] meshes = new GameObject[3];
+    [SerializeField] private int randomNumberForMesh;
+
+    [SerializeField] private Material[] materials = new Material[5];
+    [SerializeField] private int randomNumberForMaterial;
+
     private void Awake() => agent = GetComponent<NavMeshAgent>();
 
     private void Start()
     {
         trashCanStation = FindAnyObjectByType<TrashCanStation>();
+        randomNumberForMesh = Random.Range(0, 3);
+        meshes[randomNumberForMesh].SetActive(true);
+        PickRandomMaterial(randomNumberForMesh);
+    }
+
+    private void PickRandomMaterial(int selectedMesh)
+    {
+        List<MeshRenderer> furMeshRenderer = new List<MeshRenderer>();
+        furMeshRenderer = GetComponentsInChildren<MeshRenderer>(true).Where(x => x.CompareTag("Untagged") == false && x.tag.Contains("Fur")).ToList();
+        randomNumberForMaterial = Random.Range(0, materials.Length);
+
+        foreach (MeshRenderer mr in furMeshRenderer)
+        {
+            if (selectedMesh == 0 && mr.tag.Contains("Cat"))
+                mr.material = materials[randomNumberForMaterial];
+
+            else if (selectedMesh == 1 && mr.tag.Contains("Dog"))
+                mr.material = materials[randomNumberForMaterial];
+
+            else if (selectedMesh == 2 && mr.tag.Contains("Mouse"))
+                mr.material = materials[randomNumberForMaterial];
+        }
     }
 
     public void Init(QueueManager qm, SeatingManager sm, Transform exit)
@@ -138,7 +168,6 @@ public class CustomerController : MonoBehaviour
         MoveTo(exitPoint.position);
         yield return new WaitForSeconds(5f); // simple exit window
         Destroy(gameObject);
-        yield return null;
     }
 
     private void MoveTo(Vector3 pos)

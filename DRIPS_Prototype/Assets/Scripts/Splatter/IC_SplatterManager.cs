@@ -29,12 +29,9 @@ public class IC_SplatterManager : MonoBehaviour
             foreach (Transform child in transform)
                 Destroy(child.gameObject);
         }
-
-        // Start the spawn loop
-        StartCoroutine(SplatterLoop());
     }
 
-    private IEnumerator SplatterLoop()
+    public IEnumerator SplatterLoop()
     {
         while (GameManager.Instance.open)
         {
@@ -63,5 +60,10 @@ public class IC_SplatterManager : MonoBehaviour
             : Quaternion.identity;
 
         Instantiate(splatterPrefab, spawnPos, rotation, transform);
+    }
+
+    public void ResetSplatterPositions()
+    {
+        splatterPositions.Clear();
     }
 }
