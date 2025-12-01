@@ -10,8 +10,8 @@ public class InteractableObject : MonoBehaviour
     [Header("References")]
     [SerializeField] private TicketManager tm;
 
-    private bool playerInside = false;
-    private bool customerInside = false;
+    public bool playerInside = false;
+    public bool customerInside = false;
     private CustomerController customerController;
     private RandomSoundEffectTrigger trigger;
     private InteractSquishAnimation squish;
