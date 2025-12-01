@@ -62,6 +62,13 @@ public class InGameUIManager : MonoBehaviour
         settingsOpen = !settingsOpen;
         settingsPanel.SetActive(settingsOpen);
 
+        if (rewardsOpen)
+        {
+            rewardsOpen = !rewardsOpen;
+            rewardsPanel.SetActive(rewardsOpen);
+        }
+        
+
         // Optional?? pause game while settings open??
         Time.timeScale = settingsOpen ? 0f : 1f;
     }
@@ -72,6 +79,12 @@ public class InGameUIManager : MonoBehaviour
         ToggleDailyRewardsPanel();
         
         rewardsPanel.SetActive(rewardsOpen);
+
+        if (settingsOpen)
+        {
+            settingsOpen = !settingsOpen;
+            settingsPanel.SetActive(!rewardsPanel);
+        }
     }
 
     public void ToggleDailyRewardsPanel()
