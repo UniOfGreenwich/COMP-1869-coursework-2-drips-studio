@@ -64,6 +64,10 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 82d6d9d843072054ca31559c600c485c, type: 2}
+    - target: {fileID: -5810711139476439300, guid: 55311b4c7e3727f4482ca4c108133ad5, type: 3}
+      propertyPath: m_TagString
+      value: Cat Fur
+      objectReference: {fileID: 0}
     - target: {fileID: -5070826356524259327, guid: 55311b4c7e3727f4482ca4c108133ad5, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -92,10 +96,18 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: e5faae225fabe5f46b351301ca362735, type: 2}
+    - target: {fileID: 1443928332753293425, guid: 55311b4c7e3727f4482ca4c108133ad5, type: 3}
+      propertyPath: m_TagString
+      value: Cat Fur
+      objectReference: {fileID: 0}
     - target: {fileID: 3566390031902043909, guid: 55311b4c7e3727f4482ca4c108133ad5, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 5f9b807813b96b54fbca1e1eb7e142fb, type: 2}
+    - target: {fileID: 3779745573541866595, guid: 55311b4c7e3727f4482ca4c108133ad5, type: 3}
+      propertyPath: m_TagString
+      value: Cat Fur
+      objectReference: {fileID: 0}
     - target: {fileID: 5644213576824478809, guid: 55311b4c7e3727f4482ca4c108133ad5, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -104,6 +116,10 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: e5faae225fabe5f46b351301ca362735, type: 2}
+    - target: {fileID: 7843942000227019361, guid: 55311b4c7e3727f4482ca4c108133ad5, type: 3}
+      propertyPath: m_TagString
+      value: Cat Fur
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

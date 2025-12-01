@@ -3,17 +3,17 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    PlayerData playerData;
     //[SerializeField] private Sprite profilePicture;
     [SerializeField] private DateTime quitTimePlayer;
     [SerializeField] private string quitTimeText;
     [SerializeField] private int quitTimeHour;
     [SerializeField] private int quitTimeMinute;
     [SerializeField] private int money;
+    [SerializeField] GameObject[] meshRenderer = new GameObject[3];
 
-    private void Start()
+    private void Awake()
     {
-        playerData = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerData>();
+        meshRenderer[PlayerProfile.AvatarIndex].SetActive(true);
     }
 
     public void SaveData(ref PlayerData data)

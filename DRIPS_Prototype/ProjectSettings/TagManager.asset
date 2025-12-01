@@ -25,6 +25,9 @@ TagManager:
   - TicketManager
   - WeatherManager
   - SceneManager
+  - Cat Fur
+  - Dog Fur
+  - Mouse Fur
   layers:
   - Default
   - TransparentFX
