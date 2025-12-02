@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.AI;
 
 public class InteractableObject : MonoBehaviour
 {
@@ -29,7 +30,19 @@ public class InteractableObject : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
+        {
             playerInside = true;
+
+            // Access the player's NavMeshAgent
+            NavMeshAgent agent = other.GetComponent<NavMeshAgent>();
+            if (agent != null)
+            {
+                agent.updateRotation = false; // disable rotation override
+            }
+
+            // Force rotation to your predefined rotation
+            other.transform.root.rotation = Quaternion.Euler(0f, 0f, 0f);
+        }
 
         if (other.CompareTag("Customer"))
         {
@@ -50,7 +63,16 @@ public class InteractableObject : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
+        {
             playerInside = false;
+
+            // Restore normal NavMeshAgent rotation
+            NavMeshAgent agent = other.GetComponent<NavMeshAgent>();
+            if (agent != null)
+            {
+                agent.updateRotation = true;
+            }
+        }
 
         if (other.CompareTag("Customer"))
         {
@@ -77,7 +99,7 @@ public class InteractableObject : MonoBehaviour
 
         if (tm.currentTickets >= tm.maxTickets)
         {
-            Debug.Log("[InteractableObject]: Cannot serve — Max tickets reached");
+            Debug.Log("[InteractactableObject]: Cannot serve — Max tickets reached");
             return;
         }
 
