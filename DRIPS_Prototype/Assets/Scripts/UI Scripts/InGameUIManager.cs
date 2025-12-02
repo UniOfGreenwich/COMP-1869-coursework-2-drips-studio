@@ -2,6 +2,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.Rendering.Universal;
 using Unity.VisualScripting;
+using UnityEngine.UI;
 
 public class InGameUIManager : MonoBehaviour
 {
@@ -14,6 +15,9 @@ public class InGameUIManager : MonoBehaviour
     public TMP_Text customersServedText;
     public TMP_Text customersServedCorrectlyText;
     public TMP_Text reputationText;
+    public GameObject happyCat;
+    public GameObject neutralCat;
+    public GameObject angryCat;
 
     [Header("References")]
     public GameObject canvas;
@@ -134,5 +138,24 @@ public class InGameUIManager : MonoBehaviour
 
         float rep = (float)slideMenuValues.customersServedCorrectly / slideMenuValues.customersServed * 100f;
         reputationText.text = "Reputation: " + Mathf.RoundToInt(rep) + "%";
+
+        if (rep >= 75)
+        {
+            neutralCat.SetActive(false);
+            happyCat.SetActive(true);
+            angryCat.SetActive(false);
+        }
+        else if (rep >= 50)
+        {
+            neutralCat.SetActive(true);
+            happyCat.SetActive(false);
+            angryCat.SetActive(false);
+        }
+        else
+        {
+            neutralCat.SetActive(false);
+            happyCat.SetActive(false);
+            angryCat.SetActive(true);
+        }
     }
 }

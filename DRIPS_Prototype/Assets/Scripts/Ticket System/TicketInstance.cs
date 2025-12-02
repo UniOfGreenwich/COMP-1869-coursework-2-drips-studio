@@ -16,7 +16,7 @@ public class TicketInstance : MonoBehaviour
     public Color targetColor = new Color(0.713f, 0.361f, 0.373f);
     private Color startColor;
 
-    private float timerDuration = 15f;     // 15 seconds
+    private float timerDuration = 20f;
     private float timerRemaining;
     public TicketManager tm;
 
