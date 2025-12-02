@@ -2,8 +2,32 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!78 &1
 TagManager:
-  serializedVersion: 2
-  tags: []
+  serializedVersion: 3
+  tags:
+  - InteractableObject
+  - CameraRig
+  - PoI Register
+  - PoI CoffeeMachine
+  - PoI ServingTray
+  - PoI Milk
+  - PoI Cups
+  - OrderZone
+  - Customer
+  - PoI Splatter
+  - PoI Trash Can
+  - TimeManager
+  - Ticket
+  - GameManager
+  - AudioManager
+  - TouchManager
+  - SplatterManager
+  - CustomerManager
+  - TicketManager
+  - WeatherManager
+  - SceneManager
+  - Cat Fur
+  - Dog Fur
+  - Mouse Fur
   layers:
   - Default
   - TransparentFX
@@ -50,27 +74,3 @@ TagManager:
   - Light Layer 5
   - Light Layer 6
   - Light Layer 7
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 

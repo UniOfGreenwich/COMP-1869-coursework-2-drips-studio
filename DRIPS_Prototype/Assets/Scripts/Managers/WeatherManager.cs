@@ -1,0 +1,286 @@
+using UnityEngine;
+using UnityEngine.Networking;
+using System.Collections;
+using NUnit.Framework;
+using UnityEngine.Rendering.Universal;
+using System;
+
+public enum Weather { Clear, Rain, Snow, Clouds, Thunderstorm, Drizzle, Mist, Smoke, Haze, Dust, Fog, Sand, Ash, Squall, Tornado}
+
+public class WeatherManager : MonoBehaviour
+{
+    private string apiKey = "b1b3276c883b7bd3b0225ff49e755532";
+    private float latitude;
+    private float longitude;
+    [SerializeField] private string cityName;
+    private bool isDataReady;
+    private string url;
+
+    [Header("References")]
+    public Weather currentWeather;
+    public Material[] skybox;
+    public GameObject rainVFX;
+    public GameObject fogVFX;
+    public GameObject sunVFX;
+    private ParticleSystem rainEmission;
+    private ParticleSystem fogEmission;
+
+    private void Start()
+    {
+        StartCoroutine(GetLocation());
+        rainEmission = rainVFX.GetComponent<ParticleSystem>();
+        fogEmission = fogVFX.GetComponent<ParticleSystem>();
+    }
+
+    public void GetWeather()
+    {
+        if (latitude != 0 || longitude != 0)
+        {
+            url = $"https://api.openweathermap.org/data/2.5/weather?lat={latitude}&lon={longitude}&appid={apiKey}&units=metric";
+        }
+        else
+        {
+            url = $"https://api.openweathermap.org/data/2.5/weather?q={cityName}&appid={apiKey}&units=metric";
+        }
+
+        StartCoroutine(FetchWeatherData(url));
+    }
+
+    private IEnumerator FetchWeatherData(string url)
+    {
+        while (true)
+        {
+            using (UnityWebRequest request = UnityWebRequest.Get(url))
+            {
+                yield return request.SendWebRequest();
+
+                if (request.result == UnityWebRequest.Result.Success)
+                {
+                    // Got the data!
+                    string jsonResponse = request.downloadHandler.text;
+                    Debug.Log("Weather Data: " + jsonResponse);
+
+                    // Parse the JSON
+                    ParseWeatherData(jsonResponse);
+                }
+                else
+                {
+                    // Error handling
+                    Debug.LogError("Error getting weather: " + request.error);
+                }
+            }
+            yield return new WaitForSeconds(28800);
+        }
+    }
+
+    private void ParseWeatherData(string json)
+    {
+        WeatherApiResponse response = JsonUtility.FromJson<WeatherApiResponse>(json);
+
+        float currentTemp = response.main.temp;
+        string weatherCondition = response.weather[0].main;
+
+        Debug.Log($"The weather in {response.name} is {weatherCondition} with a temp of {currentTemp}°C");
+
+        ApplyWeatherToGame(weatherCondition);
+    }
+
+    private void ApplyWeatherToGame(string weatherCondition)
+    {
+        switch(weatherCondition)
+        {
+            case "Clear":
+                Debug.Log("It's Sunny");
+                currentWeather = Weather.Clear;
+                RenderSettings.skybox = skybox[0];
+                DynamicGI.UpdateEnvironment();
+                EnableSun();
+                break;
+            case "Rain":
+                Debug.Log("It's Rainy");
+                currentWeather = Weather.Rain;
+                RenderSettings.skybox = skybox[2];
+                DynamicGI.UpdateEnvironment();
+                EnableRain();
+                rainEmission.emissionRate = 100;
+                break;
+            case "Snow":
+                Debug.Log("It's Snowy");
+                currentWeather = Weather.Snow;
+                RenderSettings.skybox = skybox[1];
+                DynamicGI.UpdateEnvironment();
+                break;
+            case "Clouds":
+                Debug.Log("It's Cloudy");
+                currentWeather = Weather.Clouds;
+                RenderSettings.skybox = skybox[1];
+                DynamicGI.UpdateEnvironment();
+                EnableFog();
+                break;
+            case "Thunderstorm":
+                Debug.Log("It's Thundery");
+                currentWeather = Weather.Thunderstorm;
+                RenderSettings.skybox = skybox[2];
+                DynamicGI.UpdateEnvironment();
+                EnableRain();
+                rainEmission.emissionRate = 400;
+                break;
+            case "Drizzle":
+                Debug.Log("It's Drizzly");
+                currentWeather = Weather.Drizzle;
+                RenderSettings.skybox = skybox[1];
+                DynamicGI.UpdateEnvironment();
+                rainEmission.emissionRate = 30;
+                break;
+            case "Mist":
+                Debug.Log("It's Misty");
+                currentWeather = Weather.Mist;
+                RenderSettings.skybox = skybox[1];
+                DynamicGI.UpdateEnvironment();
+                rainVFX.SetActive(true);
+                fogVFX.SetActive(true);
+                rainEmission.emissionRate = 30;
+                fogEmission.emissionRate = 10;
+                break;
+            case "Smoke":
+                Debug.Log("It's Smoky");
+                currentWeather = Weather.Smoke;
+                RenderSettings.skybox = skybox[0];
+                DynamicGI.UpdateEnvironment();
+                EnableFog();
+                fogEmission.emissionRate = 50;
+                break;
+            case "Haze":
+                Debug.Log("It's Hazy");
+                currentWeather = Weather.Haze;
+                RenderSettings.skybox = skybox[0];
+                DynamicGI.UpdateEnvironment();
+                EnableFog();
+                break;
+            case "Dust":
+                Debug.Log("It's Dusty");
+                currentWeather = Weather.Drizzle;
+                RenderSettings.skybox = skybox[0];
+                DynamicGI.UpdateEnvironment();
+                EnableFog();
+                break;
+            case "Fog":
+                Debug.Log("It's Foggy");
+                currentWeather = Weather.Fog;
+                RenderSettings.skybox = skybox[1];
+                DynamicGI.UpdateEnvironment();
+                EnableFog();
+                break;
+            case "Sand":
+                Debug.Log("It's Sandy");
+                currentWeather = Weather.Sand;
+                RenderSettings.skybox = skybox[0];
+                DynamicGI.UpdateEnvironment();
+                EnableFog();
+                break;
+            case "Ash":
+                Debug.Log("It's Ashy");
+                currentWeather = Weather.Ash;
+                RenderSettings.skybox = skybox[0];
+                DynamicGI.UpdateEnvironment();
+                EnableFog();
+                break;
+            case "Squall":
+                Debug.Log("It's Squally");
+                currentWeather = Weather.Squall;
+                RenderSettings.skybox = skybox[1];
+                DynamicGI.UpdateEnvironment();
+                fogVFX.SetActive(true);
+                rainVFX.SetActive(true);
+                break;
+            case "Tornado":
+                Debug.Log("It's Windy");
+                currentWeather = Weather.Tornado;
+                RenderSettings.skybox = skybox[2];
+                DynamicGI.UpdateEnvironment();
+                EnableRain();
+                rainEmission.emissionRate = 600;
+                break;
+        }
+    }
+
+    private IEnumerator GetLocation()
+    {
+        isDataReady = false;
+
+        // Check if user has location service enabled
+        if (!Input.location.isEnabledByUser)
+        {
+            Debug.LogError("Location services are not enabled by the user.");
+            GetWeather();
+            yield break; // Stop the coroutine
+        }
+
+        // Start the location service
+        Debug.Log("Starting location service...");
+        Input.location.Start();
+
+        // Wait for the service to initialize
+        int maxWaitTime = 20; // 20-second timeout
+        while (Input.location.status == LocationServiceStatus.Initializing && maxWaitTime > 0)
+        {
+            yield return new WaitForSeconds(1); // Wait for 1 second
+            maxWaitTime--;
+        }
+
+        // Check for errors
+        if (maxWaitTime <= 0)
+        {
+            Debug.LogWarning("Location service timed out.");
+            yield break;
+        }
+
+        if (Input.location.status == LocationServiceStatus.Failed)
+        {
+            Debug.LogError("Location service failed to start.");
+            yield break;
+        }
+
+        // On Success Get the data
+        Debug.Log("Location service running.");
+        LocationInfo locationData = Input.location.lastData;
+
+        // Store the coordinates
+        latitude = locationData.latitude;
+        longitude = locationData.longitude;
+        isDataReady = true;
+
+        Debug.Log($"Location Acquired: {latitude}, {longitude}");
+
+        GetWeather();
+
+        // Stop the service
+        Input.location.Stop();
+        Debug.Log("Location service stopped.");
+    }
+    private void OnApplicationQuit()
+    {
+        StopAllCoroutines();
+    }
+
+    private void EnableRain()
+    {
+        rainVFX.SetActive(true);
+        sunVFX.SetActive(false);
+        fogVFX.SetActive(false);
+    }
+
+    private void EnableFog()
+    {
+        rainVFX.SetActive(false);
+        sunVFX.SetActive(false);
+        fogVFX.SetActive(true);
+    }
+
+    private void EnableSun()
+    {
+        rainVFX.SetActive(false);
+        sunVFX.SetActive(true);
+        fogVFX.SetActive(false);
+    }
+}

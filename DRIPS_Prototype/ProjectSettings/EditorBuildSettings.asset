@@ -5,10 +5,42 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
+  - enabled: 0
+    path: Assets/Scenes/Production Scenes/SampleScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 0
+    path: Assets/Scenes/Production Scenes/IC Prototype Scene.unity
+    guid: e12653f9fd97d284abc5896e7ae5884a
+  - enabled: 0
+    path: Assets/Scenes/Production Scenes/RS Scene.unity
+    guid: 4fc878bc597d9964688cca03f7bb00d2
+  - enabled: 0
+    path: Assets/Scenes/Production Scenes/Week 3 Integrated Scene.unity
+    guid: 656bf31b21394fa41935e0535e327727
+  - enabled: 0
+    path: Assets/Scenes/Production Scenes/RS_Movement.unity
+    guid: ed12d94396abb3f4b98bf78492616719
+  - enabled: 0
+    path: Assets/Scenes/Production Scenes/PP_ActualScene.unity
+    guid: 513ecc0d359b23743a2351c4b8cf323d
+  - enabled: 0
+    path: Assets/Scenes/Production Scenes/RS API Scene.unity
+    guid: c2381c03f80985b47bea8957237f5376
+  - enabled: 1
+    path: Assets/Scenes/Main Scene/UI/Start_Scene.unity
+    guid: 82e23bb7579731743b589c7f1eb0cee6
+  - enabled: 1
+    path: Assets/Scenes/Main Scene/UI/Create_Profile_Scene.unity
+    guid: 574d195a68cac204d86c2fe2b04b869b
+  - enabled: 1
+    path: Assets/Scenes/Main Scene/UI/Map_Scene.unity
+    guid: c9de5e699464ce44fbbeec2ffaa1beb8
+  - enabled: 1
+    path: Assets/Scenes/Main Scene/Prototype Scene.unity
+    guid: bd2154c63e53a044eab9d6fb37c93ea7
   m_configObjects:
+    com.unity.adaptiveperformance.google.android.provider_settings: {fileID: 11400000, guid: cf00fd8870e575242b5aa1e9e57311d3, type: 2}
+    com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: 09d3dec3028f480438a39014294ac268, type: 2}
+    com.unity.adaptiveperformance.samsung.android.provider_settings: {fileID: 11400000, guid: 6775efc94fbb5984eb2c6f3bf6128ca9, type: 2}
     com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000, guid: e9575cf81b02d91408fb348beda494f4, type: 2}
-    com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0
