@@ -1,4 +1,5 @@
-using System.Collections.Specialized;
+﻿using System.Collections.Specialized;
+using Unity.Android.Gradle.Manifest;
 using UnityEngine;
 using UnityEngine.UI;
 using static DrinkIngredientsEnum;
@@ -12,6 +13,8 @@ public class CheckingStation : MonoBehaviour
     private InteractSquishAnimation tipJar;
     private SlideMenuValues slideMenuValues;
     private InGameUIManager inGameUIManager;
+    private Player player;
+    private bool doOnce = true;
 
     [Header("Cooldown Settings")]
     [SerializeField] private float activationCooldown = 1.0f; // seconds
@@ -42,6 +45,7 @@ public class CheckingStation : MonoBehaviour
 
         slideMenuValues = FindAnyObjectByType<SlideMenuValues>();
         inGameUIManager = FindAnyObjectByType<InGameUIManager>();
+        player = FindAnyObjectByType<Player>();
     }
 
     private void Start()
@@ -75,6 +79,7 @@ public class CheckingStation : MonoBehaviour
             interactButton.gameObject.SetActive(true);
             Debug.Log("CheckingStation: Interact button shown");
         }
+        doOnce = true;
     }
 
     private void OnTriggerExit(Collider other)
@@ -124,6 +129,8 @@ public class CheckingStation : MonoBehaviour
             slideMenuValues.customersServedCorrectly++;
             inGameUIManager.UpdateReputation();
             ticketManager.RemoveTicket(ticketInstance.gameObject);
+            if (doOnce) inGameUIManager.AddMoney();
+
         }
         else
         {
@@ -137,6 +144,7 @@ public class CheckingStation : MonoBehaviour
             ticketManager.RemoveTicket(ticketInstance.gameObject);
         }
 
+        doOnce = false;
         Destroy(playerDrink);
 
         // Hide button after interaction

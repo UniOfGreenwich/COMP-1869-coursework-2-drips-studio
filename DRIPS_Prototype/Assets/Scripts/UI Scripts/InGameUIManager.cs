@@ -38,6 +38,7 @@ public class InGameUIManager : MonoBehaviour
     private bool rewardsOpen = false;
     private bool dailyRewardsOpen = false;
     private bool shopOpen = false;
+    private Player playerData;
 
     private void Start()
     {
@@ -53,6 +54,7 @@ public class InGameUIManager : MonoBehaviour
 
         // Find References
         slideMenuValues = FindAnyObjectByType<SlideMenuValues>();
+        playerData = FindAnyObjectByType<Player>();
     }
 
     public void ToggleSideMenu()
@@ -74,7 +76,7 @@ public class InGameUIManager : MonoBehaviour
         
 
         // Optional?? pause game while settings open??
-        Time.timeScale = settingsOpen ? 0f : 1f;
+        //Time.timeScale = settingsOpen ? 0f : 1f;
     }
 
     public void ToggleRewardsMenu()
@@ -158,4 +160,13 @@ public class InGameUIManager : MonoBehaviour
             angryCat.SetActive(true);
         }
     }
+
+    public void AddMoney()
+    {
+        int money = playerData.GetPlayerMoney() + 5;
+
+        playerData.SetPlayerMoney(playerData.GetPlayerMoney() + 5);
+        moneyText.text = money.ToString();
+    }
+
 }
