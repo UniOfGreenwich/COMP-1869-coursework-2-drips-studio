@@ -62,13 +62,17 @@ public class CustomerController : MonoBehaviour
         foreach (MeshRenderer mr in furMeshRenderer)
         {
             if (selectedMesh == 0 && mr.tag.Contains("Cat"))
+            {
                 mr.material = materials[randomNumberForMaterial];
-
+            }
             else if (selectedMesh == 1 && mr.tag.Contains("Dog"))
+            {
                 mr.material = materials[randomNumberForMaterial];
-
+            }
             else if (selectedMesh == 2 && mr.tag.Contains("Mouse"))
+            {
                 mr.material = materials[randomNumberForMaterial];
+            }
         }
     }
 

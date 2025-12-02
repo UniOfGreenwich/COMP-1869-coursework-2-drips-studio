@@ -38,6 +38,7 @@ public class GameManager : MonoBehaviour
         queue = GameObject.FindGameObjectWithTag("CustomerManager").GetComponent<QueueManager>();
         seatingManager = GameObject.FindGameObjectWithTag("CustomerManager").GetComponent<SeatingManager>();
         ticketManager = GameObject.FindGameObjectWithTag("TicketManager").GetComponent<TicketManager>();
+        splatManager = GameObject.FindGameObjectWithTag("SplatterManager").GetComponent<IC_SplatterManager>();
     }
 
     private void Update()
@@ -97,6 +98,8 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI currentDate;
     public TimeManager timeManager;
     public bool load;
+    public GameObject openSign;
+    public GameObject closeSign;
 
     void UpdateUI()
     {
@@ -117,6 +120,17 @@ public class GameManager : MonoBehaviour
         {
             money.text = player.GetPlayerMoney().ToString();
         }
+
+        if(open)
+        {
+            openSign.SetActive(true);
+            closeSign.SetActive(false);
+        }
+        else
+        {
+            openSign.SetActive(false);
+            closeSign.SetActive(true);
+        }
     }
     #endregion
 
@@ -129,7 +143,7 @@ public class GameManager : MonoBehaviour
     public TicketManager ticketManager;
     public IC_SplatterManager splatManager;
     public bool open;
-    public float shiftTime = 300;
+    public float shiftTime = 300;    
 
     public void OpenButton()
     {

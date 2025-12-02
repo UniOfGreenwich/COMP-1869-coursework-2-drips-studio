@@ -50,7 +50,13 @@ MonoBehaviour:
   currentDate: {fileID: 0}
   timeManager: {fileID: 0}
   load: 0
+  openSign: {fileID: 0}
+  closeSign: {fileID: 0}
   spawner: {fileID: 0}
   sceneManager: {fileID: 0}
+  queue: {fileID: 0}
+  seatingManager: {fileID: 0}
+  ticketManager: {fileID: 0}
+  splatManager: {fileID: 0}
   open: 0
   shiftTime: 300
