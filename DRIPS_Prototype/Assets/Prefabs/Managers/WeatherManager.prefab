@@ -4800,7 +4800,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f76054af674ce34182a0225dbd1db05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cityName: Cape Town
+  cityName: London
   currentWeather: 0
   skybox:
   - {fileID: 2100000, guid: efd1c33efd2d58340b88804268e6833f, type: 2}

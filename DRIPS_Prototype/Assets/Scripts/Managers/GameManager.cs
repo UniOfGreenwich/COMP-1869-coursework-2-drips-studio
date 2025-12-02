@@ -2,7 +2,6 @@ using UnityEngine;
 using System;
 using TMPro;
 using UnityEngine.UI;
-using UnityEngine.UIElements;
 
 public class GameManager : MonoBehaviour
 {
@@ -100,6 +99,7 @@ public class GameManager : MonoBehaviour
     public bool load;
     public GameObject openSign;
     public GameObject closeSign;
+    public Button openCloseButton;
 
     void UpdateUI()
     {
@@ -125,11 +125,13 @@ public class GameManager : MonoBehaviour
         {
             openSign.SetActive(true);
             closeSign.SetActive(false);
+            openCloseButton.enabled = false;
         }
         else
         {
             openSign.SetActive(false);
             closeSign.SetActive(true);
+            openCloseButton.enabled = true;
         }
     }
     #endregion
