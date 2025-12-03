@@ -22,29 +22,6 @@ public class ProfileSetupUI : MonoBehaviour
 
     private int selectedAvatarIndex = 0;
 
-    //private static ProfileSetupUI instanceProfileSetup;
-
-    //public static ProfileSetupUI InstanceProfileSetup
-    //{
-    //    get
-    //    {
-    //        return instanceProfileSetup;
-    //    }
-    //}
-
-    //private void Awake()
-    //{
-    //    if (instanceProfileSetup == null)
-    //    {
-    //        instanceProfileSetup = this;
-    //        DontDestroyOnLoad(gameObject);
-    //    }
-    //    else
-    //    {
-    //        Destroy(gameObject);
-    //    }
-    //}
-
     private void Start()
     {
         // Set default big image
@@ -88,6 +65,6 @@ public class ProfileSetupUI : MonoBehaviour
         PlayerProfile.CafeName = cafeNameInput.text;
         PlayerProfile.AvatarIndex = selectedAvatarIndex;
 
-        SceneManager.LoadScene("Prototype Scene"); // change to your real scene name
+        SceneManager.LoadScene("Map_Scene"); // change to your real scene name
     }
 }
